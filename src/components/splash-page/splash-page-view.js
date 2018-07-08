@@ -1,13 +1,23 @@
-import Component from './../../lib/component';
-
-module.exports = class SplashPage extends Component{
+module.exports = class SplashPageView {
 
     constructor(vnode) {
-        super(vnode);
-
         this._looper = null;
         this._dataLoaded = false;
         this._routeToMainInvokedCount = 0;
+    }
+
+    view(/*vnode*/) {
+        return m('.holder', [
+            m('.preloader', [
+                m('div'),
+                m('div'),
+                m('div'),
+                m('div'),
+                m('div'),
+                m('div'),
+                m('div'),
+            ]),
+        ]);
     }
 
     routeToMain() {
@@ -32,20 +42,6 @@ module.exports = class SplashPage extends Component{
 
     oncreate(vnode) {
         this._looper = setTimeout(this.routeToMain.bind(this), 2000);
-    }
-
-    view(/*vnode*/) {
-        return m('.holder', [
-            m('.preloader', [
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-            ]),
-        ]);
     }
 
 };

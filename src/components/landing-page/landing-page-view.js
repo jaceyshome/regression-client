@@ -1,9 +1,13 @@
-//var SampleComponent = require('../views/components/sample-component');
-import SampleComponent from '../views/components/sample-component';
-module.exports = class LandingPage {
+module.exports = class LandingPageView {
 
-    constructor(name){
-        this.name = name ;
+    constructor(vnode){
+        this.title = 'Landing page';
+    }
+
+    view(vnode) {
+        return m('div.b-landing-page', [
+            m('h2', `${vnode.state.title}`),
+        ]);
     }
 
     oninit(){
@@ -35,12 +39,5 @@ module.exports = class LandingPage {
         console.log('removing DOM element');
     }
 
-    view() {
-        return m('div', [
-            m('h2', 'Congratulations, you made it!!'),
-            m('p', 'You\'ve spun up your very first Mithril app :-)'),
-            m(SampleComponent),
-        ]);
-    }
-
 };
+

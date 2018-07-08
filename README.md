@@ -40,7 +40,7 @@ npm run build
 │     │     ├── app.scss          # Your application specific .scss goes here
 │     │     └── vendor-scss.js    # Import all vendor .scss/css here [e.g. require('font-awesome/scss/font-awesome.scss')]  
 │     │
-│     ├── views/                  # All your application view logic files
+│     ├── components/                  # All your application view logic files
 │     │     ├── components/
 │     │     ├── your-pages.js
 │     │     └── ...
