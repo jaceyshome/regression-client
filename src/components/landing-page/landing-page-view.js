@@ -1,3 +1,5 @@
+import HistoryModel from './../history/history-model';
+
 module.exports = class LandingPageView {
 
     constructor(vnode){
@@ -11,7 +13,9 @@ module.exports = class LandingPageView {
     }
 
     oninit(){
-        console.log('initialized');
+        HistoryModel.listHistory().then((histories)=>{
+            console.log('initialized', histories);
+        });
     }
 
     oncreate() {
