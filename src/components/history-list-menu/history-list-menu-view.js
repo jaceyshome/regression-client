@@ -1,8 +1,8 @@
 import {Dates} from './../../lib/helpers/helpers';
-import HistoryListModel from './history-list-model';
+import HistoryListMenuModel from './history-list-menu-model';
 
 
-module.exports = class HistoryListView {
+module.exports = class HistoryListMenuView {
 
     constructor(){
         this.title = 'History List view';
@@ -11,7 +11,7 @@ module.exports = class HistoryListView {
 
     oninit(vnode){
         console.log('HistoryListView init');
-        HistoryListModel.listHistory().then((results)=> {
+        HistoryListMenuModel.listHistory().then((results)=> {
             vnode.state.histories = results;
             m.redraw();
         });

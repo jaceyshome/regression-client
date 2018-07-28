@@ -1,4 +1,4 @@
-import HistoryListView from './../history-list/history-list-view';
+import HistoryListMenuView from '../history-list-menu/history-list-menu-view';
 
 module.exports = class LandingPageView {
 
@@ -13,7 +13,7 @@ module.exports = class LandingPageView {
     view(vnode) {
         return m('div.b-landing-page', [
             m('h2', `${vnode.state.title}`),
-            m(HistoryListView),
+            m(HistoryListMenuView),
         ]);
     }
 
