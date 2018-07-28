@@ -2,14 +2,6 @@
 A boilerplate Mithril application using ES6, Babel, Webpack 3, Sass/SCSS, Webpack dev server hot reload and eslint
 
 ### How to use
-```shell
-git clone https://github.com/dhinesh03/mithril-starter-kit
-```
-or
-[Download the source](https://github.com/dhinesh03/mithril-starter-kit/zipball/master)
-```shell
-cd mithril-starter-kit
-
 npm install
 
 npm start

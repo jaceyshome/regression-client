@@ -1,0 +1,45 @@
+@import "mixins";
+@import "variables";
+
+/*
+ * Defines all the custom web font-faces for the corporate website
+ * e.g. Use the font "Apercu Medium" with the file "apercu_medium_italic_pro" in css
+ *
+ * .b-heading {
+ *      font-family: $font-apercu;           //font family
+ *      font-weight: $font-weight-medium;    //font weight
+ *      font-style: italic;                  //font style
+ *  }
+ *
+ */
+
+
+// Antwerp
+@include font('Antwerp', 'Antwerp-Regular', '#{$font-path}/antwerp');
+@include font('Antwerp', 'Antwerp-Italic', '#{$font-path}/antwerp', $font-weight-regular, italic);
+@include font('Antwerp', 'Antwerp-Bold', '#{$font-path}/antwerp', $font-weight-bold);
+@include font('Antwerp', 'Antwerp-BoldItalic', '#{$font-path}/antwerp', $font-weight-bold, italic);
+@include font('Antwerp', 'Antwerp-Light', '#{$font-path}/antwerp', $font-weight-light);
+@include font('Antwerp', 'Antwerp-LightItalic', '#{$font-path}/antwerp', $font-weight-light, italic);
+
+// Antwerp Medium
+@include font('AntwerpMedium', 'Antwerp-Medium', '#{$font-path}/antwerp', $font-weight-medium);
+@include font('AntwerpMedium', 'Antwerp-MediumItalic', '#{$font-path}/antwerp', $font-weight-medium, italic);
+
+// Antwerp Semibold
+@include font('AntwerpSemibold', 'Antwerp-SemiBold', '#{$font-path}/antwerp', $font-weight-semi-bold);
+@include font('AntwerpSemibold', 'Antwerp-SemiBoldItalic', '#{$font-path}/antwerp', $font-weight-semi-bold, italic);
+
+// Apercu
+@include font('Apercu', 'Apercu-Regular-Web', '#{$font-path}/apercu', $font-weight-regular);
+@include font('Apercu', 'Apercu-Italic-Web', '#{$font-path}/apercu', $font-weight-regular, italic);
+@include font('Apercu', 'Apercu-Bold-Web', '#{$font-path}/apercu', $font-weight-bold);
+@include font('Apercu', 'Apercu-BoldItalic-Web', '#{$font-path}/apercu', $font-weight-bold, italic);
+@include font('Apercu', 'Apercu-Light-Web', '#{$font-path}/apercu', $font-weight-light);
+@include font('Apercu', 'Apercu-LightItalic-Web', '#{$font-path}/apercu', $font-weight-light, italic);
+@include font('Apercu', 'Apercu-Medium-Web', '#{$font-path}/apercu', $font-weight-medium);
+@include font('Apercu', 'Apercu-MediumItalic-Web', '#{$font-path}/apercu', $font-weight-medium, italic);
+
+
+// Apercu Mono
+@include font('Apercu Mono', 'Apercu-Mono-Web', '#{$font-path}/apercu');

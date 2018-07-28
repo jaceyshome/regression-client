@@ -7,12 +7,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 //Define your routes here
-import LandingPageView from '../src/components/landing-page/landing-page-view';
-import VisualResultPageView from '../src/components/visual-result-page/visual-result-page-view';
+import LandingPageView from './components/landing-page/landing-page-view';
 import SplashPageView from '../src/components/splash-page/splash-page-view';
 
 m.route(document.body.querySelector('#root'), '/splash', {
     '/splash': SplashPageView,
     '/landing': LandingPageView,
-    '/visual': VisualResultPageView,
 });

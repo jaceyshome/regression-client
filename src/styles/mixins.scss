@@ -1,0 +1,147 @@
+@import "variables";
+@import "colours";
+
+///*
+//	Creates a web font definition based on the details provided.
+//
+//	$font-family: The name of the font family the font belongs to. Use in combination with $font-weight and $font-style to create full font families
+//	$font-name: Name of the font files. Note that for SVG fonts the font anchor must be the same as $font-name (@see http://billpatrianakos.me/blog/2012/12/26/fix-webfont-rendering-issues-in-chrome-for-windows/)
+//	$font-directory: Path to the directory the font files reside in
+//	$font-weight: CSS font weight for this font definition
+//	$font-style: CSS font style for this font definition
+//
+//	Example:
+//	@include font('Antwerp', 'Antwerp-BoldItalic', '../fonts/antwerp', bold, italic);
+//
+//	Output:
+//	@font-face {
+//		font-family: 'Antwerp';
+//		src: url("../fonts/antwerp/Antwerp-BoldItalic.eot");
+//		src: url("../fonts/antwerp/Antwerp-BoldItalic.eot?#iefix") format('embedded-opentype'), url("../fonts/antwerp/Antwerp-BoldItalic.woff") format('woff'), url("../fonts/antwerp/Antwerp-BoldItalic.ttf") format('truetype'), url("../fonts/antwerp/Antwerp-BoldItalic.svg#Antwerp-BoldItalic") format('svg');
+//		font-style: italic;
+//		font-weight: bold;
+//		text-rendering: optimizeLegibility; }
+//
+////
+@mixin font($font-family, $font-name, $font-directory, $font-weight: $font-weight-regular, $font-style: normal) {
+
+    // This map is used to generate the list of various font types. See the @each function below
+    $font-type-map: (
+        'eot?#iefix': 'embedded-opentype', /* IE6-IE8 */
+        'woff': 'woff', /* Modern Browsers */
+        'ttf': 'truetype', /* Safari, Android, iOS */
+        'svg##{$font-name}': 'svg', /* Legacy iOS */
+    ) !default;
+
+    @font-face {
+        font-family: $font-family;
+        src: url("#{$font-directory}/#{$font-name}.eot"); // IE9 compatibility modes
+        $font-map: ();
+        @each $suffix, $format in $font-type-map {
+            $font-map: append($font-map, url("#{$font-directory}/#{$font-name}.#{$suffix}") format($format), comma);
+        }
+        src: $font-map;
+        font-style: $font-style;
+        font-weight: $font-weight;
+        text-rendering: optimizeLegibility;
+    }
+}
+
+/*
+Calculating the desired width of a container whist keeping the ratio of width to height fixed. Useful for
+calculating the size of containers designed to display images, with the image specified as a background.
+
+This function has two modes:
+1. Absolute mode ($baseWidth is specified in px, ems, rems) will calculate the correct height given the width and ratio specified and set fixed values
+2. Relative mode ($baseWidth is a percentage) causes the container to scale the height in ratio when the width changes
+*/
+@mixin dimensions-for-ratio($baseWidth, $ratioWidth, $ratioHeight) {
+
+    $height: ($baseWidth * ($ratioHeight / $ratioWidth));
+    width: $baseWidth;
+    @if (unit($baseWidth) == "%") {
+        padding-bottom: $height;
+        padding-top: 0;
+        height: 0;
+    } @else {
+        height: $height;
+        padding-bottom: 0;
+    }
+
+    // Requires a block-level element to work properly
+    display: block;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+
+    &:-moz-placeholder {
+        @content
+    }
+
+    &::-moz-placeholder {
+        @content
+    }
+
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+@mixin svgfix($height, $padding-bottom, $width) {
+    height: $height;
+    padding-bottom: $padding-bottom;
+    width: $width;
+}
+
+/**
+ * Add a glphyicon to anything!
+ */
+@mixin glyphicon($icon, $size: null) {
+    content: $icon;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if ($size) {
+        font-size: $size;
+    }
+}
+
+/*
+ * Give elements a nice browser focus appearance (ripped from BS)
+ */
+@mixin focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+/*
+ * Reset styles where ul and li elements are being used for semantic meaning, not display. Use sparingly, for compatibility
+ * only and take note that this can unintentionally affect nested lists.
+ */
+@mixin reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin reset-list-item {
+    margin: 0;
+    padding: 0;
+}
+
+// Strips the leading hash from a hex colour, returning a string
+@function strip-hash($colour) {
+    
+    // Convert Color to String so that it can be used with str-slice
+    $colour-string: $colour + "";
+
+    @return str-slice($colour-string, 2);
+}

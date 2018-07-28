@@ -1,0 +1,66 @@
+//--------------------------- Break points -------------------------
+$screen-xs-min: 480px;
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm: $screen-sm-min;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md: $screen-md-min;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
+$screen-lg: $screen-lg-min;
+
+
+//--------------------------- Grid ---------------------------------
+$mobile-landscape-down: "max-width: 479px";
+$mobile-landscape-up: "min-width: 480px";
+$tablet-down: "max-width: 767px";
+$tablet-up: "min-width: 768px";
+$small-desktop-down: "max-width: 991px";
+$small-desktop-up: "min-width: 992px";
+$large-desktop-down: "max-width: 1199px";
+$large-desktop-up: "min-width: 1200px";
+
+
+//----------------------------  Paths -------------------------------
+$image-path: "../assets/img";
+$font-path: '../assets/fonts';
+
+
+//----------------------------  Container ---------------------------
+$container-xxs-padding: 10px;
+$container-xs-padding: 20px;
+$container-sm-padding: 40px;
+$container-md-padding: 80px;
+$container-lg-padding: 110px;
+
+
+//--------------------------- Z-index ------------------------------
+
+
+//--------------------------- Font weights -------------------------
+$font-weight-light: 100;
+$font-weight-medium: 300;
+$font-weight-regular: normal;
+$font-weight-semi-bold: 700;
+$font-weight-bold: bold;
+
+
+//--------------------------- Font families ------------------------
+$font-antwerp: 'Antwerp', Georgia, serif;
+$font-apercu: 'Apercu', Helvetica, sans-serif;
+$font-apercu-mono: 'Apercu Mono', Courier, monospace;
+
+
+//--------------------------- Font sizes ---------------------------
+$font-size-default: 16px;
+$font-size-large: 18px;
+
+
+// Stroke styles for different types of keylines
+$stroke-thin-dark: 1px solid black;
+
+
+//--------------------------- Animations ----------------------------
+$animation-speed-normal: 400ms;
+$animation-speed-fast: 200ms;

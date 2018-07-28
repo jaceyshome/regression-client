@@ -1,14 +1,5 @@
+@import "variables";
+@import "colours";
 
-//Base
-
-
-//Blocks
-
-
-
-//Components
-@import './../components/splash-page/splash-page';
-@import './../components/landing-page/landing-page';
-
-
-//Layout
+@import "base";
+@import "components";

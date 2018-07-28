@@ -1,47 +1,26 @@
-import HistoryModel from './../history/history-model';
+import HistoryListView from './../history-list/history-list-view';
 
 module.exports = class LandingPageView {
 
-    constructor(vnode){
+    constructor(){
         this.title = 'Landing page';
+    }
+
+    oninit() {
+        console.log('landing page oninit');
     }
 
     view(vnode) {
         return m('div.b-landing-page', [
             m('h2', `${vnode.state.title}`),
+            m(HistoryListView),
         ]);
     }
 
-    oninit(){
-        HistoryModel.listHistory().then((histories)=>{
-            console.log('initialized', histories);
-        });
-    }
-
     oncreate() {
-        console.log('DOM created');
+        console.log('landing page oncreate');
     }
 
-    onbeforeupdate() {
-        console.log('onbeforeupdate');
-        return true;
-    }
-
-    onupdate() {
-        console.log('DOM updated');
-    }
-
-    onbeforeremove() {
-        console.log('exit animation can start');
-        return new Promise(function(resolve) {
-            // call after animation completes
-            resolve();
-        });
-    }
-
-    onremove() {
-        console.log('removing DOM element');
-    }
 
 };
 
