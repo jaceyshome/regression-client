@@ -1,10 +1,8 @@
-import {Dates} from './../../lib/helpers/helpers';
 
-
-module.exports = class VisualComparePanel {
+module.exports = class VisualComparePanelView {
 
     constructor(){
-        this.title = 'visual compare panel';
+        this.title = 'VisualComparePanelView';
     }
 
     oninit(vnode){

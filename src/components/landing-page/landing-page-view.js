@@ -1,9 +1,13 @@
+import LandingPageModel from './landing-page-model';
 import HistoryListMenuView from '../history-list-menu/history-list-menu-view';
+import VisualResultContainerView from '../visual-result-container/visual-result-container-view';
+import ControlMenuView from '../control-menu/control-menu-view';
 
 module.exports = class LandingPageView {
 
     constructor(){
         this.title = 'Landing page';
+        this.historyId = null;
     }
 
     oninit() {
@@ -12,15 +16,16 @@ module.exports = class LandingPageView {
 
     view(vnode) {
         return m('div.b-landing-page', [
-            m('h2', `${vnode.state.title}`),
+            m('h1', `${vnode.state.title}`),
             m(HistoryListMenuView),
+            m(VisualResultContainerView),
+            m(ControlMenuView),
         ]);
     }
 
-    oncreate() {
-        console.log('landing page oncreate');
+    onupdate() {
+        console.log('landing page onupdate !!!!!!!!!!!!!!!!!!', m.route.param('history'));
+
     }
 
-
 };
-

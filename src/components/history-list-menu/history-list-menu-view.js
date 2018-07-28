@@ -11,22 +11,22 @@ module.exports = class HistoryListMenuView {
 
     oninit(vnode){
         console.log('HistoryListView init');
-        HistoryListMenuModel.listHistory().then((results)=> {
+        HistoryListMenuModel.fetchHistoryList().then((results)=> {
             vnode.state.histories = results;
             m.redraw();
         });
     }
 
     view(vnode) {
-        return m('div.b-history-list', [
+        return m('div.b-history-list-menu', [
             m('h2', `${vnode.state.title}`),
             m('ul', vnode.state.histories.map((history) =>
                 m('li', [
                     m(`a[href=/landing?history=${history._id}]`, {oncreate: m.route.link}, [
                         m('span', `${history.instance}`),
-                        m('span', `${history.server}`),
-                        m('span', `${Dates.getDate(history.createdAt)}`),
-                        m('span', `${history.allPass}`),
+                        m('span', `| ${history.server}`),
+                        m('span', `| ${Dates.getDate(history.createdAt)}`),
+                        m('span', `| ${history.visualFailedTotal}`),
                     ]),
                 ])
             )),
@@ -34,9 +34,7 @@ module.exports = class HistoryListMenuView {
     }
 
     onupdate() {
-        console.log('onupdate history list view !!');
-
-
+        console.log('onupdate history list view');
     }
 
 };

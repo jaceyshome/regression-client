@@ -1,4 +1,4 @@
-import HistoryDataService from './../history/history-data-service';
+import DataService from '../data/data-service';
 
 class SplashPageModel {
 
@@ -6,8 +6,8 @@ class SplashPageModel {
 
     }
 
-    listHistory() {
-        return HistoryDataService.listHistory();
+    fetchHistoryList() {
+        return DataService.fetchHistoryList();
     }
 
 }

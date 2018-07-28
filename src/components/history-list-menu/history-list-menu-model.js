@@ -1,19 +1,15 @@
-import HistoryDataService from './../history/history-data-service';
+import DataService from '../data/data-service';
 
-class HistoryModel {
+class HistoryListMenuModel {
 
     constructor(){
         this.selectedHistory = null;
     }
 
-    listHistory() {
-        return HistoryDataService.listHistory();
+    fetchHistoryList() {
+        return DataService.fetchHistoryList();
     }
 
-    selectHistory(history) {
-        return HistoryDataService.getHistory(history._id);
-    }
 }
 
-module.exports = new HistoryModel();
-
+module.exports = new HistoryListMenuModel();

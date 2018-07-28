@@ -11,7 +11,7 @@ module.exports = class SplashPageView {
     oninit() {
         this._dataLoaded = false;
         Promise.all([
-            SplashPageModel.listHistory(),
+            SplashPageModel.fetchHistoryList(),
         ]).then(() => {
             this._dataLoaded = true;
             if (this._routeToMainInvokedCount) {

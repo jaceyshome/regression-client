@@ -1,21 +1,22 @@
 import config from './../../config';
-const endpoint = `${config.apiRootPath}/history`;
+const historyEndpoint = `${config.apiRootPath}/history`;
+const visualEndpoint = `${config.apiRootPath}/history`;
 
-class HistoryDataService {
+class DataService {
 
     constructor() {
         this._histories = undefined;
-        this._history = undefined;
+        this._currentHistory = undefined;
     }
 
-    listHistory() {
+    fetchHistoryList() {
 
         return new Promise((resolve, reject)=> {
 
             if(Object.is(this._histories, undefined)) {
                 m.request({
                     method: 'GET',
-                    url: endpoint,
+                    url: historyEndpoint,
                 }).then((result)=> {
                     if(result && result.data) {
                         this._histories = result.data;
@@ -34,18 +35,18 @@ class HistoryDataService {
 
     }
 
-    getHistory(id) {
-        return new Promise((resolve, reject)=> {
-            if(Object.is(this._history.id, id)) {
-                resolve(this._history);
-            } else {
 
+    setCurrentHistory(id) {
+        return new Promise((resolve, reject)=> {
+            if(Object.is(this._currentHistory.id, id)) {
+                resolve(this._currentHistory);
+            } else {
                 m.request({
                     method: 'GET',
-                    url: `${endpoint}?id=${id}`,
+                    url: `${historyEndpoint}?id=${id}`,
                 }).then((result)=> {
                     if(result && result.data) {
-                        this._history = result.data;
+                        this._currentHistory = result.data;
                         resolve(result.data);
                     } else {
                         reject(undefined);
@@ -54,14 +55,16 @@ class HistoryDataService {
                     console.warn('getHistory err', err);
                     reject(undefined);
                 });
-
             }
-
         });
+
     }
 
+    getCurrentHistory() {
+        return this._currentHistory;
+    }
 
 }
 
-module.exports = new HistoryDataService();
+module.exports = new DataService();
 
