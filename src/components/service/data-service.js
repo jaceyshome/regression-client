@@ -1,4 +1,6 @@
+import ComponentHelpers from './../component-helpers/component-helpers';
 import config from './../../config';
+
 const historyEndpoint = `${config.apiRootPath}/history`;
 const visualEndpoint = `${config.apiRootPath}/history`;
 
@@ -19,8 +21,8 @@ class DataService {
                     url: historyEndpoint,
                 }).then((result)=> {
                     if(result && result.data) {
-                        this._histories = result.data;
-                        resolve(result.data);
+                        this._histories = ComponentHelpers.History.sortHistory(result.data);
+                        resolve(this._histories);
                     } else {
                         reject(undefined);
                     }
@@ -38,31 +40,33 @@ class DataService {
 
     setCurrentHistory(id) {
         return new Promise((resolve, reject)=> {
-            if(Object.is(this._currentHistory.id, id)) {
-                resolve(this._currentHistory);
-            } else {
-                m.request({
-                    method: 'GET',
-                    url: `${historyEndpoint}?id=${id}`,
-                }).then((result)=> {
-                    if(result && result.data) {
-                        this._currentHistory = result.data;
-                        resolve(result.data);
-                    } else {
-                        reject(undefined);
-                    }
-                }).catch((err)=> {
-                    console.warn('getHistory err', err);
+            m.request({
+                method: 'GET',
+                url: `${historyEndpoint}?id=${id}`,
+            }).then((result)=> {
+                if(result && result.data) {
+                    this._currentHistory = Object.assign(
+                        result.data,
+                        {visualTests: ComponentHelpers.Visual.sortTestResults(result.data.visualTests)}
+                    );
+                    resolve(this._currentHistory);
+                } else {
                     reject(undefined);
-                });
-            }
+                }
+            }).catch((err)=> {
+                console.warn('setCurrentHistory err', err);
+                reject(undefined);
+            });
         });
-
     }
 
     getCurrentHistory() {
         return this._currentHistory;
     }
+
+
+
+    /*---------------------- helpers -------------------------*/
 
 }
 

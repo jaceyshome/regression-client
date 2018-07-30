@@ -1,4 +1,4 @@
-import DataService from '../data/data-service';
+import DataService from '../service/data-service';
 
 class SplashPageModel {
 

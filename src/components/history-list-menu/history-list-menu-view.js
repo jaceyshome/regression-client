@@ -1,7 +1,6 @@
 import {Dates} from './../../lib/helpers/helpers';
 import HistoryListMenuModel from './history-list-menu-model';
 
-
 module.exports = class HistoryListMenuView {
 
     constructor(){
@@ -11,7 +10,7 @@ module.exports = class HistoryListMenuView {
 
     oninit(vnode){
         console.log('HistoryListView init');
-        HistoryListMenuModel.fetchHistoryList().then((results)=> {
+        HistoryListMenuModel.initState().then((results)=> {
             vnode.state.histories = results;
             m.redraw();
         });
@@ -22,12 +21,19 @@ module.exports = class HistoryListMenuView {
             m('h2', `${vnode.state.title}`),
             m('ul', vnode.state.histories.map((history) =>
                 m('li', [
-                    m(`a[href=/landing?history=${history._id}]`, {oncreate: m.route.link}, [
-                        m('span', `${history.instance}`),
-                        m('span', `| ${history.server}`),
-                        m('span', `| ${Dates.getDate(history.createdAt)}`),
-                        m('span', `| ${history.visualFailedTotal}`),
-                    ]),
+                    m('a[href=javascript:void(0);]',
+                        {
+                            onclick() {
+                                HistoryListMenuModel.setCurrentHistory(history);
+                            },
+                        },
+                        [
+                            m('span', `${history.instance}`),
+                            m('span', `| ${history.server}`),
+                            m('span', `| ${Dates.getDate(history.createdAt)}`),
+                            m('span', `| ${history.visualFailedTotal}`),
+                        ]
+                    ),
                 ])
             )),
         ]);
