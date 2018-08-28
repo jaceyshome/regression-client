@@ -82,13 +82,14 @@ class DataService {
     }
 
     setCurrentVisualTestReference(test) {
-        this._currentVisualTest = ComponentHelpers.Visual.findTestReference(test, this._currentHistory.visualReferences);
+        this._currentVisualReference = ComponentHelpers.Visual.findTestReference(test, this._currentHistory.visualReferences);
+        console.log('this current visual reference::', this._currentVisualReference);
         return this._currentVisualReference;
 
     }
 
-    getCurrentVisualReference(reference) {
-        return this._currentVisualReference = reference;
+    getCurrentVisualTestReference() {
+        return this._currentVisualReference;
     }
 
     updateVisualReference(reference) {

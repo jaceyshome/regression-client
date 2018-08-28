@@ -38,8 +38,6 @@ module.exports = class SplashPageView {
         this._looper = setTimeout(this.routeToMain.bind(this), 2000);
     }
 
-
-
     routeToMain() {
         this._routeToMainInvokedCount++;
         if (this._dataLoaded) {

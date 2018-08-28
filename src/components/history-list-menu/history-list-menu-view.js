@@ -19,8 +19,9 @@ module.exports = class HistoryListMenuView {
     view(vnode) {
         return m('div.b-history-list-menu', [
             m('h2', `${vnode.state.title}`),
-            m('ul', vnode.state.histories.map((history) =>
-                m('li', [
+            m('ul', vnode.state.histories.map((history) => {
+                console.log('history length:', history.length);
+                return m('li', [
                     m('a[href=javascript:void(0);]',
                         {
                             onclick() {
@@ -34,13 +35,9 @@ module.exports = class HistoryListMenuView {
                             m('span', `| ${history.visualFailedTotal}`),
                         ]
                     ),
-                ])
+                ]);}
             )),
         ]);
-    }
-
-    onupdate() {
-        console.log('onupdate history list view');
     }
 
 };

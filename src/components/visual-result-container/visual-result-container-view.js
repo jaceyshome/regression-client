@@ -1,7 +1,7 @@
 import VisualComparePanelView from './../visual-compare-panel/visual-compare-panel-view';
 import VisualNavigationMapView from './../visual-navigation-map/visual-navigation-map-view';
-import VisualSlideNext from './../visual-slide-next/visual-slide-prev-view';
-import VisualSlidePrev from './../visual-slide-prev/visual-slide-next-view';
+import VisualSlideNext from './../visual-slide-next/visual-slide-next-view';
+import VisualSlidePrev from './../visual-slide-prev/visual-slide-prev-view';
 
 module.exports = class VisualResultContainer {
 

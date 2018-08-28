@@ -9,7 +9,7 @@ import DataService from './data-service';
 class StateService {
 
     constructor() {
-
+        this._currentTestIndex = 0;
     }
 
     /**
@@ -27,15 +27,19 @@ class StateService {
             }
 
             DataService.setCurrentHistory(candidate._id).then((result)=> {
+
                 if(result && result._id) {
                     const parsed = {history: result._id};
                     let location = m.route.get().replace(/\?(.*)/g, '');
                     m.route.set(`${location}?${queryString.stringify(parsed)}`);
                 }
 
+                //reset index to 0
+                this._currentTestIndex = 0;
+
                 //set current visual test as the first visual test
                 if(!_.isEmpty(DataService.getCurrentHistory().visualTests)){
-                    DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[0]);
+                    DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[this._currentTestIndex]);
                     DataService.setCurrentVisualTestReference(DataService.getCurrentVisualTest());
                 }
                 resolve(DataService.getCurrentHistory());
@@ -48,6 +52,22 @@ class StateService {
 
     }
 
+    setPreviousVisualTest() {
+        if(!_.isEmpty(DataService.getCurrentHistory().visualTests) && this._currentTestIndex !== 0){
+            this._currentTestIndex = this._currentTestIndex - 1;
+            DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[this._currentTestIndex]);
+            DataService.setCurrentVisualTestReference(DataService.getCurrentVisualTest());
+        }
+    }
+
+    setNextVisualTest() {
+        if(!_.isEmpty(DataService.getCurrentHistory().visualTests) &&
+            DataService.getCurrentHistory().visualTests.length !== this._currentTestIndex + 1 ){
+            this._currentTestIndex = this._currentTestIndex + 1;
+            DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[this._currentTestIndex]);
+            DataService.setCurrentVisualTestReference(DataService.getCurrentVisualTest());
+        }
+    }
 }
 
 module.exports = new StateService();
