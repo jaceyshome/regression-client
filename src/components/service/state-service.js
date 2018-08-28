@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import queryString from 'query-string';
 import DataService from './data-service';
 
@@ -31,6 +32,12 @@ class StateService {
                     let location = m.route.get().replace(/\?(.*)/g, '');
                     m.route.set(`${location}?${queryString.stringify(parsed)}`);
                 }
+
+                //set current visual test as the first visual test
+                if(!_.isEmpty(DataService.getCurrentHistory().visualTests)){
+                    DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[0]);
+                    DataService.setCurrentVisualTestReference(DataService.getCurrentVisualTest());
+                }
                 resolve(DataService.getCurrentHistory());
 
             }).catch((err)=> {
@@ -39,10 +46,7 @@ class StateService {
             });
         });
 
-
     }
-
-
 
 }
 

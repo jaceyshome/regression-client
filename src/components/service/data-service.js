@@ -9,6 +9,8 @@ class DataService {
     constructor() {
         this._histories = undefined;
         this._currentHistory = undefined;
+        this._currentVisualReference = undefined;
+        this._currentVisualTest = undefined;
     }
 
     fetchHistoryList() {
@@ -64,7 +66,34 @@ class DataService {
         return this._currentHistory;
     }
 
+    setCurrentVisualTest(test) {
+        this._currentVisualTest = test;
+        return this._currentVisualTest;
+    }
 
+    getCurrentVisualTest() {
+        return this._currentVisualTest;
+    }
+
+    approveTest(test) {
+        return new Promise((resolve, reject)=> {
+
+        });
+    }
+
+    setCurrentVisualTestReference(test) {
+        this._currentVisualTest = ComponentHelpers.Visual.findTestReference(test, this._currentHistory.visualReferences);
+        return this._currentVisualReference;
+
+    }
+
+    getCurrentVisualReference(reference) {
+        return this._currentVisualReference = reference;
+    }
+
+    updateVisualReference(reference) {
+
+    }
 
     /*---------------------- helpers -------------------------*/
 

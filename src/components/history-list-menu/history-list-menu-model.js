@@ -7,16 +7,8 @@ class HistoryListMenuModel {
 
     }
 
-    initState() {
-        return new Promise((resolve, reject)=> {
-            DataService.fetchHistoryList().then((results)=> {
-
-                StateService.setCurrentHistory(results[0]).then((history)=> {
-
-                    resolve(results);
-                });
-            });
-        });
+    getHistoryList() {
+        return DataService.fetchHistoryList();
     }
 
     setCurrentHistory(history) {

@@ -10,7 +10,7 @@ module.exports = class HistoryListMenuView {
 
     oninit(vnode){
         console.log('HistoryListView init');
-        HistoryListMenuModel.initState().then((results)=> {
+        HistoryListMenuModel.getHistoryList().then((results)=> {
             vnode.state.histories = results;
             m.redraw();
         });
