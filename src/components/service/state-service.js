@@ -24,6 +24,7 @@ class StateService {
                 Object.is(DataService.getCurrentHistory()._id, candidate._id)
             ) {
                 resolve(DataService.getCurrentHistory());
+                return;
             }
 
             DataService.setCurrentHistory(candidate._id).then((result)=> {
@@ -67,6 +68,10 @@ class StateService {
             DataService.setCurrentVisualTest(DataService.getCurrentHistory().visualTests[this._currentTestIndex]);
             DataService.setCurrentVisualTestReference(DataService.getCurrentVisualTest());
         }
+    }
+
+    approveCurrentTest() {
+        return DataService.approveTest(DataService.getCurrentVisualTest()).then(()=> this.setNextVisualTest());
     }
 }
 

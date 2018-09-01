@@ -2,7 +2,7 @@ import ComponentHelpers from './../component-helpers/component-helpers';
 import config from './../../config';
 
 const historyEndpoint = `${config.apiRootPath}/history`;
-const visualEndpoint = `${config.apiRootPath}/history`;
+const visualEndpoint = `${config.apiRootPath}/visual`;
 
 class DataService {
 
@@ -77,6 +77,31 @@ class DataService {
 
     approveTest(test) {
         return new Promise((resolve, reject)=> {
+
+            m.request({
+                method: 'PUT',
+                url: visualEndpoint,
+                data: {
+                    historyId: test.historyId,
+                    visualReferenceId: test.visualReferenceId,
+                    visualScreenshot: test.visualScreenshot,
+                    browser: test.browser,
+                    url: test.url,
+                    name: test.name,
+                    visualScreenshotPath: test.visualScreenshotPath,
+                    _id: test._id,
+                },
+            }).then((result)=> {
+                if(result && result.data) {
+                    Object.assign(test, result.data);
+                    resolve(result.data);
+                } else {
+                    reject(undefined);
+                }
+            }).catch((err)=> {
+                console.warn('Approve test err', err);
+                reject(undefined);
+            });
 
         });
     }
