@@ -1,17 +1,35 @@
 
 //----------------------- Base --------------------------------
+@import './../components/box/box';
+@import './../components/icon/icon';
+@import './../components/image/image';
+@import './../components/link/link';
+@import './../components/text/text';
+@import './../components/title/title';
 
 
 
 //----------------------- Blocks ------------------------------
+@import './../components/button/button';
+@import './../components/component/component';
+@import './../components/page/page';
 
 
 
 //----------------------- Components --------------------------
+@import './../components/control-menu/control-menu';
+@import './../components/details-panel/details-panel';
+@import './../components/featured-button/featured-button';
+@import './../components/history-list-menu/history-list-menu';
+@import './../components/landing-page/landing-page';
 @import './../components/splash-page/splash-page';
-@import '../components/landing-page/landing-page';
-@import '../components/history-list-menu/history-list-menu';
+@import './../components/visual-compare-panel/visual-compare-panel';
+@import './../components/visual-navigation-map/visual-navigation-map';
+@import './../components/visual-result-container/visual-result-container';
+@import './../components/visual-slide-next/visual-slide-next';
+@import './../components/visual-slide-prev/visual-slide-prev';
 
 
 
 //----------------------- Layout ------------------------------
+@import './../components/grid/grid';

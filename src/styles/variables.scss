@@ -47,15 +47,26 @@ $font-weight-bold: bold;
 
 
 //--------------------------- Font families ------------------------
-$font-antwerp: 'Antwerp', Georgia, serif;
 $font-apercu: 'Apercu', Helvetica, sans-serif;
 $font-apercu-mono: 'Apercu Mono', Courier, monospace;
 
 
 //--------------------------- Font sizes ---------------------------
-$font-size-default: 16px;
-$font-size-large: 18px;
+$font-size-xxs: 9px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-md: 18px;
+$font-size-md-lg: 24px;
+$font-size-md-llg: 32px;
+$font-size-llg: 42px;
 
+
+//--------------------------- Font line height ---------------------------
+$line-height-xs: 1;
+$line-height-sm: 1.15;
+$line-height-base: 1.25;
+$line-height-md: 1.5;
 
 // Stroke styles for different types of keylines
 $stroke-thin-dark: 1px solid black;

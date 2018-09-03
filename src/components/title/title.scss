@@ -1,0 +1,29 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-title {
+
+    font-family: $font-apercu-mono;
+    line-height: 1.25;
+
+    &__h1 {
+        font-size: $font-size-llg;
+    }
+
+    &__h2 {
+        font-size: $font-size-md-llg;
+    }
+
+    &__h3 {
+        font-size: $font-size-md-lg;
+    }
+
+    &__h4 {
+        font-size: $font-size-md;
+    }
+
+    &__h5 {
+        font-size: $font-size-base;
+    }
+
+}

@@ -1,0 +1,43 @@
+@import "./../../styles/colours";
+@import "./../../styles/variables";
+
+/*
+Animation
+
+animation styles, default duration is normal
+
+.b-animation--fade - opacity 0
+.b-animation--fade-in - fade in action to opacity 1
+.b-animation--fade-out - fade out action to opacity 0
+.b-animation--blur - blur effect
+
+Style guide: Base.Animation
+*/
+.b-animation {
+
+    transition: $animation-speed-normal;
+
+    &--fast {
+        transition: $animation-speed-fast;
+    }
+
+    &--faster {
+        transition: $animation-speed-faster;
+    }
+
+    &--fade {
+        opacity: 0;
+
+        &-in {
+            opacity: 1;
+        }
+
+        &-out {
+            opacity: 0;
+        }
+    }
+
+    &--blur {
+        filter: blur(2rem);
+    }
+}
