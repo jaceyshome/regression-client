@@ -3,6 +3,20 @@
 
 .b-history-list-menu {
 
+    position: fixed;
+    width: 100px;
+    height: 100%;
+    transform: translateX(-100px);
 
+    .b-page--bg-dark & {
+        background-color: $brand-grey-hover;
+    }
 
+    &__item {
+
+        &--failed {
+            background-color: $brand-red;
+        }
+
+    }
 }

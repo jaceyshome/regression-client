@@ -12,8 +12,8 @@ module.exports = class VisualComparePanelView {
             m('h3', `${vnode.state.title}`),
             m('div', `test link: ${VisualComparePanelModel.getVisualTest().url}`),
             m('div', `pass: ${VisualComparePanelModel.getVisualTest().pass}`),
-            m('div', `visualTest: ${VisualComparePanelModel.getVisualTest().visualScreenshotPath}`),
-            m('div', `visualTestReference: ${VisualComparePanelModel.getVisualTestReference().visualScreenshotPath}`),
+            m('div', `visualTest: ${VisualComparePanelModel.getVisualTestImage()}`),
+            m('img', {src : VisualComparePanelModel.getVisualTestReferenceImage()}),
         ]);
     }
 

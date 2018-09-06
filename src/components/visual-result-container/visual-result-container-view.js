@@ -10,13 +10,9 @@ module.exports = class VisualResultContainer {
         this.title = 'VisualResultContainer';
     }
 
-    oninit(vnode){
-        console.log('VisualResultContainer init');
-    }
-
     view(vnode) {
         return m('div.b-visual-result-container', [
-            m('h2', `${vnode.state.title}`),
+            m('h2.sr-only', `${vnode.state.title}`),
             m(VisualComparePanelView),
             m(DetailsPanelView),
             m(VisualNavigationMapView),

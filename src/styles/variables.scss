@@ -23,16 +23,18 @@ $large-desktop-up: "min-width: 1200px";
 
 
 //----------------------------  Paths -------------------------------
-$image-path: "../assets/img";
+$image-path: "../assets/images";
 $font-path: '../assets/fonts';
 
 
 //----------------------------  Container ---------------------------
-$container-xxs-padding: 10px;
-$container-xs-padding: 20px;
-$container-sm-padding: 40px;
-$container-md-padding: 80px;
-$container-lg-padding: 110px;
+$container-xxs: 5px;
+$container-xs: 10px;
+$container-sm: 15px;
+$container-base: 20px;
+$container-sm: 40px;
+$container-md: 80px;
+$container-lg: 110px;
 
 
 //--------------------------- Z-index ------------------------------

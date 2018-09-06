@@ -18,7 +18,7 @@ module.exports = class LandingPageView {
 
     view(vnode) {
         return m('div.b-page.b-page--bg-dark', LandingPageModel.isReady() ? [
-            m('h1', `${vnode.state.title}`),
+            m('h1.sr-only', `${vnode.state.title}`),
             m(HistoryListMenuView),
             m(VisualResultContainerView),
             m(ControlMenuView),

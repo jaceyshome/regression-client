@@ -27,16 +27,16 @@ module.exports = {
             loader: 'file-loader',
             options: {
                 name: '[name].[ext]',
-                publicPath: '../fonts/',
-                outputPath: 'fonts/',
+                publicPath: '../assets/fonts/',
+                outputPath: 'assets/fonts/',
             },
         }, {
             test: /\.(png|jpg|gif)$/,
             loader: 'file-loader',
             options: {
                 name: '[name].[ext]',
-                publicPath: '../images/',
-                outputPath: 'images/',
+                publicPath: '../assets/images/',
+                outputPath: 'assets/images/',
             },
         }, {
             test: /\.js$/,

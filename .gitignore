@@ -1,5 +1,6 @@
 # compiled output
 /dist
+/src/assets/output
 
 # dependencies
 /node_modules

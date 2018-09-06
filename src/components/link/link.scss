@@ -3,7 +3,11 @@
 
 .b-link {
 
+    .b-page--bg-dark & {
+        color: $text-colour-white;
+    }
 
-
-
+    &--block {
+        display: block;
+    }
 }

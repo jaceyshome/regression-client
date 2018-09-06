@@ -1,0 +1,12 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-item-list {
+
+    margin: 0;
+    padding: 0;
+
+    &__item {
+        list-style-type: none;
+    }
+}

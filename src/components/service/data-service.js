@@ -13,6 +13,10 @@ class DataService {
         this._currentVisualTest = undefined;
     }
 
+    getAssetRootPath() {
+        return 'src/assets/';
+    }
+
     fetchHistoryList() {
 
         return new Promise((resolve, reject)=> {

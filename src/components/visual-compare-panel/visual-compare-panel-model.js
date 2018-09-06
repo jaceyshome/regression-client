@@ -11,10 +11,13 @@ class VisualComparePanelModel {
         return DataService.getCurrentVisualTest();
     }
 
-    getVisualTestReference() {
-        return DataService.getCurrentVisualTestReference();
+    getVisualTestImage() {
+        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
     }
 
+    getVisualTestReferenceImage() {
+        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
+    }
 }
 
 module.exports = new VisualComparePanelModel();

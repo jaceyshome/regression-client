@@ -18,21 +18,18 @@ module.exports = class HistoryListMenuView {
 
     view(vnode) {
         return m('div.b-history-list-menu', [
-            m('h2', `${vnode.state.title}`),
-            m('ul', vnode.state.histories.map((history) => {
-                console.log('history length:', history.length);
-                return m('li', [
-                    m('a[href=javascript:void(0);]',
+            m('h2.sr-only', `${vnode.state.title}`),
+            m('ul.b-item-list', vnode.state.histories.map((history) => {
+                return m(`li..b-history-list-menu__item.b-item-list__item${(history.visualFailedTotal > 0) && '.b-history-list-menu__item--failed'}`, [
+                    m('a.b-link.b-link--block.b-box.b-box--padding-brick-sm.b-text.b-text--label[href=javascript:void(0);]',
                         {
                             onclick() {
                                 HistoryListMenuModel.setCurrentHistory(history);
                             },
                         },
                         [
-                            m('span', `${history.instance}`),
-                            m('span', `| ${history.server}`),
-                            m('span', `| ${Dates.getDate(history.createdAt)}`),
-                            m('span', `| ${history.visualFailedTotal}`),
+                            m('span.b-text.b-text--uppercase', `${history.server}`),
+                            m('span.sr-only', ` | ${history.visualFailedTotal}`),
                         ]
                     ),
                 ]);}
