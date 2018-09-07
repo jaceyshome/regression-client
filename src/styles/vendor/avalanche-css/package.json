@@ -1,0 +1,88 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "avalanche-css",
+        "scope": null,
+        "escapedName": "avalanche-css",
+        "name": "avalanche-css",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/jakewang/Projects/intranet-components"
+    ]
+  ],
+  "_from": "avalanche-css@latest",
+  "_id": "avalanche-css@1.2.0",
+  "_inCache": true,
+  "_location": "/avalanche-css",
+  "_nodeVersion": "6.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/avalanche-css-1.2.0.tgz_1480593869448_0.9186538967769593"
+  },
+  "_npmUser": {
+    "name": "colourgarden",
+    "email": "tom@hare.me"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "avalanche-css",
+    "scope": null,
+    "escapedName": "avalanche-css",
+    "name": "avalanche-css",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/avalanche-css/-/avalanche-css-1.2.0.tgz",
+  "_shasum": "2c42e789f3ba77f45e7505738b18a11840bcd889",
+  "_shrinkwrap": null,
+  "_spec": "avalanche-css",
+  "_where": "/Users/jakewang/Projects/intranet-components",
+  "author": {
+    "name": "Tom Hare",
+    "email": "tom@hare.me"
+  },
+  "bugs": {
+    "url": "https://github.com/colourgarden/avalanche/issues"
+  },
+  "dependencies": {},
+  "description": "Superclean, powerful, responsive, Sass-based, BEM-syntax CSS grid system",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "2c42e789f3ba77f45e7505738b18a11840bcd889",
+    "tarball": "https://registry.npmjs.org/avalanche-css/-/avalanche-css-1.2.0.tgz"
+  },
+  "gitHead": "6d45fe9d59ffd57d6ab999ca253dbedcec8d403b",
+  "homepage": "https://github.com/colourgarden/avalanche",
+  "keywords": [
+    "css",
+    "grid",
+    "oocss"
+  ],
+  "license": "MIT",
+  "main": "_avalanche.scss",
+  "maintainers": [
+    {
+      "name": "colourgarden",
+      "email": "tom@hare.me"
+    }
+  ],
+  "name": "avalanche-css",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colourgarden/avalanche.git"
+  },
+  "scripts": {},
+  "version": "1.2.0"
+}

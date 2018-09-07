@@ -18,6 +18,7 @@ class VisualComparePanelModel {
     getVisualTestReferenceImage() {
         return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
     }
+
 }
 
 module.exports = new VisualComparePanelModel();

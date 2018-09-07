@@ -8,14 +8,15 @@ module.exports = class ControlMenuView {
 
     view(vnode) {
         return m('div.b-control-menu', [
-            m('h2', `${vnode.state.title}`),
-            m('a[href=javascript:void(0);]',
+            m('h3.sr-only', `${vnode.state.title}`),
+            m('a.b-link.b-link--block[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.toggleDetailsPanel();},
                 },
                 [m('span', 'toggle details')]
             ),
-            m('a[href=javascript:void(0);]',
+            ControlMenuModel.isResultFailed() &&
+            m('a.b-link.b-link--block[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.approveTest();},
                 },

@@ -1,0 +1,17 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-overlay {
+
+    &__container {
+        position: relative;
+    }
+
+    &__cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}

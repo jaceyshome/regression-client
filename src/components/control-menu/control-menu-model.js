@@ -12,7 +12,15 @@ class ControlMenuModel {
     }
 
     toggleDetailsPanel() {
+        if(DataService.isDetailsPanelVisible()){
+            StateService.hideDetailsPanel();
+        } else {
+            StateService.showDetailsPanel();
+        }
+    }
 
+    isResultFailed() {
+        return !DataService.getCurrentVisualTest().pass;
     }
 
 }

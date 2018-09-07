@@ -8,15 +8,15 @@ module.exports = class VisualSlidePrevView {
 
     view(vnode) {
         return m('div.b-visual-slide-next', [
-            m('h3', `${vnode.state.title}`),
-            m('a[href=javascript:void(0);]',
+            m('h3.sr-only', `${vnode.state.title}`),
+            m('a.b-link[href=javascript:void(0);]',
                 {
                     onclick() {
                         VisualSlidePrevModel.setPreviousTest();
                     },
                 },
                 [
-                    m('span', 'prev slide'),
+                    m('span', 'prev'),
                 ]
             ),
         ]);

@@ -71,7 +71,16 @@ class StateService {
     }
 
     approveCurrentTest() {
+        this.hideDetailsPanel();
         return DataService.approveTest(DataService.getCurrentVisualTest()).then(()=> this.setNextVisualTest());
+    }
+
+    showDetailsPanel() {
+        DataService.setDetailsPanelVisibility(true);
+    }
+
+    hideDetailsPanel() {
+        DataService.setDetailsPanelVisibility(false);
     }
 }
 

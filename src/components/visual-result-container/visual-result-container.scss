@@ -3,6 +3,16 @@
 
 .b-visual-result-container {
 
+    &__content-container {
+        position: relative;
+    }
 
+    &__details-container {
+        z-index: 3;
+        height: 100%;
+    }
 
+    &__side-bar {
+        text-align: left;
+    }
 }

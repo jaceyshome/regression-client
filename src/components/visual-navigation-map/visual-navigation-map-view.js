@@ -8,9 +8,10 @@ module.exports = class VisualNavigationMapView {
     }
 
     view(vnode) {
-        return m('div.b-visual-navigation-map', [
-            m('h3', `${vnode.state.title}`),
-            m('div', `${VisualNavigationMapModel.getScreenShot()}`),
+        return m('div.b-visual-navigation-map', {
+            style: { 'background-image': `url(${VisualNavigationMapModel.getScreenShot()})`},
+        },[
+            m('h3.sr-only', `${vnode.state.title}`),
         ]);
     }
 

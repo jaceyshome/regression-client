@@ -6,23 +6,28 @@
     font-family: $font-apercu-mono;
     line-height: 1.25;
 
-    &__h1 {
+    &--h1 {
+        margin-bottom: $container-md;
         font-size: $font-size-llg;
     }
 
-    &__h2 {
+    &--h2 {
+        margin-bottom: $container-md;
         font-size: $font-size-md-llg;
     }
 
-    &__h3 {
+    &--h3 {
+        margin-bottom: $container-sm;
         font-size: $font-size-md-lg;
     }
 
-    &__h4 {
+    &--h4 {
+        margin-bottom: $container-sm;
         font-size: $font-size-md;
     }
 
-    &__h5 {
+    &--h5 {
+        margin-bottom: $container-sm;
         font-size: $font-size-base;
     }
 

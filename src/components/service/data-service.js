@@ -11,10 +11,11 @@ class DataService {
         this._currentHistory = undefined;
         this._currentVisualReference = undefined;
         this._currentVisualTest = undefined;
+        this._detailsPanelsVisibilty = false;
     }
 
     getAssetRootPath() {
-        return 'src/assets/';
+        return 'regression-tests/';
     }
 
     fetchHistoryList() {
@@ -121,8 +122,12 @@ class DataService {
         return this._currentVisualReference;
     }
 
-    updateVisualReference(reference) {
+    setDetailsPanelVisibility(value=true) {
+        this._detailsPanelsVisibility = value;
+    }
 
+    isDetailsPanelVisible() {
+        return this._detailsPanelsVisibility;
     }
 
     /*---------------------- helpers -------------------------*/

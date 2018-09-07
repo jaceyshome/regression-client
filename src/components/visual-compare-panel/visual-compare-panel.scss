@@ -3,6 +3,28 @@
 
 .b-visual-compare-panel {
 
+    position: relative;
+    overflow-y: hidden;
 
+    &__layer {
 
+        &--reference {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            //TODO: trainslateX should be control by the js
+            transform: translateX(-300px);
+            overflow-x: hidden;
+        }
+
+        &--test {
+            z-index: 1;
+            position: relative;
+        }
+    }
+
+    &__reference-image {
+        //TODO: trainslateX should be control by the js
+        transform: translateX(300px);
+    }
 }
