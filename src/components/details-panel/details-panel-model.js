@@ -18,6 +18,15 @@ class DetailsPanelModel {
         return `${hours}, ${date}`;
     }
 
+    getTestApprovedDateTime() {
+        if(!DataService.getCurrentVisualTest().approvedAt) {
+            return '';
+        }
+        let date = Dates.getDate(DataService.getCurrentVisualTest().approvedAt);
+        let hours = Dates.getHourMinute(DataService.getCurrentVisualTest().approvedAt);
+        return `${hours}, ${date}`;
+    }
+
     getReferenceCreateDate() {
         let date = Dates.getDate(DataService.getCurrentVisualTestReference().createdAt);
         let hours = Dates.getHourMinute(DataService.getCurrentVisualTestReference().createdAt);
@@ -31,6 +40,18 @@ class DetailsPanelModel {
     getReferenceBrowserInfo() {
         return DataService.getCurrentVisualTestReference().browser;
 
+    }
+
+    isResultFailed() {
+        return !DataService.getCurrentVisualTest().pass;
+    }
+
+    isResultApproved() {
+        return DataService.getCurrentVisualTest().pass && DataService.getCurrentVisualTest().approvedAt;
+    }
+
+    isResultPass() {
+        return DataService.getCurrentVisualTest().pass && !DataService.getCurrentVisualTest().approvedAt;
     }
 
 }

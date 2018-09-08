@@ -22,6 +22,13 @@ module.exports = class ControlMenuView {
                 },
                 [m('span', 'approve test')]
             ),
+
+            ControlMenuModel.isResultPass() &&
+            m('p', 'pass'),
+
+            ControlMenuModel.isResultApproved() &&
+            m('p', 'approved'),
+
         ]);
     }
 

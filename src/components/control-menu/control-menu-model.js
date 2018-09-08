@@ -23,6 +23,14 @@ class ControlMenuModel {
         return !DataService.getCurrentVisualTest().pass;
     }
 
+    isResultApproved() {
+        return DataService.getCurrentVisualTest().pass && DataService.getCurrentVisualTest().approvedAt;
+    }
+
+    isResultPass() {
+        return DataService.getCurrentVisualTest().pass && !DataService.getCurrentVisualTest().approvedAt;
+    }
+
 }
 
 module.exports = new ControlMenuModel();
