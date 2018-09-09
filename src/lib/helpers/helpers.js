@@ -1,6 +1,7 @@
 import {Booleans} from './booleans';
 import {Colors} from './colors';
 import {Dates} from './dates';
+import {Images} from './images';
 import {Numbers} from './numbers';
 import {Strings} from './strings';
 
@@ -18,6 +19,7 @@ let Helpers = {
     Booleans,
     Colors,
     Dates,
+    Images,
     Numbers,
     Strings,
 };
