@@ -10,7 +10,7 @@ class ImageViewerHelper {
     }
 
     static getBodyHeight() {
-        return document.body.offsetHeight;
+        return document.body.clientHeight;
     }
 
 }

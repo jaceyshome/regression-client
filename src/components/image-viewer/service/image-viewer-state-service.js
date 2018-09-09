@@ -14,7 +14,7 @@ const REFERENCE_IMAGE = 'REFERENCE_IMAGE';
 class ImageViewerStateService {
 
     constructor() {
-
+        window.addEventListener('resize', this._onresize.bind(this));
     }
 
     showCurrentResult() {
@@ -42,6 +42,19 @@ class ImageViewerStateService {
         background.width = testImageParams.width;
         background.height = testImageParams.height;
         ImageViewerService.getImageViewer().stage.addChild(background);
+    }
+
+
+
+    _onresize(){
+        if(!ImageViewerService.getImageViewer()){
+            return;
+        }
+        const parent = ImageViewerService.getImageViewer().view.parentNode;
+        ImageViewerService.getImageViewer().renderer.resize(
+            ImageViewerHelper.getContainer().clientWidth,
+            ImageViewerHelper.getBodyHeight()
+        );
     }
 
 

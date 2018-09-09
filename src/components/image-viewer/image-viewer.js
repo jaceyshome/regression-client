@@ -7,18 +7,13 @@ import DataService from '../service/data-service';
 class ImageViewer {
 
     constructor(id) {
-        this._imageViewer = ImageViewerService.getImageViewer();
+        ImageViewerService.init();
         ImageViewerStateService.showCurrentResult();
     }
 
     onupdate() {
 
     }
-
-    onresize() {
-
-    }
-
 
     createTextureContainer(texture) {
         let container = new PIXI.Container();

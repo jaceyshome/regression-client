@@ -13,19 +13,23 @@ class ImageViewerService {
     constructor() {
         //Global config
         PIXI.utils.skipHello();
-
         this._imageViewer = undefined;
     }
 
-    getImageViewer() {
+    init() {
         if(this._imageViewer){
             return this._imageViewer;
         }
-        this._imageViewer = new PIXI.Application(
-            ImageViewerHelper.getContainer().offsetWidth,
-            ImageViewerHelper.getBodyHeight()
-        );
+        this._imageViewer = new PIXI.Application({
+            autoResize: true,
+            width:  ImageViewerHelper.getContainer().clientWidth,
+            height: ImageViewerHelper.getBodyHeight(),
+        });
         ImageViewerHelper.getContainer().appendChild(this._imageViewer.view);
+        return this._imageViewer;
+    }
+
+    getImageViewer() {
         return this._imageViewer;
     }
 

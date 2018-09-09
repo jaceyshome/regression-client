@@ -15,7 +15,7 @@ module.exports = class VisualComparePanelView {
             style: VisualComparePanelModel.getContainerStyle(),
         }, [
             m('h3.sr-only', `${vnode.state.title}`),
-            m('.b-visual-compare-panel__holder', {
+            m('.b-visual-compare-panel__image-viewer-container', {
                 id: VisualComparePanelModel.getImageViewerId(),
             }),
 
