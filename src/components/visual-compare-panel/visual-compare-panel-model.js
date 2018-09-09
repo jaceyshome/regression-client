@@ -1,6 +1,7 @@
 import StateService from '../service/state-service';
 import DataService from '../service/data-service';
-
+import Constant from './../constant/constant';
+import ImageViewer from './../image-viewer/image-viewer';
 
 class VisualComparePanelModel {
 
@@ -11,14 +12,19 @@ class VisualComparePanelModel {
         return DataService.getCurrentVisualTest();
     }
 
-    getVisualTestImage() {
-        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+
+
+    getContainerStyle() {
+
     }
 
-    getVisualTestReferenceImage() {
-        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
+    createImageViewer(){
+        this._imageViewer = new ImageViewer(Constant.imageViewerId);
     }
 
+    getImageViewerId () {
+        return Constant.imageViewerId;
+    }
 }
 
 module.exports = new VisualComparePanelModel();

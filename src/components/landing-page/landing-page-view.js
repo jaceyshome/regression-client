@@ -16,10 +16,14 @@ module.exports = class LandingPageView {
     }
 
     view(vnode) {
-        return m('div.b-page.b-page--bg-dark', LandingPageModel.isReady() ? [
+        return m('.b-page.b-page--bg-dark', LandingPageModel.isReady() ? [
             m('h1.sr-only', `${vnode.state.title}`),
-            m(HistoryListMenuView),
-            m(VisualResultContainerView),
+            m('.b-section-container', [
+                m('.grid.grid--flush',[
+                    m('.1/10 grid__cell', [m(HistoryListMenuView)]),
+                    m('.9/10 grid__cell', [m(VisualResultContainerView)]),
+                ]),
+            ]),
         ]: []);
     }
 
