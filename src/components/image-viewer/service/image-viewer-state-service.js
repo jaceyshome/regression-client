@@ -96,11 +96,16 @@ class ImageViewerStateService {
             ImageViewerHelper.getContainer().clientWidth,
             this.getContainerHeight()
         );
+        this._testScreenshot.update();
+        this._referenceScreenshot.update();
     }
 
     getContainerHeight() {
-        return (this._testScreenshot.getParams().height > this._referenceScreenshot.getParams().height) ?
-            this._testScreenshot.getParams().height : this._referenceScreenshot.getParams().height;
+        return Math.max(
+            ImageViewerHelper.getBodyHeight(),
+            this._testScreenshot.getParams().height,
+            this._referenceScreenshot.getParams().height
+        );
     }
 
     onImagesLoaded(loader, resources) {

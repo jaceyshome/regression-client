@@ -9,11 +9,10 @@ class Screenshot {
         this._sprite = undefined;
     }
 
-    init(data){
-        this._params = Object.assign(this._params, Images.getImageCenterParams(data, ImageViewerHelper.getContainer()));
-        this._sprite = new PIXI.Sprite(data.texture);
-        this._sprite.width = this._params.width;
-        this._sprite.height = this._params.height;
+    init(img){
+        this._params = Object.assign(this._params, Images.getImageCenterParams(img.data, ImageViewerHelper.getContainer(), true));
+        this._sprite = new PIXI.Sprite(img.texture);
+        this.resizeSprite();
     }
 
     getParams() {
@@ -22,6 +21,22 @@ class Screenshot {
 
     getSprite() {
         return this._sprite;
+    }
+
+    update() {
+        if(!this._sprite){
+            return;
+        }
+        this._params = Object.assign(this._params, Images.getImageCenterParams(this._params, ImageViewerHelper.getContainer()));
+        this.resizeSprite();
+
+    }
+
+    resizeSprite() {
+        this._sprite.width = this._params.width;
+        this._sprite.height = this._params.height;
+        this._sprite.position.x = this._params.positionX;
+        this._sprite.position.y = this._params.positionY;
     }
 
     destroy() {
