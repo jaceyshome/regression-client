@@ -24,6 +24,10 @@ class Screenshot {
         return this._sprite;
     }
 
+    destroy() {
+        this._sprite.destroy();
+    }
+
     createTextureContainer(texture) {
         let container = new PIXI.Container();
         let sprite = new new PIXI.Sprite(texture);

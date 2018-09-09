@@ -65,6 +65,12 @@ class ImageViewerStateService {
     }
 
     showCurrentResult() {
+        if(this._testScreenshot){
+            this._testScreenshot.destroy();
+        }
+        if(this._referenceScreenshot){
+            this._referenceScreenshot.destroy();
+        }
         this._testScreenshot = new Screenshot();
         this._referenceScreenshot = new Screenshot();
         PIXI.loader.destroy();
