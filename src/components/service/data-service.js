@@ -1,16 +1,25 @@
-import ComponentHelpers from './../component-helpers/component-helpers';
+import _ from 'lodash';
+
+import {Objects} from './../../lib/helpers/helpers';
 import config from './../../config';
+import ComponentHelpers from './../component-helpers/component-helpers';
+import AbstractDataService from './../../lib/abstract-data-service';
 
 const historyEndpoint = `${config.apiRootPath}/history`;
 const visualEndpoint = `${config.apiRootPath}/visual`;
 
-class DataService {
+class DataService extends AbstractDataService {
 
     constructor() {
-        this._histories = undefined;
-        this._currentHistory = undefined;
-        this._currentVisualReference = undefined;
-        this._currentVisualTest = undefined;
+        super();
+
+        this._data = {
+            histories : [],
+            currentHistory : {},
+            currentVisualTest: {},
+            currentVisualReference: {},
+        };
+
         this._detailsPanelsVisibilty = false;
     }
 
@@ -22,14 +31,18 @@ class DataService {
 
         return new Promise((resolve, reject)=> {
 
-            if(Object.is(this._histories, undefined)) {
+            if(_.isEmpty(this._data.histories)) {
                 m.request({
                     method: 'GET',
                     url: historyEndpoint,
                 }).then((result)=> {
                     if(result && result.data) {
-                        this._histories = ComponentHelpers.History.sortHistory(result.data);
-                        resolve(this._histories);
+                        Object.assign(
+                            this._data.histories,
+                            ComponentHelpers.History.sortHistory(result.data)
+                        );
+                        this.broadcastDataChanges('histories');
+                        resolve(this._data.histories);
                     } else {
                         reject(undefined);
                     }
@@ -38,12 +51,11 @@ class DataService {
                     reject(undefined);
                 });
             } else {
-                resolve(this._histories);
+                resolve(this._data.histories);
             }
         });
 
     }
-
 
     setCurrentHistory(id) {
         return new Promise((resolve, reject)=> {
@@ -52,11 +64,14 @@ class DataService {
                 url: `${historyEndpoint}?id=${id}`,
             }).then((result)=> {
                 if(result && result.data) {
-                    this._currentHistory = Object.assign(
+                    Objects.empty(this._data.currentHistory);
+                    Object.assign(
+                        this._data.currentHistory,
                         result.data,
                         {visualTests: ComponentHelpers.Visual.sortTestResults(result.data.visualTests)}
                     );
-                    resolve(this._currentHistory);
+                    this.broadcastDataChanges('currentHistory');
+                    resolve(this._data.currentHistory);
                 } else {
                     reject(undefined);
                 }
@@ -68,16 +83,18 @@ class DataService {
     }
 
     getCurrentHistory() {
-        return this._currentHistory;
+        return this._data.currentHistory;
     }
 
     setCurrentVisualTest(test) {
-        this._currentVisualTest = test;
-        return this._currentVisualTest;
+        Objects.empty(this._data.currentVisualTest);
+        Object.assign(this._data.currentVisualTest, test);
+        this.broadcastDataChanges('currentVisualTest');
+        return this._data.currentVisualTest;
     }
 
     getCurrentVisualTest() {
-        return this._currentVisualTest;
+        return this._data.currentVisualTest;
     }
 
     approveTest(test) {
@@ -112,14 +129,16 @@ class DataService {
     }
 
     setCurrentVisualTestReference(test) {
-        this._currentVisualReference = ComponentHelpers.Visual.findTestReference(test, this._currentHistory.visualReferences);
-        console.log('this current visual reference::', this._currentVisualReference);
-        return this._currentVisualReference;
+        Objects.empty(this._data.currentVisualReference);
+        Object.assign(this._data.currentVisualReference,
+            ComponentHelpers.Visual.findTestReference(test, this._data.currentHistory.visualReferences));
+        this.broadcastDataChanges('currentVisualReference');
+        return this._data.currentVisualReference;
 
     }
 
     getCurrentVisualTestReference() {
-        return this._currentVisualReference;
+        return this._data.currentVisualReference;
     }
 
     setDetailsPanelVisibility(value=true) {

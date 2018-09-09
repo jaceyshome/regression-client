@@ -6,25 +6,27 @@ import ImageViewer from './../image-viewer/image-viewer';
 class VisualComparePanelModel {
 
     constructor() {
-    }
-
-    getVisualTest() {
-        return DataService.getCurrentVisualTest();
-    }
-
-
-
-    getContainerStyle() {
-
-    }
-
-    createImageViewer(){
-        this._imageViewer = new ImageViewer(Constant.imageViewerId);
+        this._imageViewer;
     }
 
     getImageViewerId () {
         return Constant.imageViewerId;
     }
+
+    createImageViewer() {
+        if(this._imageViewer){
+            return this._imageViewer;
+        }
+        this._imageViewer = new ImageViewer(Constant.imageViewerId);
+    }
+
+    showResult() {
+        console.log('show current result!!!!');
+        if(this._imageViewer){
+            return this._imageViewer.showResult();
+        }
+    }
+
 }
 
 module.exports = new VisualComparePanelModel();

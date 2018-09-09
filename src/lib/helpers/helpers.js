@@ -3,6 +3,7 @@ import {Colors} from './colors';
 import {Dates} from './dates';
 import {Images} from './images';
 import {Numbers} from './numbers';
+import {Objects} from './objects';
 import {Strings} from './strings';
 
 
@@ -21,6 +22,7 @@ let Helpers = {
     Dates,
     Images,
     Numbers,
+    Objects,
     Strings,
 };
 

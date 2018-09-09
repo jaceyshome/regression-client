@@ -2,11 +2,18 @@ import * as PIXI from 'pixi.js';
 import _ from 'lodash';
 import DataService from './../../service/data-service';
 import ImageViewerService from './image-viewer-service';
-import {Images} from './../../../lib/helpers/helpers';
+import {Images, Strings} from './../../../lib/helpers/helpers';
 import ImageViewerHelper from './../image-viewer-helper';
+import Screenshot from '../screenshot/screenshot';
 
-const TEST_IMAGE = 'TEST_IMAGE';
-const REFERENCE_IMAGE = 'REFERENCE_IMAGE';
+
+const FLAG_RESET = 0;
+const FLAG_VISUAL_TEST_UPDATE = 1;
+const FLAG_VISUAL_TEST_REFERENCE_UPDATE = 2;
+const FLAG_READY_UPDATE = 3;
+const FLAG_LOADING = 4;
+const FLAG_LOADED = 7;
+
 /**
  * Image viewer state service
  * It controls image viewer state changes
@@ -14,14 +21,57 @@ const REFERENCE_IMAGE = 'REFERENCE_IMAGE';
 class ImageViewerStateService {
 
     constructor() {
-        window.addEventListener('resize', this._onresize.bind(this));
+
+        this.onImagesLoaded = this.onImagesLoaded.bind(this);
+        this.handleCurrentTestUpdate = this.handleCurrentTestUpdate.bind(this);
+        this.update = this.update.bind(this);
+
+        this._currentState = FLAG_RESET;
+        this._testScreenshot = undefined;
+        this._referenceScreenshot = undefined;
+
+        DataService.subscribe('currentVisualTest', this.handleCurrentTestUpdate.bind(this), 'imageViewerStateService');
+        DataService.subscribe('currentVisualReference', this.handleCurrentTestReferenceUpdate.bind(this), 'imageViewerStateService');
+
+        window.addEventListener('resize', this.update);
+    }
+
+    handleCurrentTestUpdate(keyPath, data){
+        this._updateStateFlag(FLAG_VISUAL_TEST_UPDATE);
+    }
+
+    handleCurrentTestReferenceUpdate(keyPath, data) {
+        this._updateStateFlag(FLAG_VISUAL_TEST_REFERENCE_UPDATE);
+    }
+
+    _updateStateFlag(flag) {
+        if(flag === FLAG_LOADED || this._currentState === FLAG_LOADED) {
+            this._currentState = flag;
+            return;
+        }
+
+        if(flag < FLAG_READY_UPDATE && this._currentState > FLAG_READY_UPDATE){
+            this._currentState = FLAG_RESET;
+        }
+
+        this._currentState += flag;
+
+        if(this._currentState === FLAG_READY_UPDATE) {
+            this.showCurrentResult();
+            this._currentState = FLAG_LOADING;
+            return;
+        }
+
     }
 
     showCurrentResult() {
+        this._testScreenshot = new Screenshot();
+        this._referenceScreenshot = new Screenshot();
+        PIXI.loader.destroy();
         PIXI.loader
-            .add(TEST_IMAGE, this.getVisualTestImage())
-            .add(REFERENCE_IMAGE, this.getVisualTestReferenceImage())
-            .load(this._onImagesLoaded.bind(this));
+            .add(this._testScreenshot.getParams().id, this.getVisualTestImage())
+            .add(this._referenceScreenshot.getParams().id, this.getVisualTestReferenceImage())
+            .load(this.onImagesLoaded);
     }
 
     getVisualTestImage() {
@@ -32,31 +82,30 @@ class ImageViewerStateService {
         return`${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
     }
 
-
-    _onImagesLoaded(loader, res) {
-        let testImageParams = Images.getImageCenterParams(res.TEST_IMAGE, ImageViewerHelper.getContainer());
-        let referenceImageParams = Images.getImageCenterParams(res.REFERENCE_IMAGE, ImageViewerHelper.getContainer());
-
-        let background = new PIXI.Sprite.fromImage(this.getVisualTestImage());
-        console.log('background', background);
-        background.width = testImageParams.width;
-        background.height = testImageParams.height;
-        ImageViewerService.getImageViewer().stage.addChild(background);
-    }
-
-
-
-    _onresize(){
+    update(){
         if(!ImageViewerService.getImageViewer()){
             return;
         }
-        const parent = ImageViewerService.getImageViewer().view.parentNode;
         ImageViewerService.getImageViewer().renderer.resize(
             ImageViewerHelper.getContainer().clientWidth,
-            ImageViewerHelper.getBodyHeight()
+            this.getContainerHeight()
         );
     }
 
+    getContainerHeight() {
+        return (this._testScreenshot.getParams().height > this._referenceScreenshot.getParams().height) ?
+            this._testScreenshot.getParams().height : this._referenceScreenshot.getParams().height;
+    }
+
+    onImagesLoaded(loader, resources) {
+        this._updateStateFlag(FLAG_LOADED);
+        this._testScreenshot.init(resources[this._testScreenshot.getParams().id]);
+        ImageViewerService.getImageViewer().stage.addChild(this._testScreenshot.getSprite());
+
+        this._referenceScreenshot.init(resources[this._referenceScreenshot.getParams().id]);
+        ImageViewerService.getImageViewer().stage.addChild(this._referenceScreenshot.getSprite());
+        this.update();
+    }
 
 }
 
