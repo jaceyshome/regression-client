@@ -16,7 +16,6 @@ class Screenshot extends Component{
     }
 
     handleScreenshotChange(ketPath, img){
-        console.log('handleScreenshotChange: ', ketPath, img);
         if(this._sprite){
             this._element.removeChild(this._sprite);
             this._sprite.destroy();

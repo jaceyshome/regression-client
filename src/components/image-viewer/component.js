@@ -1,9 +1,10 @@
 import * as PIXI from 'pixi.js';
-
+import {Strings} from './../../lib/helpers/helpers';
 
 export default class Component {
 
     constructor(options) {
+        this._id = Strings.random(8);
         this._options = options;
         this._element = undefined;
         this._bindThisToHandlers();

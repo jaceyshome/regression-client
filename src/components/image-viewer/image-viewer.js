@@ -9,11 +9,10 @@ import Component from './component';
 //Global config
 PIXI.utils.skipHello();
 
-class ImageViewer {
+class ImageViewer extends Component{
 
     constructor() {
-        this.resize = this.resize.bind(this);
-
+        super();
         this._children = {};
         this._element = new PIXI.Application({
             autoResize: true,
@@ -23,10 +22,12 @@ class ImageViewer {
 
         this._loadComponents();
 
-        ImageViewerService.showCurrentResult();
         ImageViewerHelper.getContainer().appendChild(this._element.view);
-        this.resize();
+        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'Screenshot');
+        ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'Screenshot');
         window.addEventListener('resize', this.resize);
+        this.resize();
+
     }
 
     _loadComponents() {
@@ -38,10 +39,10 @@ class ImageViewer {
         this._element.stage.addChild(this._children.referenceScreenshot.getElement());
     }
 
-    getElement() {
-        return this._element;
+    handleScreenshotChange(){
+        this.resize();
     }
-
+    
     getContainerHeight() {
         return Math.max(
             ImageViewerHelper.getBodyHeight(),
