@@ -6,41 +6,41 @@ class Screenshot {
 
     constructor(id=Strings.random(8)) {
         this._params = {id: id};
-        this._sprite = undefined;
+        this._element = undefined;
     }
 
     init(img){
         this._params = Object.assign(this._params, Images.getImageCenterParams(img.data, ImageViewerHelper.getContainer(), true));
-        this._sprite = new PIXI.Sprite(img.texture);
-        this.resizeSprite();
+        this._element = new PIXI.Sprite(img.texture);
+        this.resize();
     }
 
     getParams() {
         return this._params;
     }
 
-    getSprite() {
-        return this._sprite;
+    getElement() {
+        return this._element;
     }
 
     update() {
-        if(!this._sprite){
+        if(!this._element){
             return;
         }
         this._params = Object.assign(this._params, Images.getImageCenterParams(this._params, ImageViewerHelper.getContainer()));
-        this.resizeSprite();
+        this.resize();
 
     }
 
-    resizeSprite() {
-        this._sprite.width = this._params.width;
-        this._sprite.height = this._params.height;
-        this._sprite.position.x = this._params.positionX;
-        this._sprite.position.y = this._params.positionY;
+    resize() {
+        this._element.width = this._params.width;
+        this._element.height = this._params.height;
+        this._element.position.x = this._params.positionX;
+        this._element.position.y = this._params.positionY;
     }
 
     destroy() {
-        this._sprite.destroy();
+        this._element.destroy();
     }
 
     createTextureContainer(texture) {

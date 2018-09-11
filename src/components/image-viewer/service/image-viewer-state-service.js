@@ -111,10 +111,10 @@ class ImageViewerStateService {
     onImagesLoaded(loader, resources) {
         this._updateStateFlag(FLAG_LOADED);
         this._testScreenshot.init(resources[this._testScreenshot.getParams().id]);
-        ImageViewerService.getImageViewer().stage.addChild(this._testScreenshot.getSprite());
+        ImageViewerService.getImageViewer().stage.addChild(this._testScreenshot.getElement());
 
         this._referenceScreenshot.init(resources[this._referenceScreenshot.getParams().id]);
-        ImageViewerService.getImageViewer().stage.addChild(this._referenceScreenshot.getSprite());
+        ImageViewerService.getImageViewer().stage.addChild(this._referenceScreenshot.getElement());
         this.update();
     }
 
