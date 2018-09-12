@@ -3,8 +3,9 @@ import * as PIXI from 'pixi.js';
 import ImageViewerService from './service/image-viewer-service';
 import ImageViewerHelper from './image-viewer-helper';
 
-import Screenshot from './screenshot/screenshot';
 import Component from './component';
+import Screenshot from './screenshot/screenshot';
+import SwipeBar from './swipe-bar/swipe-bar';
 
 //Global config
 PIXI.utils.skipHello();
@@ -16,6 +17,7 @@ class ImageViewer extends Component{
         this._children = {};
         this._element = new PIXI.Application({
             autoResize: true,
+            antialias: true,
             width:  ImageViewerHelper.getContainer().clientWidth,
             height: ImageViewerHelper.getBodyHeight(),
         });
@@ -33,13 +35,15 @@ class ImageViewer extends Component{
     _loadComponents() {
         this._children.testScreenshot = new Screenshot({subscribeKey:'testScreenshot'});
         this._children.referenceScreenshot = new Screenshot({subscribeKey:'referenceScreenshot'});
+        this._children.swipeBar = new SwipeBar();
 
         //The loading sequence is from bottom to top
         this._element.stage.addChild(this._children.testScreenshot.getElement());
         this._element.stage.addChild(this._children.referenceScreenshot.getElement());
+        this._element.stage.addChild(this._children.swipeBar.getElement());
     }
 
-    handleScreenshotChange(){
+    handleScreenshotChange() {
         this.resize();
     }
     
