@@ -19,6 +19,26 @@ class ControlMenuModel {
         }
     }
 
+    isAllApproved() {
+
+    }
+
+    hasFailedTests() {
+
+    }
+
+    countFailedTotal() {
+
+    }
+
+    countApprovedTotal() {
+
+    }
+
+    countTotalTests() {
+
+    }
+
     isResultFailed() {
         return !DataService.getCurrentVisualTest().pass;
     }
