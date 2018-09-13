@@ -76,10 +76,12 @@ class SwipeBar extends Component {
         if(!this._element){
             return;
         }
-
-        // let scale = this._element.height / ImageViewerHelper.getContainer().clientHeight;
-        // this._element.width = this._element.width / scale;
+        let scale = this._element.height / ImageViewerHelper.getContainer().clientHeight;
+        this._element.position.x = this._element.position.x / scale;
         this._element.height = ImageViewerHelper.getContainer().clientHeight;
+        ImageViewerService.setSwipeBarPosition({
+            x: this._element.position.x,
+        });
     }
 
 
