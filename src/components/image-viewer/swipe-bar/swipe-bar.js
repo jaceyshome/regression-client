@@ -48,11 +48,12 @@ class SwipeBar extends Component {
         this._element.lineTo(this._options.positionX, this._options.height);
         this._element.endFill();
 
+        //enable button mode
+        this._element.interactive = true;
+        this._element.buttonMode = true;
     }
 
     _registerEventHandlers() {
-        this._element.interactive = true;
-        this._element.buttonMode = true;
         this._element.on('pointerdown', this.onDragStart)
             .on('pointerup', this.onDragEnd)
             .on('pointerupoutside', this.onDragEnd)
@@ -61,6 +62,9 @@ class SwipeBar extends Component {
 
     resetPosition() {
         this._element.position.x = (ImageViewerHelper.getContainer().clientWidth - WIDTH) / 2;
+        ImageViewerService.setSwipeBarPosition({
+            x: this._element.position.x,
+        });
     }
 
     handleScreenshotChange(keyPath, data){
@@ -72,6 +76,9 @@ class SwipeBar extends Component {
         if(!this._element){
             return;
         }
+
+        // let scale = this._element.height / ImageViewerHelper.getContainer().clientHeight;
+        // this._element.width = this._element.width / scale;
         this._element.height = ImageViewerHelper.getContainer().clientHeight;
     }
 
@@ -95,6 +102,9 @@ class SwipeBar extends Component {
                 newPositionX = ImageViewerHelper.getContainer().clientWidth - WIDTH;
             }
             this._element.position.x = newPositionX;
+            ImageViewerService.setSwipeBarPosition({
+                x: this._element.position.x,
+            });
         }
     }
 

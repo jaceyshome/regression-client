@@ -27,6 +27,7 @@ class ImageViewerService extends AbstractDataService {
         this._data = {
             testScreenshotId: '',
             referenceScreenshotId: '',
+            swipeBarPosition: {},
             testScreenshot: {},
             referenceScreenshot: {},
         };
@@ -45,6 +46,45 @@ class ImageViewerService extends AbstractDataService {
         this._updateStateFlag(FLAG_VISUAL_TEST_REFERENCE_UPDATE);
     }
 
+    showCurrentResult() {
+        this._currentState = FLAG_LOADING;
+        this._getNewScreenshotIds();
+        PIXI.loader.destroy();
+        PIXI.loader
+            .add(this._data.testScreenshotId, this.getVisualTestImage())
+            .add(this._data.referenceScreenshotId, this.getVisualTestReferenceImage())
+            .load(this.handleImagesLoaded);
+    }
+
+    setSwipeBarPosition(position) {
+        this._data.swipeBarPosition.x = position.x;
+        this.broadcastDataChanges('swipeBarPosition');
+    }
+
+    getVisualTestImage() {
+        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+    }
+
+    getVisualTestReferenceImage() {
+        return`${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
+    }
+
+    handleImagesLoaded(loader, resources) {
+        this._updateStateFlag(FLAG_LOADED);
+
+        Objects.empty(this._data.testScreenshot);
+        Objects.empty(this._data.referenceScreenshot);
+
+        Object.assign(this._data.testScreenshot, resources[this._data.testScreenshotId]);
+        Object.assign(this._data.referenceScreenshot, resources[this._data.referenceScreenshotId]);
+
+        this.broadcastDataChanges('testScreenshot');
+        this.broadcastDataChanges('referenceScreenshot');
+
+    }
+
+
+    /*---------------------------- Helpers -----------------------*/
     _updateStateFlag(flag) {
         if(flag === FLAG_LOADED || this._currentState === FLAG_LOADED) {
             this._currentState = flag;
@@ -69,37 +109,6 @@ class ImageViewerService extends AbstractDataService {
         this._data.referenceScreenshotId = Strings.random(8);
     }
 
-    showCurrentResult() {
-        this._currentState = FLAG_LOADING;
-        this._getNewScreenshotIds();
-        PIXI.loader.destroy();
-        PIXI.loader
-            .add(this._data.testScreenshotId, this.getVisualTestImage())
-            .add(this._data.referenceScreenshotId, this.getVisualTestReferenceImage())
-            .load(this.handleImagesLoaded);
-    }
-
-    getVisualTestImage() {
-        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
-    }
-
-    getVisualTestReferenceImage() {
-        return`${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
-    }
-
-    handleImagesLoaded(loader, resources) {
-        this._updateStateFlag(FLAG_LOADED);
-
-        Objects.empty(this._data.testScreenshot);
-        Objects.empty(this._data.referenceScreenshot);
-
-        Object.assign(this._data.testScreenshot, resources[this._data.testScreenshotId]);
-        Object.assign(this._data.referenceScreenshot, resources[this._data.referenceScreenshotId]);
-
-        this.broadcastDataChanges('testScreenshot');
-        this.broadcastDataChanges('referenceScreenshot');
-
-    }
 
 }
 

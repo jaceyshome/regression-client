@@ -4,30 +4,30 @@ import ImageViewerHelper from './../image-viewer-helper';
 import ImageViewerService from './../service/image-viewer-service';
 import Component from './../component';
 
-class Screenshot extends Component{
+class TestScreenshot extends Component{
 
-    constructor(options={id:Strings.random(8), subscribeKey: 'testScreenshot'}) {
+    constructor(options={id:Strings.random(8)}) {
         super();
         this._options = options;
-        this._sprite = undefined;
         this._element = new PIXI.Container();
-        ImageViewerService.subscribe(options.subscribeKey, this.handleScreenshotChange, 'Screenshot');
+        this._screenshot = undefined;
+        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'TestScreenshot');
         window.addEventListener('resize', this.resize);
     }
 
     handleScreenshotChange(ketPath, img){
-        if(this._sprite){
-            this._element.removeChild(this._sprite);
-            this._sprite.destroy();
+        if(this._screenshot){
+            this._element.removeChild(this._screenshot);
+            this._screenshot.destroy();
         }
-        this._sprite = new PIXI.Sprite(img.texture);
+        this._screenshot = new PIXI.Sprite(img.texture);
         this._options = Object.assign(this._options, Images.getImageCenterParams(img.data, ImageViewerHelper.getContainer(), true));
-        this._element.addChild(this._sprite);
+        this._element.addChild(this._screenshot);
         this.resize();
     }
 
     resize() {
-        if(!this._sprite){
+        if(!this._screenshot){
             return;
         }
         this._options = Object.assign(this._options, Images.getImageCenterParams(this._options, ImageViewerHelper.getContainer()));
@@ -40,4 +40,4 @@ class Screenshot extends Component{
 
 }
 
-module.exports = Screenshot;
+module.exports = TestScreenshot;

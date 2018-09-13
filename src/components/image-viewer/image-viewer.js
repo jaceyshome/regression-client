@@ -4,8 +4,11 @@ import ImageViewerService from './service/image-viewer-service';
 import ImageViewerHelper from './image-viewer-helper';
 
 import Component from './component';
-import Screenshot from './screenshot/screenshot';
+import TestScreenshot from './test-screenshot/test-screenshot';
+import ReferenceScreenshot from './reference-screenshot/reference-screenshot';
 import SwipeBar from './swipe-bar/swipe-bar';
+
+const BACKGROUND_COLOUR = '0x363636';
 
 //Global config
 PIXI.utils.skipHello();
@@ -18,6 +21,7 @@ class ImageViewer extends Component{
         this._element = new PIXI.Application({
             autoResize: true,
             antialias: true,
+            backgroundColor: BACKGROUND_COLOUR,
             width:  ImageViewerHelper.getContainer().clientWidth,
             height: ImageViewerHelper.getBodyHeight(),
         });
@@ -25,16 +29,16 @@ class ImageViewer extends Component{
         this._loadComponents();
 
         ImageViewerHelper.getContainer().appendChild(this._element.view);
-        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'Screenshot');
-        ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'Screenshot');
+        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'TestScreenshot');
+        ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'ReferenceScreenshot');
         window.addEventListener('resize', this.resize);
         this.resize();
 
     }
 
     _loadComponents() {
-        this._children.testScreenshot = new Screenshot({subscribeKey:'testScreenshot'});
-        this._children.referenceScreenshot = new Screenshot({subscribeKey:'referenceScreenshot'});
+        this._children.testScreenshot = new TestScreenshot();
+        this._children.referenceScreenshot = new ReferenceScreenshot();
         this._children.swipeBar = new SwipeBar();
 
         //The loading sequence is from bottom to top

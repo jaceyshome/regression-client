@@ -62,7 +62,7 @@ export default class AbstractDataService {
             id: Strings.random(6),
             keyPath: keyPath,
             handler: handler,
-            proxy: this._createObservableProxy(keyPath)
+            proxy: this._createObservableProxy(keyPath),
         };
         this._subscribers.add(subscriber);
         return subscriber;
