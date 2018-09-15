@@ -10,6 +10,9 @@ class SplashPageModel {
         return DataService.fetchHistoryList();
     }
 
+    fetchConfig() {
+        return DataService.fetchConfig();
+    }
 }
 
 module.exports = new SplashPageModel();

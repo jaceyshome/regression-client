@@ -62,11 +62,11 @@ class ImageViewerService extends AbstractDataService {
     }
 
     getVisualTestImage() {
-        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+        return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
     }
 
     getVisualTestReferenceImage() {
-        return`${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
+        return`${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
     }
 
     handleImagesLoaded(loader, resources) {

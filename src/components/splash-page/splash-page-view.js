@@ -11,6 +11,7 @@ module.exports = class SplashPageView {
     oninit() {
         this._dataLoaded = false;
         Promise.all([
+            SplashPageModel.fetchConfig(),
             SplashPageModel.fetchHistoryList(),
         ]).then(() => {
             this._dataLoaded = true;

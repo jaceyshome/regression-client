@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import {Objects} from './../../lib/helpers/helpers';
 import config from './../../config';
+import Constant from './../constant/constant';
 import ComponentHelpers from './../component-helpers/component-helpers';
 import AbstractDataService from './../../lib/abstract-data-service';
 
@@ -14,23 +15,48 @@ class DataService extends AbstractDataService {
         super();
 
         this._data = {
+            apiConfig: {},
             histories : [],
             currentHistory : {},
             currentVisualTest: {},
             currentVisualReference: {},
         };
 
-        this._detailsPanelsVisibilty = false;
+        this._detailsPanelVisibility = false;
     }
 
-    getAssetRootPath() {
-        return 'regression-tests/';
+    getTestResultRootPath() {
+        if(config.env !== 'PROD') {
+            return Constant.devTestResultRootPath ;
+        }
+        return this._data.apiConfig.testResult.outputRoot;
+    }
+
+    fetchConfig() {
+        return new Promise((resolve, reject)=> {
+            m.request({
+                method: 'GET',
+                url: `${config.apiRootPath}/`,
+            }).then((result)=> {
+                if(result) {
+                    Object.assign(
+                        this._data.apiConfig,
+                        result
+                    );
+                    resolve(this._data.apiConfig);
+                } else {
+                    reject(undefined);
+                }
+            }).catch((err)=> {
+                console.warn('Get api config wrong', err);
+                reject(undefined);
+            });
+
+        });
     }
 
     fetchHistoryList() {
-
         return new Promise((resolve, reject)=> {
-
             if(_.isEmpty(this._data.histories)) {
                 m.request({
                     method: 'GET',
@@ -142,11 +168,11 @@ class DataService extends AbstractDataService {
     }
 
     setDetailsPanelVisibility(value=true) {
-        this._detailsPanelsVisibility = value;
+        this._detailsPanelVisibility = value;
     }
 
     isDetailsPanelVisible() {
-        return this._detailsPanelsVisibility;
+        return this._detailsPanelVisibility;
     }
 
     /*---------------------- helpers -------------------------*/
