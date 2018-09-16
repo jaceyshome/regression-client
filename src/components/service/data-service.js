@@ -15,6 +15,11 @@ class DataService extends AbstractDataService {
         super();
 
         this._data = {
+            componentStates: {
+                detailsPanelVisibility: false,
+                historyListMenuVisibility: false,
+                loadingCurrentHistory: false,
+            },
             apiConfig: {},
             histories : [],
             currentHistory : {},
@@ -22,7 +27,6 @@ class DataService extends AbstractDataService {
             currentVisualReference: {},
         };
 
-        this._detailsPanelVisibility = false;
     }
 
     getTestResultRootPath() {
@@ -84,6 +88,9 @@ class DataService extends AbstractDataService {
     }
 
     setCurrentHistory(id) {
+
+        this.setLoadingCurrentHistoryState(true);
+
         return new Promise((resolve, reject)=> {
             m.request({
                 method: 'GET',
@@ -104,6 +111,8 @@ class DataService extends AbstractDataService {
             }).catch((err)=> {
                 console.warn('setCurrentHistory err', err);
                 reject(undefined);
+            }).finally(()=> {
+                this.setLoadingCurrentHistoryState(false);
             });
         });
     }
@@ -163,16 +172,35 @@ class DataService extends AbstractDataService {
 
     }
 
+    setLoadingCurrentHistoryState(state=true) {
+        this._data.componentStates.loadingCurrentHistory = state;
+        this.broadcastDataChanges('componentStates');
+    }
+
     getCurrentVisualTestReference() {
         return this._data.currentVisualReference;
     }
 
     setDetailsPanelVisibility(value=true) {
-        this._detailsPanelVisibility = value;
+        this._data.componentStates.detailsPanelVisibility = value;
+        this.broadcastDataChanges('componentStates');
     }
 
     isDetailsPanelVisible() {
-        return this._detailsPanelVisibility;
+        return this._data.componentStates.detailsPanelVisibility;
+    }
+
+    setHistoryListMenuVisibility(value=true) {
+        this._data.componentStates.historyListMenuVisibility = value;
+        this.broadcastDataChanges('componentStates');
+    }
+
+    isHistoryListMenuVisible() {
+        return this._data.componentStates.historyListMenuVisibility;
+    }
+
+    isLoadingHistory() {
+        return this._data.componentStates.loadingCurrentHistory;
     }
 
     /*---------------------- helpers -------------------------*/

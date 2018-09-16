@@ -82,6 +82,16 @@ class StateService {
     hideDetailsPanel() {
         DataService.setDetailsPanelVisibility(false);
     }
+
+    showHistoryListMenu() {
+        DataService.setHistoryListMenuVisibility(true);
+    }
+
+    hideHistoryListMenu() {
+        DataService.setHistoryListMenuVisibility(false);
+    }
+
+
 }
 
 module.exports = new StateService();

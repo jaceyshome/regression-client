@@ -24,7 +24,7 @@ class HistoryListMenuModel {
     }
 
     setCurrentHistory(history) {
-        return StateService.setCurrentHistory(history);
+        return StateService.setCurrentHistory(history).then(StateService.hideHistoryListMenu);
     }
 
     setHoverHistory(history=undefined) {
@@ -32,11 +32,15 @@ class HistoryListMenuModel {
     }
 
     showHistoryDetails() {
-
+        StateService.showHistoryListMenu();
     }
 
     isSelectedHistory(history) {
         return Object.is(history._id, DataService.getCurrentHistory()._id);
+    }
+
+    isShowingHistoryDetails(){
+        return DataService.isHistoryListMenuVisible();
     }
 }
 

@@ -18,7 +18,7 @@ class ImageViewer extends Component{
     constructor() {
         super();
         this._children = {};
-        this._element = new PIXI.Application({
+        this._app = new PIXI.Application({
             autoResize: true,
             antialias: true,
             backgroundColor: BACKGROUND_COLOUR,
@@ -26,38 +26,30 @@ class ImageViewer extends Component{
             height: ImageViewerHelper.getBodyHeight(),
         });
 
+        this._data = {
+            targetBlur: 0,
+            speedBlur: 10,
+        };
+
         this._loadComponents();
 
-        ImageViewerHelper.getContainer().appendChild(this._element.view);
-        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'TestScreenshot');
-        ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'ReferenceScreenshot');
+        ImageViewerHelper.getContainer().appendChild(this._app.view);
+        ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'ImageViewer');
+        ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'ImageViewer');
+        ImageViewerService.subscribe('state', this.handleStateChange, 'ImageViewer');
         window.addEventListener('resize', this.resize);
         this.resize();
 
-    }
-
-    _loadComponents() {
-        this._children.testScreenshot = new TestScreenshot();
-        this._children.referenceScreenshot = new ReferenceScreenshot();
-        this._children.swipeBar = new SwipeBar();
-        this._filter = this._createBlurFilter();
-
-        //The loading sequence is from bottom to top
-        this._element.stage.addChild(this._children.testScreenshot.getElement());
-        this._element.stage.addChild(this._children.referenceScreenshot.getElement());
-        this._element.stage.addChild(this._children.swipeBar.getElement());
-        this._element.stage.filters = [this._filter];
-
-    }
-
-    _createBlurFilter() {
-        let filter = new PIXI.filters.BlurFilter();
-        filter.blur = 0;
-        return filter;
+        //init ticker
+        this._app.ticker.add(this.update);
     }
 
     handleScreenshotChange() {
         this.resize();
+    }
+
+    handleStateChange(keyPath, data){
+        this._data.targetBlur = data.showingBlur ? 10 : 0;
     }
     
     getContainerHeight() {
@@ -68,11 +60,52 @@ class ImageViewer extends Component{
         );
     }
 
+    getElement() {
+        return this._app;
+    }
+
     resize(){
-        this._element.renderer.resize(
+        this._app.renderer.resize(
             ImageViewerHelper.getContainer().clientWidth,
             this.getContainerHeight()
         );
+    }
+
+    update() {
+        if(this._filter.blur === this._data.targetBlur) {
+            return;
+        }
+
+        if( (this._filter.blur - this._data.targetBlur) < 0) {
+            this._filter.blur = this._filter.blur + this._data.speedBlur;
+        } else {
+            this._filter.blur = this._filter.blur - this._data.speedBlur;
+        }
+
+        console.log('show handle state change!!!', this._filter.blur);
+
+    }
+
+
+    /* -------------------------- Helpers ---------------------------- */
+    _loadComponents() {
+        this._children.testScreenshot = new TestScreenshot();
+        this._children.referenceScreenshot = new ReferenceScreenshot();
+        this._children.swipeBar = new SwipeBar();
+        this._filter = this._createBlurFilter();
+
+        //The loading sequence is from bottom to top
+        this._app.stage.addChild(this._children.testScreenshot.getElement());
+        this._app.stage.addChild(this._children.referenceScreenshot.getElement());
+        this._app.stage.addChild(this._children.swipeBar.getElement());
+        this._app.stage.filters = [this._filter];
+
+    }
+
+    _createBlurFilter() {
+        let filter = new PIXI.filters.BlurFilter();
+        filter.blur = 0;
+        return filter;
     }
 
 }

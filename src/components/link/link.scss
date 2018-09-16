@@ -3,6 +3,7 @@
 
 .b-link {
 
+
     .b-page--bg-dark & {
         color: $text-colour-white;
     }
@@ -14,4 +15,31 @@
     &--no-underline {
         text-decoration: none;
     }
+
+    &--primary-to-right {
+
+        background: linear-gradient(270deg,  $brand-red 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: 0 50%;
+
+        animation: primary-right-animation-reverted $animation-speed-fast ease forwards;
+
+        &:hover,
+        &:focus {
+            animation: primary-right-animation $animation-speed-fast ease forwards;
+        }
+
+        @keyframes primary-right-animation {
+            0%{background-position: 0 50%}
+            100%{background-position: -100% 50%}
+        }
+
+        @keyframes primary-right-animation-reverted {
+            0%{background-position: -100% 50%}
+            100%{background-position: 0 50%}
+        }
+
+    }
+
+
 }

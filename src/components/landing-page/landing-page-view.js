@@ -18,11 +18,9 @@ module.exports = class LandingPageView {
     view(vnode) {
         return m('.b-page.b-page--bg-dark', LandingPageModel.isReady() ? [
             m('h1.sr-only', `${vnode.state.title}`),
-            m('.b-section-container', [
+            m('.b-page__content', [
                 m(HistoryListMenuView),
-                m('.b-animation', {
-                    'class' : LandingPageModel.getMainColumnClass(),
-                }, [m(VisualResultContainerView)]
+                m('.b-container.b-container--section.b-animation', [m(VisualResultContainerView)]
                 ),
             ]),
         ]: []);

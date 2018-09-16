@@ -35,7 +35,7 @@ $container-base: 20px;
 $container-md: 40px;
 $container-md-lg: 60px;
 $container-llg: 110px;
-
+$container-max-width: 1200px;
 
 //--------------------------- Z-index ------------------------------
 $zindex-history-list-menu: 1000;
@@ -72,6 +72,8 @@ $line-height-md: 1.5;
 
 
 //--------------------------- Animations ----------------------------
+$animation-speed-slower: 1000ms;
+$animation-speed-slow: 600ms;
 $animation-speed-normal: 400ms;
 $animation-speed-fast: 200ms;
 $animation-speed-faster: 50ms;

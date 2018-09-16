@@ -1,6 +1,5 @@
 
 //----------------------- Base --------------------------------
-@import './../components/animation/animation';
 @import './../components/box/box';
 @import './../components/icon/icon';
 @import './../components/image/image';
@@ -18,6 +17,7 @@
 @import './../components/featured-table/featured-table';
 @import './../components/item-list/item-list';
 @import './../components/page/page';
+@import './../components/spinner/spinner';
 @import './../components/overlay/overlay';
 
 
@@ -28,7 +28,6 @@
 @import './../components/featured-button/featured-button';
 @import './../components/history-list-menu/history-list-menu';
 @import './../components/landing-page/landing-page';
-@import './../components/splash-page/splash-page';
 @import './../components/visual-compare-panel/visual-compare-panel';
 @import './../components/visual-navigation-map/visual-navigation-map';
 @import './../components/visual-result-container/visual-result-container';
@@ -38,4 +37,10 @@
 
 
 //----------------------- Layout ------------------------------
-@import "./../components/seciton-container/section-container";
+@import "./../components/component/component";
+@import "./../components/page-container/page-container";
+@import "../components/container/container";
+
+
+//----------------------- Animation ---------------------------
+@import './../components/animation/animation';

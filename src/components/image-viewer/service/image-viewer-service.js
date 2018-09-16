@@ -20,22 +20,22 @@ class ImageViewerService extends AbstractDataService {
     constructor() {
         super();
 
-        this.handleCurrentTestUpdate = this.handleCurrentTestUpdate.bind(this);
-        this.handleCurrentTestReferenceUpdate = this.handleCurrentTestReferenceUpdate.bind(this);
-        this.handleImagesLoaded = this.handleImagesLoaded.bind(this);
-
         this._data = {
             testScreenshotId: '',
             referenceScreenshotId: '',
             swipeBarPosition: {},
             testScreenshot: {},
             referenceScreenshot: {},
+            state: {
+                showingBlur: false,
+            },
         };
 
         this._currentState = FLAG_RESET;
 
         DataService.subscribe('currentVisualTest', this.handleCurrentTestUpdate, 'imageViewerStateService');
         DataService.subscribe('currentVisualReference', this.handleCurrentTestReferenceUpdate, 'imageViewerStateService');
+        DataService.subscribe('componentStates', this.handleComponentStateChanges, 'imageViewerStateService');
     }
 
     handleCurrentTestUpdate(keyPath, data){
@@ -44,6 +44,14 @@ class ImageViewerService extends AbstractDataService {
 
     handleCurrentTestReferenceUpdate(keyPath, data) {
         this._updateStateFlag(FLAG_VISUAL_TEST_REFERENCE_UPDATE);
+    }
+
+    handleComponentStateChanges(keyPath, data) {
+        let newBlurState = (data.detailsPanelVisibility || data.historyListMenuVisibility );
+        if(this._data.state.showingBlur !== newBlurState){
+            this._data.state.showingBlur = newBlurState;
+            this.broadcastDataChanges('state');
+        }
     }
 
     showCurrentResult() {
