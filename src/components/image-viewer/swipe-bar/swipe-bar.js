@@ -4,7 +4,7 @@ import ImageViewerHelper from './../image-viewer-helper';
 import Component from './../component';
 import ImageViewerService from './../service/image-viewer-service';
 
-const COLOUR = 0x0148A4;
+const COLOUR = 0x00aaff;
 const WIDTH = 2;
 
 class SwipeBar extends Component {

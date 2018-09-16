@@ -23,7 +23,7 @@ module.exports = class VisualResultContainer {
                 m(VisualComparePanelView),
             ]),
             m('.1/5.grid__cell', [
-                m('.b-box--padding-left-md-llg.b-box--padding-right-md-llg', [
+                m('.b-box--padding-left-md-llg.b-visual-result-container__side-bar', [
                     m('.b-visual-result-container__nav-map.b-box--padding-top-base.b-box--margin-bottom-base', [
                         m(VisualNavigationMapView),
                     ]),

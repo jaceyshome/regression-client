@@ -27,17 +27,17 @@ module.exports = class HistoryListMenuView {
                         m('h2.b-title.b-history-list-menu__title', [
 
                             !HistoryListMenuModel.isShowingHistoryDetails() &&
-                            m('a.b-history-list-menu__button.b-link.b-link--block' +
+                            m('a.b-button.b-button--light-grey.b-button--hover-right.b-icon.b-icon--fa.b-icon--position-base-left.fa-frog' +
                                 '[href=javascript:void(0);]', {
                                 onclick() {
                                     HistoryListMenuModel.showHistoryDetails();
                                 },
                             },[
-                                m('span', `${vnode.state.title}`),
+                                m('span.b-button__text', `${vnode.state.title}`),
                             ]),
 
                             HistoryListMenuModel.isShowingHistoryDetails() &&
-                            m('span', `${vnode.state.title}`),
+                            m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-frog', `${vnode.state.title}`),
                         ]),
 
                     ]),
@@ -51,7 +51,7 @@ module.exports = class HistoryListMenuView {
                             m('.b-box.b-box--padding-right-base', [
                                 m('ul.b-item-list.b-box--padding-right-base', vnode.state.histories.map((history) => {
                                     return m('li.b-item-list__item', [
-                                        m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--primary-to-right
+                                        m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--sky.b-link--hover-right
                                 .b-link--no-underline.b-box.b-box--padding-brick-sm
                                 .b-icon.b-icon--fa.b-icon--position-base-left.fa-bug
                                 [href=javascript:void(0);]

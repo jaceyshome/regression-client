@@ -5,7 +5,7 @@ import ImageViewerService from './../service/image-viewer-service';
 import Component from './../component';
 
 
-const MASK_COLOUR = 0x8bc5ff;
+const MASK_COLOUR = 0x00aaff;
 const MASK_ALPHA = 1;
 
 class ReferenceScreenshot extends Component{

@@ -1,0 +1,135 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-button {
+
+    position: relative;
+    z-index: $zindex-button;
+    display: block;
+    padding: $container-sm;
+    font-size: $font-size-base;
+    text-decoration: none;
+
+    &:before {
+        position: relative;
+        z-index: $zindex-button-before;
+    }
+
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: $zindex-button-after;
+        content: '';
+    }
+
+    &--inline-block {
+
+    }
+
+    &--red {
+        position: relative;
+        z-index: 2;
+        background-color: $brand-red;
+        color: $brand-white;
+
+        &:after {
+            background: linear-gradient(270deg, $brand-red-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--sky {
+
+        background-color: $colour-sky-blue;
+        color: $brand-grey-hover;
+
+        &:after {
+            background: linear-gradient(270deg, $colour-sky-blue-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--light-grey {
+        background-color: $accent-grey;
+        color: $brand-grey-hover;
+
+        &:after {
+            background: linear-gradient(270deg, $accent-grey-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--hover-left {
+
+        @keyframes buttonHoverLeftAnimation {
+            0%{background-position: 0 50%}
+            100%{background-position: -100% 50%}
+        }
+
+        @keyframes buttonHoverLeftAnimationReverted {
+            0%{background-position: -100% 50%}
+            100%{background-position: 0 50%}
+        }
+
+        &:after {
+            animation: buttonHoverLeftAnimationReverted $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+        }
+
+        &:focus,
+        &:hover {
+            &:after {
+                animation: buttonHoverLeftAnimation $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+
+            }
+        }
+
+    }
+
+    &--hover-right {
+
+        @keyframes buttonHoverRightAnimation {
+            0%{background-position: 0 50%}
+            100%{background-position: 100% 50%}
+        }
+
+        @keyframes buttonHoverRightAnimationReverted {
+            0%{background-position: 100% 50%}
+            100%{background-position: 0 50%}
+        }
+
+        &:after {
+            animation: buttonHoverRightAnimationReverted $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+        }
+
+        &:focus,
+        &:hover {
+            &:after {
+                animation: buttonHoverRightAnimation $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+
+            }
+        }
+
+    }
+
+    &--gap-1px {
+        margin-bottom: 1px;
+    }
+
+    &__text {
+        position: relative;
+        z-index: $zindex-button-text;
+        text-decoration: underline;
+    }
+
+
+
+}

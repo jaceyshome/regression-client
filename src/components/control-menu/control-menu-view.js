@@ -10,33 +10,33 @@ module.exports = class ControlMenuView {
         return m('div.b-control-menu', [
             m('h3.sr-only', `${vnode.state.title}`),
 
-            m('a.b-link.b-link--block[href=javascript:void(0);]',
+            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-bug[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.toggleDetailsPanel();},
                 },
-                [m('span', 'show failed only')]
+                [m('span.b-button__text', 'show failed only')]
             ),
 
-            m('a.b-link.b-link--block[href=javascript:void(0);]',
+            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-kiwi-bird[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.toggleDetailsPanel();},
                 },
-                [m('span', 'show approved only')]
+                [m('span.b-button__text', 'show approved only')]
             ),
 
-            m('a.b-link.b-link--block[href=javascript:void(0);]',
+            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-info-circle[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.toggleDetailsPanel();},
                 },
-                [m('span', 'toggle details')]
+                [m('span.b-button__text', 'toggle details')]
             ),
 
             ControlMenuModel.isResultFailed() &&
-            m('a.b-link.b-link--block[href=javascript:void(0);]',
+            m('a.b-button.b-button--sky.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-thumbs-up [href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.approveTest();},
                 },
-                [m('span', 'approve test')]
+                [m('span.b-button__text', 'approve test')]
             ),
 
             ControlMenuModel.isResultPass() &&

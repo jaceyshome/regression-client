@@ -9,14 +9,14 @@ module.exports = class VisualSlidePrevView {
     view(vnode) {
         return m('div.b-visual-slide-next', [
             m('h3.sr-only', `${vnode.state.title}`),
-            m('a.b-link[href=javascript:void(0);]',
+            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-chevron-circle-left[href=javascript:void(0);]',
                 {
                     onclick() {
                         VisualSlidePrevModel.setPreviousTest();
                     },
                 },
                 [
-                    m('span', 'prev'),
+                    m('span.b-button__text', 'show previous'),
                 ]
             ),
         ]);
