@@ -17,7 +17,7 @@ module.exports = class HistoryListMenuView {
 
     view(vnode) {
         return m(`.b-history-list-menu.b-box
-            ${HistoryListMenuModel.isShowingHistoryDetails() && 
+            ${HistoryListMenuModel.isHistoryListMenuVisible() && 
             '.b-history-list-menu--showing-details'}`, [
 
             m('.b-container.b-container--section', [
@@ -26,7 +26,7 @@ module.exports = class HistoryListMenuView {
                     m('.b-history-list-menu__top-bar-wrapper', [
                         m('h2.b-title.b-history-list-menu__title', [
 
-                            !HistoryListMenuModel.isShowingHistoryDetails() &&
+                            !HistoryListMenuModel.isHistoryListMenuVisible() &&
                             m('a.b-button.b-button--light-grey.b-button--hover-right.b-icon.b-icon--fa.b-icon--position-base-left.fa-frog' +
                                 '[href=javascript:void(0);]', {
                                 onclick() {
@@ -36,14 +36,14 @@ module.exports = class HistoryListMenuView {
                                 m('span.b-button__text', `${vnode.state.title}`),
                             ]),
 
-                            HistoryListMenuModel.isShowingHistoryDetails() &&
+                            HistoryListMenuModel.isHistoryListMenuVisible() &&
                             m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-frog', `${vnode.state.title}`),
                         ]),
 
                     ]),
                 ]),
 
-                HistoryListMenuModel.isShowingHistoryDetails() &&
+                HistoryListMenuModel.isHistoryListMenuVisible() &&
                 m('.b-history-list-menu__content', [
                     m('p', 'Latest 10 histories.'),
                     m('.grid.grid--flush', [

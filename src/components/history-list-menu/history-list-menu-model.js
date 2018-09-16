@@ -39,7 +39,7 @@ class HistoryListMenuModel {
         return Object.is(history._id, DataService.getCurrentHistory()._id);
     }
 
-    isShowingHistoryDetails(){
+    isHistoryListMenuVisible(){
         return DataService.isHistoryListMenuVisible();
     }
 }

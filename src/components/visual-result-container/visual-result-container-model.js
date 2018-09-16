@@ -7,6 +7,9 @@ class VisualResultContainerModel {
         return DataService.isDetailsPanelVisible();
     }
 
+    isHistoryListMenuVisible(){
+        return DataService.isHistoryListMenuVisible();
+    }
 }
 
 module.exports = new VisualResultContainerModel();
