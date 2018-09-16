@@ -55,12 +55,12 @@ class DataService extends AbstractDataService {
         });
     }
 
-    fetchHistoryList() {
+    fetchHistoryList(limit=10) {
         return new Promise((resolve, reject)=> {
             if(_.isEmpty(this._data.histories)) {
                 m.request({
                     method: 'GET',
-                    url: historyEndpoint,
+                    url: `${historyEndpoint}?limit=${limit}`,
                 }).then((result)=> {
                     if(result && result.data) {
                         Object.assign(

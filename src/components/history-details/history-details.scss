@@ -1,0 +1,10 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-history-details {
+
+    .b-page--bg-dark & {
+        background-color: $brand-dark-overlay;
+    }
+
+}

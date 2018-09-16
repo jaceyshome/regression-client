@@ -23,8 +23,8 @@ $large-desktop-up: "min-width: 1200px";
 
 
 //----------------------------  Paths -------------------------------
-$image-path: "../assets/images";
-$font-path: '../assets/fonts';
+$image-path: "./../assets/images";
+$font-path: './../assets/fonts';
 
 
 //----------------------------  Container ---------------------------
@@ -33,12 +33,12 @@ $container-xs: 10px;
 $container-sm: 15px;
 $container-base: 20px;
 $container-md: 40px;
-$container-md-lg: 80px;
+$container-md-lg: 60px;
 $container-llg: 110px;
 
 
 //--------------------------- Z-index ------------------------------
-
+$zindex-history-list-menu: 1000;
 
 //--------------------------- Font weights -------------------------
 $font-weight-light: 100;
@@ -51,7 +51,7 @@ $font-weight-bold: bold;
 //--------------------------- Font families ------------------------
 $font-apercu: 'Apercu', Helvetica, sans-serif;
 $font-apercu-mono: 'Apercu Mono', Courier, monospace;
-
+$font-awesome: 'Font Awesome 5 Free';
 
 //--------------------------- Font sizes ---------------------------
 $font-size-xxs: 9px;
@@ -70,10 +70,8 @@ $line-height-sm: 1.15;
 $line-height-base: 1.25;
 $line-height-md: 1.5;
 
-// Stroke styles for different types of keylines
-$stroke-thin-dark: 1px solid black;
-
 
 //--------------------------- Animations ----------------------------
 $animation-speed-normal: 400ms;
 $animation-speed-fast: 200ms;
+$animation-speed-faster: 50ms;

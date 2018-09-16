@@ -24,6 +24,10 @@ class LandingPageModel {
     isReady() {
         return this._isReady;
     }
+
+    getMainColumnClass() {
+
+    }
 }
 
 module.exports = new LandingPageModel();

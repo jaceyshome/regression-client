@@ -2,12 +2,17 @@
 @import './../../styles/colours';
 
 .b-history-list-menu {
-
-    width: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: $zindex-history-list-menu;
+    padding: $container-md-lg $container-md $container-base 0;
     height: 100%;
 
     .b-page--bg-dark & {
-        background-color: $brand-grey-hover;
+        background-color: $brand-dark-overlay;
     }
 
     &__item {
@@ -17,4 +22,30 @@
         }
 
     }
+
+    &__link {
+
+        margin-left: -20px;
+
+        &:before {
+            visibility: hidden;
+        }
+
+        &:focus,
+        &:hover {
+            background-color: $brand-red;
+        }
+
+        &--selected {
+            background-color: $brand-red;
+        }
+
+        &--show-icon {
+
+            &:before {
+                visibility: visible;
+            }
+        }
+    }
+
 }

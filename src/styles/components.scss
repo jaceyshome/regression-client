@@ -1,5 +1,6 @@
 
 //----------------------- Base --------------------------------
+@import './../components/animation/animation';
 @import './../components/box/box';
 @import './../components/icon/icon';
 @import './../components/image/image';
@@ -7,12 +8,14 @@
 @import './../components/label/label';
 @import './../components/text/text';
 @import './../components/title/title';
+@import './../components/rule/rule';
 
 
 
 //----------------------- Blocks ------------------------------
 @import './../components/button/button';
 @import './../components/component/component';
+@import './../components/featured-table/featured-table';
 @import './../components/item-list/item-list';
 @import './../components/page/page';
 @import './../components/overlay/overlay';
@@ -36,4 +39,3 @@
 
 //----------------------- Layout ------------------------------
 @import "./../components/seciton-container/section-container";
-@import "./../styles/vendor/avalanche-css/avalanche";

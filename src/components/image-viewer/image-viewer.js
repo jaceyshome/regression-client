@@ -40,11 +40,20 @@ class ImageViewer extends Component{
         this._children.testScreenshot = new TestScreenshot();
         this._children.referenceScreenshot = new ReferenceScreenshot();
         this._children.swipeBar = new SwipeBar();
+        this._filter = this._createBlurFilter();
 
         //The loading sequence is from bottom to top
         this._element.stage.addChild(this._children.testScreenshot.getElement());
         this._element.stage.addChild(this._children.referenceScreenshot.getElement());
         this._element.stage.addChild(this._children.swipeBar.getElement());
+        this._element.stage.filters = [this._filter];
+
+    }
+
+    _createBlurFilter() {
+        let filter = new PIXI.filters.BlurFilter();
+        filter.blur = 0;
+        return filter;
     }
 
     handleScreenshotChange() {

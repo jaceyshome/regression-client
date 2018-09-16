@@ -1,5 +1,6 @@
 import moment from 'moment';
 import _ from 'lodash';
+import DataService from "../../components/service/data-service";
 
 /**
  *
@@ -56,6 +57,12 @@ class Dates {
      */
     static getDate(candidate) {
         return `${moment(candidate).format('D')} ${moment(candidate).format('MMMM')} ${moment(candidate).format('YYYY')}` ;
+    }
+
+    static getDateTime(candidate) {
+        let date = Dates.getDate(candidate);
+        let hours = Dates.getHourMinute(candidate);
+        return `${hours}, ${date}`;
     }
 
     /**
