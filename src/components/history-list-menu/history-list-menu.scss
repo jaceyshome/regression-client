@@ -13,7 +13,6 @@
     transition: all $animation-speed-normal;
 
     &--showing-details {
-
         transform: translateX(0);
 
         .b-page--bg-dark & {

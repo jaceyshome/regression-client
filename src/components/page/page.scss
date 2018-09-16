@@ -19,4 +19,8 @@
     &__content {
         position: relative;
     }
+
+    &--position-fixed {
+        position: fixed;
+    }
 }

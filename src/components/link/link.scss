@@ -22,19 +22,19 @@
         background-size: 200% 200%;
         background-position: 0 50%;
 
-        animation: primary-right-animation-reverted $animation-speed-fast ease forwards;
+        animation: primaryRightAnimationReverted $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
 
         &:hover,
         &:focus {
-            animation: primary-right-animation $animation-speed-fast ease forwards;
+            animation: primaryRightAnimation $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
         }
 
-        @keyframes primary-right-animation {
+        @keyframes primaryRightAnimation {
             0%{background-position: 0 50%}
             100%{background-position: -100% 50%}
         }
 
-        @keyframes primary-right-animation-reverted {
+        @keyframes primaryRightAnimationReverted {
             0%{background-position: -100% 50%}
             100%{background-position: 0 50%}
         }

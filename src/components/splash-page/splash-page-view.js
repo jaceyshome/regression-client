@@ -23,7 +23,7 @@ module.exports = class SplashPageView {
     }
 
     view() {
-        return m('.b-page.b-page--bg-dark', [
+        return m('.b-page.b-page--bg-dark.b-page--position-fixed', [
             m('.b-container.b-container--center.b-container--size-full', [
                 m(SpinnerView),
             ]),
