@@ -7,12 +7,12 @@
 
     position: absolute;
     margin: auto;
-    padding: $container-xs $container-base $container-base 0;
+    padding: 0;
     overflow: hidden;
     z-index: $zindex-history-list-menu;
     width: 100%;
     height: $init-height;
-    transform: translateX($container-max-width - $init-width + 10px);
+    transform: translateX($container-max-width - $init-width);
     transition: all $animation-speed-normal;
 
     &--showing-details {
@@ -21,7 +21,7 @@
 
         .b-page--bg-dark & {
             background-color: $brand-light-grey-overlay;
-            padding: $container-md-lg $container-md $container-base 0;
+            padding: $container-md-lg $container-md ;
             height: 100%;
             color: $brand-grey-hover;
         }

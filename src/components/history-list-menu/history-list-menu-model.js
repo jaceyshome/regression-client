@@ -13,14 +13,7 @@ class HistoryListMenuModel {
     }
 
     getHistoryDetails() {
-        let candidate = this._hoverHistory || DataService.getCurrentHistory();
-        if(!candidate) {
-            return;
-        }
-
-        return Object.assign({}, candidate, {
-            dateTime: Dates.getDateTime(candidate.createdAt),
-        });
+        return this._hoverHistory || DataService.getCurrentHistory();
     }
 
     setCurrentHistory(history) {

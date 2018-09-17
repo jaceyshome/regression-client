@@ -1,5 +1,4 @@
-import SpinnerView from './../spinner/spinner-view';
-import DataService from './../service/data-service';
+import {Dates} from './../../lib/helpers/helpers';
 
 module.exports = class HistoryDetailsView {
 
@@ -12,22 +11,17 @@ module.exports = class HistoryDetailsView {
 
             m('.b-featured-table.b-component', [
 
-                vnode.attrs.instance &&
                 m('.b-featured-table__row', [
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Instance'),
-                    m('.3/4.b-featured-table__cell', vnode.attrs.instance),
-                ]),
-
-                vnode.attrs.server &&
-                m('.b-featured-table__row', [
+                    m('.1/4.b-featured-table__cell', vnode.attrs.instance),
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Server'),
-                    m('.3/4.b-featured-table__cell', vnode.attrs.server),
+                    m('.1/4.b-featured-table__cell', vnode.attrs.server),
                 ]),
 
-                vnode.attrs.dateTime &&
+                vnode.attrs.createdAt !== undefined &&
                 m('.b-featured-table__row', [
-                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Date time'),
-                    m('.3/4.b-featured-table__cell', vnode.attrs.dateTime),
+                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Created at'),
+                    m('.3/4.b-featured-table__cell', Dates.getDateTime(vnode.attrs.createdAt)),
                 ]),
 
                 vnode.attrs.visualFailedTotal !== undefined &&
@@ -37,12 +31,6 @@ module.exports = class HistoryDetailsView {
                 ]),
 
             ]),
-
-            DataService.isLoadingHistory() &&
-            m('.b-container.b-container--center.b-container--size-full', [
-                m(SpinnerView),
-            ]),
-
         ]);
     }
 

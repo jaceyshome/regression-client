@@ -24,7 +24,7 @@ module.exports = class ControlMenuView {
                 [m('span.b-button__text', 'show approved only')]
             ),
 
-            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-info-circle[href=javascript:void(0);]',
+            m('a.b-button.b-button--light-grey.b-button--hover-right.b-button--gap-1px.b-icon.b-icon--fa.b-icon--position-base-left.fa-feather[href=javascript:void(0);]',
                 {
                     onclick(){ControlMenuModel.toggleDetailsPanel();},
                 },
@@ -40,10 +40,10 @@ module.exports = class ControlMenuView {
             ),
 
             ControlMenuModel.isResultPass() &&
-            m('p', 'pass'),
+            m('p.b-box--padding-left-sm.b-icon.b-icon--fa.b-icon--position-base-left.fa-hand-peace', 'passed'),
 
             ControlMenuModel.isResultApproved() &&
-            m('p', 'approved'),
+            m('p.b-box--padding-left-sm.b-icon.b-icon--fa.b-icon--position-base-left.fa-handshake', 'approved'),
 
         ]);
     }

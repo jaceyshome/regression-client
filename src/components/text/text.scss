@@ -41,4 +41,8 @@
     &--underline {
         text-decoration: underline;
     }
+
+    &--color-dark {
+        color: $brand-grey-hover;
+    }
 }

@@ -3,11 +3,16 @@
 
 .b-details-panel {
 
-    padding: $container-md-lg;
+    padding: 0 $container-md;
     height: 100%;
 
     .b-page--bg-dark & {
-        background-color: $brand-dark-overlay;
+        background-color: $brand-light-grey-overlay;
+        color: $brand-grey-hover;
+    }
+
+    &__content-container {
+        padding: $container-md 0;
     }
 
 

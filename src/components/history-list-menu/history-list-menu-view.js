@@ -1,5 +1,7 @@
 import HistoryListMenuModel from './history-list-menu-model';
 import HistoryDetailsView from './../history-details/history-details-view';
+import DataService from './../service/data-service';
+import SpinnerView from './../spinner/spinner-view';
 
 module.exports = class HistoryListMenuView {
 
@@ -81,12 +83,22 @@ module.exports = class HistoryListMenuView {
                                 )),
                             ]),
                         ]),
-                        HistoryListMenuModel.getHistoryDetails() &&
+
                         m('.3/5.grid__cell', [
+
+                            HistoryListMenuModel.getHistoryDetails() &&
                             m('.b-box.b-box--padding-left-base', [
                                 m(HistoryDetailsView, HistoryListMenuModel.getHistoryDetails()),
                             ]),
+
+                            DataService.isLoadingHistory() &&
+                            m('.b-container.b-container--center.b-container--size-full', [
+                                m(SpinnerView),
+                            ]),
+
+
                         ]),
+
                     ]),
                 ]),
 
