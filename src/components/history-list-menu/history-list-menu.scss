@@ -45,7 +45,6 @@
 
     &__content {
         transform: scale(0);
-        transition: transform $animation-speed-normal;
 
         .b-history-list-menu--showing-details & {
             transform: scale(1);
@@ -54,7 +53,6 @@
 
     &__title {
         font-size: $font-size-sm;
-        transition: font-size $animation-speed-slow;
 
         .b-history-list-menu--showing-details & {
             font-size: $font-size-md-llg;
