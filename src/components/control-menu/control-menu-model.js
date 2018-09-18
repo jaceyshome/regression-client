@@ -39,6 +39,10 @@ class ControlMenuModel {
 
     }
 
+    isShowingDetails() {
+        return DataService.isDetailsPanelVisible();
+    }
+
     isResultFailed() {
         return !DataService.getCurrentVisualTest().pass;
     }
