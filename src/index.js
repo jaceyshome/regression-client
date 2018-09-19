@@ -3,7 +3,7 @@ if (module.hot) {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-    console.log('Production mode!');
+    console.log('Development mode!');
 }
 
 //Define your routes here
