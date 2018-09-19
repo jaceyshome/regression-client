@@ -14,7 +14,7 @@ module.exports = class ControlMenuView {
             .b-icon.b-icon--fa.b-icon--position-base-left.fa-feather[href=javascript:void(0);]
             ${ControlMenuModel.isShowingDetails() ? '.b-button--sky' : '.b-button--light-grey'}`, {
                 onclick(){ControlMenuModel.toggleDetailsPanel();},
-            }, [m('span.b-button__text', 'toggle details')]),
+            }, [m('span.b-button__text', `${ControlMenuModel.getDetailsButtonText()}`)]),
 
             ControlMenuModel.isResultFailed() &&
             m(`a.b-button.b-button--hover-right.b-button--gap-1px

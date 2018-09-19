@@ -19,24 +19,8 @@ class ControlMenuModel {
         }
     }
 
-    isAllApproved() {
-
-    }
-
-    hasFailedTests() {
-
-    }
-
-    countFailedTotal() {
-
-    }
-
-    countApprovedTotal() {
-
-    }
-
-    countTotalTests() {
-
+    getDetailsButtonText() {
+        return this.isShowingDetails() ? 'hide details' : 'show details';
     }
 
     isShowingDetails() {
@@ -54,6 +38,7 @@ class ControlMenuModel {
     isResultPass() {
         return DataService.getCurrentVisualTest().pass && !DataService.getCurrentVisualTest().approvedAt;
     }
+
 
 }
 
