@@ -1,4 +1,3 @@
-import StateService from './../service/state-service';
 import DataService from './../service/data-service';
 
 class VisualResultContainerModel {
@@ -7,6 +6,9 @@ class VisualResultContainerModel {
         return DataService.isDetailsPanelVisible();
     }
 
+    isHistoryListMenuVisible(){
+        return DataService.isHistoryListMenuVisible();
+    }
 }
 
 module.exports = new VisualResultContainerModel();

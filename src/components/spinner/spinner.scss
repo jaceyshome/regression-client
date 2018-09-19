@@ -1,0 +1,119 @@
+@import "./../../styles/variables";
+@import "./../../styles/colours";
+
+/*
+Spinner
+
+Displays an animated loading image
+
+Control the display of the spinner by adding/removing the `b-loading-spinner__container--loading` class from the container
+
+Markup:
+<div class="b-spinner">
+    <i class="b-spinner__child b-spinner__child--1"></i>
+    <i class="b-spinner__child b-spinner__child--2"></i>
+    <i class="b-spinner__child b-spinner__child--3"></i>
+    <i class="b-spinner__child b-spinner__child--4"></i>
+    <i class="b-spinner__child b-spinner__child--5"></i>
+    <i class="b-spinner__child b-spinner__child--6"></i>
+</div>
+
+Style guide: Blocks.Spinner
+*/
+.b-spinner {
+    $animation-delay-step: 200ms;
+    $animation-speed: 3200ms;
+    $children-total: 6;
+    $child-size: 20px;
+    $dark-form-foreground-color: #fff;
+
+    margin: auto;
+    opacity: 1;
+    height: $child-size;
+
+    &--hide {
+        transition: $animation-speed-fast;
+        opacity: 0;
+    }
+
+    &__child {
+        display: inline-block;
+        position: relative;
+        width: $child-size;
+        height: $child-size;
+        overflow: hidden;
+
+        &::before,
+        &::after {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: $brand-red;
+            content: "";
+
+            .b-form--dark & {
+                background-color: $dark-form-foreground-color;
+            }
+        }
+
+        &::after {
+            animation: left-to-right $animation-speed infinite;
+            animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+            @keyframes left-to-right {
+
+                20% {
+                    opacity: 1;
+                }
+
+                0%,
+                50%,
+                100% {
+                    opacity: 0;
+                }
+
+            }
+
+        }
+
+        @for $i from 1 through $children-total {
+
+            &--#{$i}::after {
+                animation-delay: $animation-delay-step * $i;
+            }
+        }
+
+        &::before {
+            animation: right-to-left $animation-speed infinite;
+            animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+            opacity: 0;
+
+            @keyframes right-to-left {
+
+                0%,
+                60%,
+                100% {
+                    opacity: 0;
+                }
+
+                70% {
+                    opacity: 1;
+                }
+
+            }
+
+        }
+
+        @for $i from 1 through $children-total {
+
+            &--#{$i}::before {
+                animation-delay: $animation-delay-step * ($children-total - $i);
+            }
+        }
+
+    }
+
+}

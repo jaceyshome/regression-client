@@ -1,0 +1,48 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-rule {
+
+    &--light-base {
+
+        border: 1px solid $brand-white;
+
+        &-top {
+            border-top: 1px solid $brand-white;
+        }
+
+        &-left {
+            border-left: 1px solid $brand-white;
+        }
+
+        &-bottom {
+            border-bottom: 1px solid $brand-white;
+        }
+
+        &-right {
+            border-right: 1px solid $brand-white;
+        }
+    }
+
+    &--light-heavy {
+
+        border: 2px solid $brand-white;
+
+        &-top {
+            border-top: 2px solid $brand-white;
+        }
+
+        &-left {
+            border-left: 2px solid $brand-white;
+        }
+
+        &-bottom {
+            border-bottom: 2px solid $brand-white;
+        }
+
+        &-right {
+            border-right: 2px solid $brand-white;
+        }
+    }
+
+}

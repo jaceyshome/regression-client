@@ -1,5 +1,6 @@
 import StateService from './../service/state-service';
 import DataService from './../service/data-service';
+import {History} from './../component-helpers/component-helpers';
 
 class ControlMenuModel {
 
@@ -19,24 +20,16 @@ class ControlMenuModel {
         }
     }
 
-    isAllApproved() {
-
+    getFailedTotal() {
+        return History.getHistoryFailedTests(DataService.getCurrentHistory()).length;
     }
 
-    hasFailedTests() {
-
+    getDetailsButtonText() {
+        return this.isShowingDetails() ? 'hide details' : 'show details';
     }
 
-    countFailedTotal() {
-
-    }
-
-    countApprovedTotal() {
-
-    }
-
-    countTotalTests() {
-
+    isShowingDetails() {
+        return DataService.isDetailsPanelVisible();
     }
 
     isResultFailed() {
@@ -50,6 +43,7 @@ class ControlMenuModel {
     isResultPass() {
         return DataService.getCurrentVisualTest().pass && !DataService.getCurrentVisualTest().approvedAt;
     }
+
 
 }
 

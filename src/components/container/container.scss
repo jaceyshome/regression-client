@@ -1,0 +1,24 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-container {
+    position: relative;
+    margin: auto;
+
+    &--section {
+        max-width: $container-max-width;
+    }
+
+    &--center {
+        display: flex;
+        align-items: center;
+    }
+
+    &--size {
+
+        &-full {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

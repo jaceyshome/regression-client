@@ -1,4 +1,3 @@
-import StateService from '../service/state-service';
 import DataService from '../service/data-service';
 
 class VisualNavigationMapModel {
@@ -9,9 +8,9 @@ class VisualNavigationMapModel {
     getScreenShot() {
         let test = DataService.getCurrentVisualTest();
         if(test.pass) {
-            return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+            return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
         } else {
-            return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualDifferPath}`;
+            return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualDifferPath}`;
         }
     }
 

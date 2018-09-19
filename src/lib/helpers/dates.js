@@ -58,6 +58,12 @@ class Dates {
         return `${moment(candidate).format('D')} ${moment(candidate).format('MMMM')} ${moment(candidate).format('YYYY')}` ;
     }
 
+    static getDateTime(candidate) {
+        let date = Dates.getDate(candidate);
+        let hours = Dates.getHourMinute(candidate);
+        return `${hours}, ${date}`;
+    }
+
     /**
      * Get hour and date
      * @param candidate {Date} - date

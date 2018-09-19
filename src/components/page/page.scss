@@ -16,4 +16,11 @@
         color: $text-colour-black;
     }
 
+    &__content {
+        position: relative;
+    }
+
+    &--position-fixed {
+        position: fixed;
+    }
 }

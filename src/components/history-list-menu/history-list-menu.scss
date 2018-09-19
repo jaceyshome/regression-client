@@ -2,19 +2,81 @@
 @import './../../styles/colours';
 
 .b-history-list-menu {
+    $init-width: 200px;
+    $init-height: 80px;
 
-    width: 100px;
-    height: 100%;
+    position: absolute;
+    right: $init-width;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    z-index: $zindex-history-list-menu;
+    width: 100%;
+    height: $init-height;
+    transform: translateX(100vw);
+    transition: all $animation-speed-normal;
 
-    .b-page--bg-dark & {
-        background-color: $brand-grey-hover;
+    @media ($large-desktop-up) {
+        transform: translateX($container-max-width - $init-width);
+        right: auto;
     }
 
-    &__item {
+    &--showing-details {
+        position: fixed;
+        right: 0;
+        transform: translateX(0vw);
 
-        &--failed {
-            background-color: $brand-red;
+        .b-page--bg-dark & {
+            background-color: $brand-light-grey-overlay;
+            padding: $container-md-lg $container-md ;
+            height: 100%;
+            color: $brand-grey-hover;
         }
 
     }
+
+    &__top-bar {
+        width: $init-width;
+
+        .b-history-list-menu--showing-details & {
+            width: 100%;
+        }
+    }
+
+    &__content {
+        transform: scale(0);
+
+        .b-history-list-menu--showing-details & {
+            transform: scale(1);
+        }
+    }
+
+    &__title {
+        font-size: $font-size-sm;
+
+        .b-history-list-menu--showing-details & {
+            font-size: $font-size-md-llg;
+        }
+    }
+
+    &__link {
+
+        margin-left: -20px;
+
+        &:before {
+            visibility: hidden;
+        }
+
+        &--selected {
+            background-color: $colour-sky-blue;
+        }
+
+        &--show-icon {
+
+            &:before {
+                visibility: visible;
+            }
+        }
+    }
+
 }

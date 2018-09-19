@@ -1,4 +1,6 @@
 import DetailsPanelModel from './details-panel-model';
+import HistoryDetailsView from './../history-details/history-details-view';
+import ScreenshotDetailsView from './../screenshot-details/screenshot-details-view';
 
 module.exports = class DetailsPanelView {
 
@@ -7,31 +9,30 @@ module.exports = class DetailsPanelView {
     }
 
     view(vnode) {
-        return m('div.b-details-panel', [
-            m('h3.b-title.b-title--h2.b-text--label', `${vnode.state.title}`),
-            m('p', `${DetailsPanelModel.getTestName()}`),
-            m('a.b-link', {
-                href: `${DetailsPanelModel.getTestPageUrl()}`,
-            }, `${DetailsPanelModel.getTestPageUrl()}`),
+        return m('.b-details-panel', [
+            m('.b-details-panel__content-container', [
 
-            DetailsPanelModel.isResultPass() &&
-            m('p', 'The test is pass.'),
+                m('h2.b-title.b-title--h2.b-text--label', [
+                    m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-feather', `${vnode.state.title}`),
+                ]),
+                m('p', `${DetailsPanelModel.getTestName()}.`),
+                m('a.b-link.b-link--block', {
+                    href: `${DetailsPanelModel.getTestPageUrl()}`,
+                }, `${DetailsPanelModel.getTestPageUrl()}`),
+                m('.b-component--paragraph'),
 
-            DetailsPanelModel.isResultFailed() &&
-            m('p', 'The test is failed.'),
+                m(HistoryDetailsView, DetailsPanelModel.getHistoryDetails()),
+                m('.b-component'),
 
-            DetailsPanelModel.isResultApproved() &&
-            m('p', `Approved at ${DetailsPanelModel.getTestApprovedDateTime()}`),
+                m('h3.b-title.b-title--h3', 'Test'),
+                m(ScreenshotDetailsView, DetailsPanelModel.getTestScreenshotDetails()),
+                m('.b-component'),
 
-            m('.b-link--block.b-box--margin-bottom-md-lg'),
+                m('h3.b-title.b-title--h3', 'Reference'),
+                m(ScreenshotDetailsView, DetailsPanelModel.getReferenceScreenshotDetails()),
+                m('.b-component'),
 
-            m('h4.b-title.b-title--h3', 'Test'),
-            m('p', `Created at ${DetailsPanelModel.getTestCreateDateTime()}`),
-            m('p.b-box--margin-bottom-md-lg', `Browser ${DetailsPanelModel.getTestBrowserInfo()}`),
-
-            m('h4.b-title.b-title--h3', 'Reference'),
-            m('p', `Created at ${DetailsPanelModel.getReferenceCreateDate()}`),
-            m('p', `Browser: ${DetailsPanelModel.getReferenceBrowserInfo()}`),
+            ]),
         ]);
     }
 

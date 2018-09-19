@@ -1,4 +1,5 @@
 import SplashPageModel from './splash-page-model';
+import SpinnerView from './../spinner/spinner-view';
 
 module.exports = class SplashPageView {
 
@@ -11,6 +12,7 @@ module.exports = class SplashPageView {
     oninit() {
         this._dataLoaded = false;
         Promise.all([
+            SplashPageModel.fetchConfig(),
             SplashPageModel.fetchHistoryList(),
         ]).then(() => {
             this._dataLoaded = true;
@@ -20,16 +22,10 @@ module.exports = class SplashPageView {
         });
     }
 
-    view(/*vnode*/) {
-        return m('.holder', [
-            m('.preloader', [
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
-                m('div'),
+    view() {
+        return m('.b-page.b-page--bg-dark.b-page--position-fixed', [
+            m('.b-container.b-container--center.b-container--size-full', [
+                m(SpinnerView),
             ]),
         ]);
     }

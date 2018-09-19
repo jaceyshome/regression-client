@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import {Objects} from './../../lib/helpers/helpers';
 import config from './../../config';
+import Constant from './../constant/constant';
 import ComponentHelpers from './../component-helpers/component-helpers';
 import AbstractDataService from './../../lib/abstract-data-service';
 
@@ -14,27 +15,56 @@ class DataService extends AbstractDataService {
         super();
 
         this._data = {
+            componentStates: {
+                detailsPanelVisibility: false,
+                historyListMenuVisibility: false,
+                loadingCurrentHistory: false,
+            },
+            apiConfig: {},
             histories : [],
             currentHistory : {},
             currentVisualTest: {},
             currentVisualReference: {},
         };
 
-        this._detailsPanelsVisibilty = false;
     }
 
-    getAssetRootPath() {
-        return 'regression-tests/';
+    getTestResultRootPath() {
+        if(config.env !== 'PROD') {
+            return Constant.devTestResultRootPath ;
+        }
+        return this._data.apiConfig.testResult.outputRoot;
     }
 
-    fetchHistoryList() {
-
+    fetchConfig() {
         return new Promise((resolve, reject)=> {
+            m.request({
+                method: 'GET',
+                url: `${config.apiRootPath}/`,
+            }).then((result)=> {
+                if(result) {
+                    Object.assign(
+                        this._data.apiConfig,
+                        result
+                    );
+                    resolve(this._data.apiConfig);
+                } else {
+                    reject(undefined);
+                }
+            }).catch((err)=> {
+                console.warn('Get api config wrong', err);
+                reject(undefined);
+            });
 
+        });
+    }
+
+    fetchHistoryList(limit=10) {
+        return new Promise((resolve, reject)=> {
             if(_.isEmpty(this._data.histories)) {
                 m.request({
                     method: 'GET',
-                    url: historyEndpoint,
+                    url: `${historyEndpoint}?limit=${limit}`,
                 }).then((result)=> {
                     if(result && result.data) {
                         Object.assign(
@@ -58,6 +88,9 @@ class DataService extends AbstractDataService {
     }
 
     setCurrentHistory(id) {
+
+        this.setLoadingCurrentHistoryState(true);
+
         return new Promise((resolve, reject)=> {
             m.request({
                 method: 'GET',
@@ -78,6 +111,8 @@ class DataService extends AbstractDataService {
             }).catch((err)=> {
                 console.warn('setCurrentHistory err', err);
                 reject(undefined);
+            }).finally(()=> {
+                this.setLoadingCurrentHistoryState(false);
             });
         });
     }
@@ -115,7 +150,10 @@ class DataService extends AbstractDataService {
                 },
             }).then((result)=> {
                 if(result && result.data) {
-                    Object.assign(test, result.data);
+                    Object.assign(
+                        this._data.currentHistory.visualTests.find((test)=> {
+                            return test._id === result.data.approvedVisualTest._id;
+                        }), result.data.approvedVisualTest);
                     resolve(result.data);
                 } else {
                     reject(undefined);
@@ -137,16 +175,35 @@ class DataService extends AbstractDataService {
 
     }
 
+    setLoadingCurrentHistoryState(state=true) {
+        this._data.componentStates.loadingCurrentHistory = state;
+        this.broadcastDataChanges('componentStates');
+    }
+
     getCurrentVisualTestReference() {
         return this._data.currentVisualReference;
     }
 
     setDetailsPanelVisibility(value=true) {
-        this._detailsPanelsVisibility = value;
+        this._data.componentStates.detailsPanelVisibility = value;
+        this.broadcastDataChanges('componentStates');
     }
 
     isDetailsPanelVisible() {
-        return this._detailsPanelsVisibility;
+        return this._data.componentStates.detailsPanelVisibility;
+    }
+
+    setHistoryListMenuVisibility(value=true) {
+        this._data.componentStates.historyListMenuVisibility = value;
+        this.broadcastDataChanges('componentStates');
+    }
+
+    isHistoryListMenuVisible() {
+        return this._data.componentStates.historyListMenuVisibility;
+    }
+
+    isLoadingHistory() {
+        return this._data.componentStates.loadingCurrentHistory;
     }
 
     /*---------------------- helpers -------------------------*/

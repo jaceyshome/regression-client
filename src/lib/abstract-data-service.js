@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {Strings} from './helpers/helpers';
 import ObservableSlim from 'observable-slim';
 
@@ -37,6 +36,8 @@ export default class AbstractDataService {
          * @private
          */
         this._subscribers = new Set();
+
+        this._bindThisToHandlers();
     }
 
 
@@ -156,6 +157,34 @@ export default class AbstractDataService {
     _handleObservingDataChanges(changes, keyPath) {
         this.broadcastDataChanges(keyPath);
         return true;
+    }
+
+    /**
+     * Bind this to public functions
+     * @private
+     */
+    _bindThisToHandlers() {
+        for (let name of Object.getOwnPropertyNames(Object.getPrototypeOf(this))) {
+            let method = this[name];
+            // Supposedly you'd like to skip constructor
+            if (!(method instanceof Function) || method === this || !this._validateHandlerProperty(name)) {
+                continue;
+            }
+            this[name] = this[name].bind(this);
+        }
+    }
+
+    /**
+     * Helper to exclude functions from view handlers
+     * @param property
+     * @returns {boolean}
+     * @private
+     */
+    _validateHandlerProperty(property) {
+        let excludedNames = ['on', 'off'];
+        return !(property.startsWith('_') ||
+            (typeof this[property] !== 'function') ||
+            !Object.is(excludedNames.find((name)=>{return name === property;}), undefined));
     }
 
 }

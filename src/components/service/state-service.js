@@ -72,7 +72,12 @@ class StateService {
 
     approveCurrentTest() {
         this.hideDetailsPanel();
-        return DataService.approveTest(DataService.getCurrentVisualTest()).then(()=> this.setNextVisualTest());
+        return new Promise((resolve, reject)=>{
+            DataService.approveTest(DataService.getCurrentVisualTest()).then((result)=> {
+                this.setNextVisualTest();
+                resolve(result);
+            }).catch(reject);
+        });
     }
 
     showDetailsPanel() {
@@ -82,6 +87,16 @@ class StateService {
     hideDetailsPanel() {
         DataService.setDetailsPanelVisibility(false);
     }
+
+    showHistoryListMenu() {
+        DataService.setHistoryListMenuVisibility(true);
+    }
+
+    hideHistoryListMenu() {
+        DataService.setHistoryListMenuVisibility(false);
+    }
+
+
 }
 
 module.exports = new StateService();

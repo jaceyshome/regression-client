@@ -1,10 +1,9 @@
 import * as PIXI from 'pixi.js';
-import {Images, Strings} from './../../../lib/helpers/helpers';
 import ImageViewerHelper from './../image-viewer-helper';
 import Component from './../component';
 import ImageViewerService from './../service/image-viewer-service';
 
-const COLOUR = 0x0148A4;
+const COLOUR = 0x00aaff;
 const WIDTH = 2;
 
 class SwipeBar extends Component {
@@ -67,7 +66,7 @@ class SwipeBar extends Component {
         });
     }
 
-    handleScreenshotChange(keyPath, data){
+    handleScreenshotChange(){
         this.resize();
         this.resetPosition();
     }

@@ -59,7 +59,7 @@ class Objects {
             }
         }
         const handler = {
-            set (obj, prop, value) {
+            set () {
                 throw new TypeError('Enum is read only');
             },
             get (obj, prop) {
@@ -71,7 +71,7 @@ class Objects {
                 }
                 return Reflect.get(obj, prop);
             },
-            deleteProperty (obj, prop) {
+            deleteProperty () {
                 throw new TypeError('Enum is read only');
             },
         };

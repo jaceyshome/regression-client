@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import _ from 'lodash';
 import AbstractDataService from './../../../lib/abstract-data-service';
 import DataService from './../../service/data-service';
 import {Strings, Objects} from './../../../lib/helpers/helpers';
@@ -20,30 +19,38 @@ class ImageViewerService extends AbstractDataService {
     constructor() {
         super();
 
-        this.handleCurrentTestUpdate = this.handleCurrentTestUpdate.bind(this);
-        this.handleCurrentTestReferenceUpdate = this.handleCurrentTestReferenceUpdate.bind(this);
-        this.handleImagesLoaded = this.handleImagesLoaded.bind(this);
-
         this._data = {
             testScreenshotId: '',
             referenceScreenshotId: '',
             swipeBarPosition: {},
             testScreenshot: {},
             referenceScreenshot: {},
+            state: {
+                showingBlur: false,
+            },
         };
 
         this._currentState = FLAG_RESET;
 
         DataService.subscribe('currentVisualTest', this.handleCurrentTestUpdate, 'imageViewerStateService');
         DataService.subscribe('currentVisualReference', this.handleCurrentTestReferenceUpdate, 'imageViewerStateService');
+        DataService.subscribe('componentStates', this.handleComponentStateChanges, 'imageViewerStateService');
     }
 
-    handleCurrentTestUpdate(keyPath, data){
+    handleCurrentTestUpdate(){
         this._updateStateFlag(FLAG_VISUAL_TEST_UPDATE);
     }
 
-    handleCurrentTestReferenceUpdate(keyPath, data) {
+    handleCurrentTestReferenceUpdate() {
         this._updateStateFlag(FLAG_VISUAL_TEST_REFERENCE_UPDATE);
+    }
+
+    handleComponentStateChanges(keyPath, data) {
+        let newBlurState = (data.detailsPanelVisibility || data.historyListMenuVisibility );
+        if(this._data.state.showingBlur !== newBlurState){
+            this._data.state.showingBlur = newBlurState;
+            this.broadcastDataChanges('state');
+        }
     }
 
     showCurrentResult() {
@@ -62,11 +69,11 @@ class ImageViewerService extends AbstractDataService {
     }
 
     getVisualTestImage() {
-        return `${DataService.getAssetRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+        return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
     }
 
     getVisualTestReferenceImage() {
-        return`${DataService.getAssetRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
+        return`${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
     }
 
     handleImagesLoaded(loader, resources) {

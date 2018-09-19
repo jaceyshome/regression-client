@@ -26,11 +26,23 @@
         text-transform: uppercase;
     }
 
+    &--capitalize {
+        text-transform: capitalize;
+    }
+
     &--block {
         display: block;
     }
 
     &--inline-block {
         display: inline-block;
+    }
+
+    &--underline {
+        text-decoration: underline;
+    }
+
+    &--color-dark {
+        color: $brand-grey-hover;
     }
 }

@@ -3,4 +3,42 @@
 
 .b-icon {
 
+
+    &--fa {
+
+        &::before {
+            font-family: $font-awesome;
+            text-decoration: none;
+        }
+
+    }
+
+    &--position-base {
+
+        &-top {
+            &::before {
+                margin-top: $container-xxs;
+            }
+        }
+
+        &-right {
+            &::before {
+                margin-left: $container-xxs;
+            }
+        }
+
+        &-left {
+            &::before {
+                margin-right: $container-xxs;
+            }
+        }
+
+        &-bottom {
+            &::before {
+                margin-bottom: $container-xxs;
+            }
+        }
+
+    }
+
 }

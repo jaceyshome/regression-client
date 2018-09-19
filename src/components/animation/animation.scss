@@ -15,14 +15,18 @@ Style guide: Base.Animation
 */
 .b-animation {
 
-    transition: $animation-speed-normal;
+    transition: all $animation-speed-normal;
+
+    &--slow {
+        transition: all $animation-speed-slow;
+    }
 
     &--fast {
-        transition: $animation-speed-fast;
+        transition: all $animation-speed-fast;
     }
 
     &--faster {
-        transition: $animation-speed-faster;
+        transition: all $animation-speed-faster;
     }
 
     &--fade {
@@ -38,6 +42,6 @@ Style guide: Base.Animation
     }
 
     &--blur {
-        filter: blur(2rem);
+        filter: blur(1rem);
     }
 }

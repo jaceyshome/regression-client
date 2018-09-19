@@ -1,6 +1,4 @@
-import StateService from './../service/state-service';
 import DataService from './../service/data-service';
-import {Dates} from './../../lib/helpers/helpers';
 
 class DetailsPanelModel {
 
@@ -12,46 +10,23 @@ class DetailsPanelModel {
         return DataService.getCurrentVisualTest().name;
     }
 
-    getTestCreateDateTime() {
-        let date = Dates.getDate(DataService.getCurrentVisualTest().createdAt);
-        let hours = Dates.getHourMinute(DataService.getCurrentVisualTest().createdAt);
-        return `${hours}, ${date}`;
-    }
-
-    getTestApprovedDateTime() {
-        if(!DataService.getCurrentVisualTest().approvedAt) {
-            return '';
+    getHistoryDetails() {
+        if(!DataService.getCurrentHistory()) {
+            return;
         }
-        let date = Dates.getDate(DataService.getCurrentVisualTest().approvedAt);
-        let hours = Dates.getHourMinute(DataService.getCurrentVisualTest().approvedAt);
-        return `${hours}, ${date}`;
+
+        return {
+            instance: DataService.getCurrentHistory().instance,
+            server: DataService.getCurrentHistory().server,
+        };
     }
 
-    getReferenceCreateDate() {
-        let date = Dates.getDate(DataService.getCurrentVisualTestReference().createdAt);
-        let hours = Dates.getHourMinute(DataService.getCurrentVisualTestReference().createdAt);
-        return `${hours}, ${date}`;
+    getTestScreenshotDetails() {
+        return DataService.getCurrentVisualTest();
     }
 
-    getTestBrowserInfo() {
-        return DataService.getCurrentVisualTest().browser;
-    }
-
-    getReferenceBrowserInfo() {
-        return DataService.getCurrentVisualTestReference().browser;
-
-    }
-
-    isResultFailed() {
-        return !DataService.getCurrentVisualTest().pass;
-    }
-
-    isResultApproved() {
-        return DataService.getCurrentVisualTest().pass && DataService.getCurrentVisualTest().approvedAt;
-    }
-
-    isResultPass() {
-        return DataService.getCurrentVisualTest().pass && !DataService.getCurrentVisualTest().approvedAt;
+    getReferenceScreenshotDetails() {
+        return DataService.getCurrentVisualTestReference();
     }
 
 }

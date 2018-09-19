@@ -1,0 +1,149 @@
+@import './../../styles/variables';
+@import './../../styles/colours';
+
+.b-button {
+
+    //variables
+    $easing: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+
+    position: relative;
+    z-index: $zindex-button;
+    display: block;
+    padding: $container-sm;
+    font-size: $font-size-base;
+    text-decoration: none;
+
+    //TODO: for the next animation development step
+    //&:nth-child(1) {
+    //    animation: buttonFadeInRightAnimation 400ms $easing forwards;
+    //}
+
+    &:before {
+        position: relative;
+        z-index: $zindex-button-before;
+    }
+
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: $zindex-button-after;
+        content: '';
+    }
+
+    &--inline-block {
+
+    }
+
+    &--red {
+        background: linear-gradient(270deg, $brand-red 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: -100% 50%;
+        color: $brand-white;
+
+        &:after {
+            background: linear-gradient(270deg, $brand-red-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--sky {
+        background: linear-gradient(270deg, $colour-sky-blue 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: -100% 50%;
+        //TODO for the next animation development step
+        //background-position: 0 50%;
+        color: $brand-grey-hover;
+
+        &:after {
+            background: linear-gradient(270deg, $colour-sky-blue-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--light-grey {
+        background-color: $accent-grey;
+        background: linear-gradient(270deg, $accent-grey 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: -100% 50%;
+        color: $brand-grey-hover;
+
+        &:after {
+            background: linear-gradient(270deg, $accent-grey-hover 50%, rgba(0,0,0,0) 50%);
+            background-size: 200% 200%;
+            background-position: 0 50%;
+        }
+
+    }
+
+    &--hover-left {
+
+        &:after {
+            animation: buttonBGFadeOutLeftAnimation $animation-speed-fast $easing forwards;
+        }
+
+        &:focus,
+        &:hover {
+            &:after {
+                animation: buttonBGFadeInLeftAnimation $animation-speed-fast $easing forwards;
+
+            }
+        }
+    }
+
+    &--hover-right {
+
+        &:after {
+            animation: buttonFadeOutRightAnimation $animation-speed-fast $easing forwards;
+        }
+
+        &:focus,
+        &:hover {
+            &:after {
+                animation: buttonFadeInRightAnimation $animation-speed-fast $easing forwards;
+
+            }
+        }
+    }
+
+    &--gap-1px {
+        margin-bottom: 1px;
+    }
+
+    &__text {
+        position: relative;
+        z-index: $zindex-button-text;
+        text-decoration: underline;
+    }
+
+
+
+    /*---------- Animation keyframes -------------*/
+    //TODO make them as mixin
+    @keyframes buttonBGFadeInLeftAnimation {
+        0%{background-position: 0 50%;}
+        100%{background-position: -100% 50%;}
+    }
+
+    @keyframes buttonBGFadeOutLeftAnimation {
+        0%{background-position: -100% 50%;}
+        100%{background-position: 0 50%;}
+    }
+
+    @keyframes buttonFadeInRightAnimation {
+        0%{background-position: 0 50%;}
+        100%{background-position: 100% 50%;}
+    }
+
+    @keyframes buttonFadeOutRightAnimation {
+        0%{background-position: 100% 50%;}
+        100%{background-position: 0 50%;}
+    }
+
+}

@@ -3,4 +3,9 @@
 
 .b-component {
 
+    margin-bottom: $container-md;
+
+    &--paragraph {
+        margin-bottom: $container-base;
+    }
 }

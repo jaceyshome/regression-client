@@ -3,11 +3,48 @@
 
 .b-link {
 
-    .b-page--bg-dark & {
+    &--block {
+        display: block;
+    }
+
+    &--no-underline {
+        text-decoration: none;
+    }
+
+    &--primary {
+        background: linear-gradient(270deg, $brand-red 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: 0 50%;
         color: $text-colour-white;
     }
 
-    &--block {
-        display: block;
+    &--sky {
+        background: linear-gradient(270deg, $colour-sky-blue 50%, rgba(0,0,0,0) 50%);
+        background-size: 200% 200%;
+        background-position: 0 50%;
+        color: $brand-grey-hover;
+    }
+
+    &--hover-right {
+
+        @keyframes linkHoverRightAnimation {
+            0%{background-position: 0 50%}
+            100%{background-position: -100% 50%}
+        }
+
+        @keyframes linkHoverRightAnimationReverted {
+            0%{background-position: -100% 50%}
+            100%{background-position: 0 50%}
+        }
+
+
+        animation: linkHoverRightAnimationReverted $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+
+        &:hover,
+        &:focus {
+            animation: linkHoverRightAnimation $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+        }
+
+        
     }
 }
