@@ -1,5 +1,6 @@
 import StateService from './../service/state-service';
 import DataService from './../service/data-service';
+import {History} from './../component-helpers/component-helpers';
 
 class ControlMenuModel {
 
@@ -8,7 +9,9 @@ class ControlMenuModel {
     }
 
     approveTest() {
-        StateService.approveCurrentTest();
+        StateService.approveCurrentTest().then((result)=>{
+            console.log('Approve a test');
+        });
     }
 
     toggleDetailsPanel() {
@@ -17,6 +20,12 @@ class ControlMenuModel {
         } else {
             StateService.showDetailsPanel();
         }
+    }
+
+    getFailedTotal() {
+        console.log('get failed total', History.getHistoryFailedTests(DataService.getCurrentHistory()).length);
+
+        return History.getHistoryFailedTests(DataService.getCurrentHistory()).length;
     }
 
     getDetailsButtonText() {

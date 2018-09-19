@@ -9,6 +9,11 @@ class History {
         return _.orderBy(histories, ['weight'],['desc']);
     }
 
+    static getHistoryFailedTests(history) {
+        return history.visualTests.filter((test)=> {
+            return test.pass === false;
+        });
+    }
 }
 
 export {History};

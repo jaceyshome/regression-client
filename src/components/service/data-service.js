@@ -59,7 +59,7 @@ class DataService extends AbstractDataService {
         });
     }
 
-    fetchHistoryList(limit=10) {
+    fetchHistoryList(isReloading=false, limit=10) {
         return new Promise((resolve, reject)=> {
             if(_.isEmpty(this._data.histories)) {
                 m.request({
@@ -150,7 +150,10 @@ class DataService extends AbstractDataService {
                 },
             }).then((result)=> {
                 if(result && result.data) {
-                    Object.assign(test, result.data);
+                    Object.assign(
+                        this._data.currentHistory.visualTests.find((test)=> {
+                            return test._id === result.data.approvedVisualTest._id;
+                        }), result.data.approvedVisualTest);
                     resolve(result.data);
                 } else {
                     reject(undefined);

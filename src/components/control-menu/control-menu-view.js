@@ -16,6 +16,9 @@ module.exports = class ControlMenuView {
                 onclick(){ControlMenuModel.toggleDetailsPanel();},
             }, [m('span.b-button__text', `${ControlMenuModel.getDetailsButtonText()}`)]),
 
+            ControlMenuModel.getFailedTotal() !== 0 &&
+            m('p.b-box--padding-left-sm.b-icon.b-icon--fa.b-icon--position-base-left.fa-bug', `${ControlMenuModel.getFailedTotal()} failed tests`),
+
             ControlMenuModel.isResultFailed() &&
             m(`a.b-button.b-button--hover-right.b-button--gap-1px
             .b-icon.b-icon--fa.b-icon--position-base-left.fa-thumbs-up[href=javascript:void(0);]
