@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import _ from 'lodash';
 import AbstractDataService from './../../../lib/abstract-data-service';
 import DataService from './../../service/data-service';
 import {Strings, Objects} from './../../../lib/helpers/helpers';
@@ -38,11 +37,11 @@ class ImageViewerService extends AbstractDataService {
         DataService.subscribe('componentStates', this.handleComponentStateChanges, 'imageViewerStateService');
     }
 
-    handleCurrentTestUpdate(keyPath, data){
+    handleCurrentTestUpdate(){
         this._updateStateFlag(FLAG_VISUAL_TEST_UPDATE);
     }
 
-    handleCurrentTestReferenceUpdate(keyPath, data) {
+    handleCurrentTestReferenceUpdate() {
         this._updateStateFlag(FLAG_VISUAL_TEST_REFERENCE_UPDATE);
     }
 

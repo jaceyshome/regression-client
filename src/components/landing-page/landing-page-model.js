@@ -11,11 +11,11 @@ class LandingPageModel {
         return new Promise((resolve, reject)=> {
             DataService.fetchConfig().then(()=>{
                 DataService.fetchHistoryList().then((results)=> {
-                    StateService.setCurrentHistory(results[0]).then((history)=> {
+                    StateService.setCurrentHistory(results[0]).then(()=> {
                         this._isReady = true;
                         resolve(results);
                     });
-                });
+                }).catch(reject);
             });
 
         });

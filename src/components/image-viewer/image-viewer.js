@@ -82,8 +82,6 @@ class ImageViewer extends Component{
             this._filter.blur = this._filter.blur - this._data.speedBlur;
         }
 
-        console.log('show handle state change!!!', this._filter.blur);
-
     }
 
 

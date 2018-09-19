@@ -1,6 +1,5 @@
 import StateService from './../service/state-service';
 import DataService from './../service/data-service';
-import {Dates} from './../../lib/helpers/helpers';
 
 class HistoryListMenuModel {
 

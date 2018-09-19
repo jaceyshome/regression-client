@@ -9,9 +9,7 @@ class ControlMenuModel {
     }
 
     approveTest() {
-        StateService.approveCurrentTest().then((result)=>{
-            console.log('Approve a test');
-        });
+        StateService.approveCurrentTest();
     }
 
     toggleDetailsPanel() {
@@ -23,8 +21,6 @@ class ControlMenuModel {
     }
 
     getFailedTotal() {
-        console.log('get failed total', History.getHistoryFailedTests(DataService.getCurrentHistory()).length);
-
         return History.getHistoryFailedTests(DataService.getCurrentHistory()).length;
     }
 

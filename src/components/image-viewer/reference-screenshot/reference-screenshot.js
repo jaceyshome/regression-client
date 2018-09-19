@@ -89,10 +89,8 @@ class ReferenceScreenshot extends Component{
 
     /**
      * For test reference, handle the mask position and size update
-     * @param keyPath
-     * @param data
      */
-    handleSwipeBarPositionChange(keyPath, data) {
+    handleSwipeBarPositionChange() {
         this._resizeMask();
     }
 

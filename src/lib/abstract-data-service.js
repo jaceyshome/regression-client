@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {Strings} from './helpers/helpers';
 import ObservableSlim from 'observable-slim';
 

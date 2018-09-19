@@ -1,6 +1,5 @@
 import moment from 'moment';
 import _ from 'lodash';
-import DataService from "../../components/service/data-service";
 
 /**
  *

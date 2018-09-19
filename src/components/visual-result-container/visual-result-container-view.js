@@ -39,8 +39,4 @@ module.exports = class VisualResultContainer {
         ]);
     }
 
-    onupdate() {
-        console.log('onupdate VisualResultContainer');
-    }
-
 };

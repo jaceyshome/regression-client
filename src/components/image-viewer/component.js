@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import {Strings} from './../../lib/helpers/helpers';
 
 export default class Component {
