@@ -21,7 +21,7 @@ module.exports = {
         // GIT remote
         repo: "git@bitbucket.org:jaceyshome/regression-test-client.git",
         // path in the server
-        path: "/var/www/apps/regression-test-server",
+        path: "/var/www/apps/regression-test-client",
         // Pre-setup command or path to a script on your local machine
         //'pre-setup': "nvm use 9.3.0; ls -la",
         // Post-setup commands or path to a script on the host machine
