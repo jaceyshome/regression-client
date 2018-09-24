@@ -1,4 +1,4 @@
 module.exports = {
-    env: 'DEV', //DEV or PROD
-    apiRootPath: 'http://localhost:7070',
+    env: 'PROD', //DEV or PROD
+    apiRootPath: 'http://54.79.0.252:7071',
 };
