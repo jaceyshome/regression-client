@@ -1,6 +1,6 @@
 {
   "name": "Regression-test-client",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Regression test client site application for checking visual test result",
   "main": "index.js",
   "scripts": {
