@@ -1,0 +1,15 @@
+version: '2'
+
+#Docker compose is a way of testing the Dockerfile
+services:
+  regression-test-client:
+    build: ./
+    container_name: regression-test-client
+    volumes:
+      - "./output:/usr/local/apache2/htdocs/output"
+    ports:
+     - "7090:80"
+
+networks:
+  default:
+    driver: bridge
