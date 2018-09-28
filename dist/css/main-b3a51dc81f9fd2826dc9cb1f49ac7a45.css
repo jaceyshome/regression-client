@@ -6963,6 +6963,8 @@ html {
   height: 100%; }
 
 body {
+  transform: translateZ(0);
+  will-change: all;
   margin: 0;
   padding: 0;
   height: 100%;
