@@ -26,11 +26,6 @@ class ImageViewer extends Component{
             height: ImageViewerHelper.getBodyHeight(),
         });
 
-        this._data = {
-            targetBlur: 0,
-            speedBlur: 10,
-        };
-
         this._loadComponents();
 
         ImageViewerHelper.getContainer().appendChild(this._app.view);
@@ -40,8 +35,6 @@ class ImageViewer extends Component{
         window.addEventListener('resize', this.resize);
         this.resize();
 
-        //init ticker
-        this._app.ticker.add(this.update);
     }
 
     handleScreenshotChange() {
@@ -49,7 +42,7 @@ class ImageViewer extends Component{
     }
 
     handleStateChange(keyPath, data){
-        this._data.targetBlur = data.showingBlur ? 10 : 0;
+        this._filter.enabled = data.showingBlur;
     }
     
     getContainerHeight() {
@@ -71,18 +64,6 @@ class ImageViewer extends Component{
         );
     }
 
-    update() {
-        if(this._filter.blur === this._data.targetBlur) {
-            return;
-        }
-
-        if( (this._filter.blur - this._data.targetBlur) < 0) {
-            this._filter.blur = this._filter.blur + this._data.speedBlur;
-        } else {
-            this._filter.blur = this._filter.blur - this._data.speedBlur;
-        }
-
-    }
 
 
     /* -------------------------- Helpers ---------------------------- */
@@ -101,8 +82,10 @@ class ImageViewer extends Component{
     }
 
     _createBlurFilter() {
-        let filter = new PIXI.filters.BlurFilter();
-        filter.blur = 0;
+        let filter = new PIXI.filters.ColorMatrixFilter();
+        filter.greyscale(0.35);
+        filter.autoFit = true;
+        filter.enabled = false;
         return filter;
     }
 

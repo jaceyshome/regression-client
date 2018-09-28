@@ -8,9 +8,9 @@ module.exports = merge(common, {
     devServer: {
         hot: true,
         contentBase: './dist',
-        port: 3000,
+        port: 7090,
         proxy: {
-            '/api': 'http://localhost:3001',
+            '/api': 'http://localhost:7091',
         },
         /*overlay: {
             errors: true,

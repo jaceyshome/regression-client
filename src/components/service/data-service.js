@@ -6,8 +6,8 @@ import Constant from './../constant/constant';
 import ComponentHelpers from './../component-helpers/component-helpers';
 import AbstractDataService from './../../lib/abstract-data-service';
 
-const historyEndpoint = `${config.apiRootPath}/history`;
-const visualEndpoint = `${config.apiRootPath}/visual`;
+const historyEndpoint = `${config.apiRootPath}history`;
+const visualEndpoint = `${config.apiRootPath}visual`;
 
 class DataService extends AbstractDataService {
 
@@ -30,17 +30,14 @@ class DataService extends AbstractDataService {
     }
 
     getTestResultRootPath() {
-        if(config.env !== 'PROD') {
-            return Constant.devTestResultRootPath ;
-        }
-        return this._data.apiConfig.testResult.outputRoot;
+        return config.outputPath;
     }
 
     fetchConfig() {
         return new Promise((resolve, reject)=> {
             m.request({
                 method: 'GET',
-                url: `${config.apiRootPath}/`,
+                url: `${config.apiRootPath}`,
             }).then((result)=> {
                 if(result) {
                     Object.assign(
