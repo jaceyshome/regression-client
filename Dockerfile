@@ -1,36 +1,51 @@
 #
-# Regression tests code base
+# Regression test client docker image
 #
-# test and development:
-#    using docker-compose: docker-compose up --build
 # build:
-#    docker build --force-rm -t sydneyuni/regression-tests .
+#    docker build --force-rm -t sydneyuni/regression-client .
 # push:
-#    docker push sydneyuni/regression-tests .
+#    docker push sydneyuni/regression-client .
 #
 
 ### BASE
-FROM httpd:2.4 AS base
-# TODO may need to run as non-root user inside the docker container
-# See https://vimeo.com/171803492 at 17:20 mark
-# RUN groupadd -r nodejs && useradd -m -r -g nodejs nodejs
-# now run as new user nodejs from group nodejs
-# USER nodejs
-### Display nodejs version
+FROM node:9.3.0-alpine AS base
 LABEL maintainer "Jake Wang <jake.wang@sydney.edu.au>"
 # Set the working directory
-WORKDIR /usr/local/apache2/htdocs
-# Enable mod_rewrite
-RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
-RUN { \
-  echo 'IncludeOptional conf.d/*.conf'; \
-} >> /usr/local/apache2/conf/httpd.conf \
-  && mkdir /usr/local/apache2/conf.d
+WORKDIR /home/node/app
+# Copy project specification and dependencies lock files
+COPY package.json yarn.lock ./
+
+
+
+### DEPENDENCIES
+FROM base AS dependencies
+# Install Node.js dependencies (only production)
+RUN yarn --production
+# Copy production dependencies aside
+RUN cp -R node_modules /tmp/node_modules
+# Install ALL Node.js dependencies
+RUN yarn
+
+
 
 ### RELEASE
 FROM base AS release
+# Copy production dependencies
+COPY --from=dependencies /tmp/node_modules ./node_modules
+# Copy app sources
+COPY . .
+# Install node-sass dependency
+RUN yarn add node-sass
+# Create release build
+RUN yarn build
 # Allow the logs directory to be mounted
-ONBUILD VOLUME ["/usr/local/apache2/htdocs/output"]
-# Allow the datastore directory to be mounted
+ONBUILD VOLUME ["/home/node/app/dist"]
 # Expose application port, production port is 7071
-EXPOSE 80
+EXPOSE 7090
+# In production environment
+ENV NODE_ENV production
+# set node user to run this image
+USER node
+# Run the server
+CMD ["npm", "run-script", "prod"]
+

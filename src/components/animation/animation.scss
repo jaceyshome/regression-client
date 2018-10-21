@@ -14,7 +14,8 @@ animation styles, default duration is normal
 Style guide: Base.Animation
 */
 .b-animation {
-
+    transform: translateZ(0);
+    will-change: all;
     transition: all $animation-speed-normal;
 
     &--slow {

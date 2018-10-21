@@ -1,5 +1,7 @@
 module.exports = {
     env: 'DEV', //DEV or PROD
-    apiRootPath: 'http://54.79.0.252:7071/',
-    outputPath: 'http://54.79.0.252:7080/',
+    //regression-test-server root path
+    apiRootPath: 'http://localhost:7071/',
+    //regression-test-puppeteer server root path
+    outputPath: 'http://localhost:7080/',
 };

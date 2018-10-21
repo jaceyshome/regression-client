@@ -1,6 +1,10 @@
 # Mithril Starter Kit
 A boilerplate Mithril application using ES6, Babel, Webpack 3, Sass/SCSS, Webpack dev server hot reload and eslint
 
+### Docker image
+reference https://gist.github.com/duluca/d13e501e870215586271b0f9ce1781ce/#file-npm-scripts-for-docker-md
+    
+
 ### How to use
 npm install
 
