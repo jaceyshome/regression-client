@@ -38,14 +38,17 @@ COPY . .
 RUN yarn add node-sass
 # Create release build
 RUN yarn build
+# Set the working directory user and group
+# FIXME: set node user and group not working
+#RUN chown node:node -R /home/node/app
+# Set node user to run this image
+#USER node
 # Allow the logs directory to be mounted
 ONBUILD VOLUME ["/home/node/app/dist"]
 # Expose application port, production port is 7071
 EXPOSE 7090
 # In production environment
 ENV NODE_ENV production
-# set node user to run this image
-USER node
 # Run the server
 CMD ["npm", "run-script", "prod"]
 
