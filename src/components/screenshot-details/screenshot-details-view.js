@@ -24,7 +24,7 @@ module.exports = class ScreenshotDetailsView {
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Test image'),
                     m(`${vnode.attrs.visualDifferPath ? '.1/4' : '.3/4'}.b-featured-table__cell`, [
                         m('a.b-link.b-link--block.b-text--color-dark', {
-                            href: `${DataService.getTestResultRootPath()}${vnode.attrs.visualScreenshotPath}`,
+                            href: `${DataService.getTestResultRootPath()}/${vnode.attrs.visualScreenshotPath}`,
                             download: true,
                         }, [
                             m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-download', 'download'),
@@ -36,7 +36,7 @@ module.exports = class ScreenshotDetailsView {
                     vnode.attrs.visualDifferPath &&
                     m('.1/4.b-featured-table__cell', [
                         m('a.b-link.b-link--block.b-text--color-dark', {
-                            href: `${DataService.getTestResultRootPath()}${vnode.attrs.visualDifferPath}`,
+                            href: `${DataService.getTestResultRootPath()}/${vnode.attrs.visualDifferPath}`,
                             download: true,
                         }, [
                             m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-download', 'download'),
