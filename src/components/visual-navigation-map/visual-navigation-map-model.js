@@ -8,9 +8,9 @@ class VisualNavigationMapModel {
     getScreenShot() {
         let test = DataService.getCurrentVisualTest();
         if(test.pass) {
-            return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualScreenshotPath}`;
+            return `${DataService.getTestResultRootPath()}/${DataService.getCurrentVisualTest().visualScreenshotPath}`;
         } else {
-            return `${DataService.getTestResultRootPath()}${DataService.getCurrentVisualTest().visualDifferPath}`;
+            return `${DataService.getTestResultRootPath()}/${DataService.getCurrentVisualTest().visualDifferPath}`;
         }
     }
 

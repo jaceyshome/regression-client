@@ -6,8 +6,8 @@ import Constant from './../constant/constant';
 import ComponentHelpers from './../component-helpers/component-helpers';
 import AbstractDataService from './../../lib/abstract-data-service';
 
-const historyEndpoint = `${config.apiRootPath}history`;
-const visualEndpoint = `${config.apiRootPath}visual`;
+const historyEndpoint = `${config.apiRootPath}/history`;
+const visualEndpoint = `${config.apiRootPath}/visual`;
 
 class DataService extends AbstractDataService {
 

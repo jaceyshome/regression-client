@@ -1,7 +1,9 @@
+let hostName = window.location.hostname;
+
 module.exports = {
     env: 'DEV', //DEV or PROD
     //regression-test-server root path
-    apiRootPath: 'http://localhost:7071/',
+    apiRootPath: `${hostName}:7071`,
     //regression-test-puppeteer server root path
-    outputPath: 'http://localhost:7080/',
+    outputPath: `${hostName}:7080`,
 };
