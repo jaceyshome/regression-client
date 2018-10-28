@@ -1,3 +1,13 @@
+<a name="1.5.1"></a>
+## [1.5.1](https://bitbucket.org/jaceyshome/regression-client/compare/1.5.0...1.5.1) (2018-10-28)
+
+
+### Features
+
+* update yarn lock file
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://bitbucket.org/jaceyshome/regression-client/compare/1.4.3...1.5.0) (2018-10-28)
 
