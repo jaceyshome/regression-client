@@ -47,18 +47,39 @@ module.exports = class HistoryListMenuView {
 
                 HistoryListMenuModel.isHistoryListMenuVisible() &&
                 m('.b-history-list-menu__content', [
-                    m('p', 'Latest 10 histories.'),
-                    m('.grid.grid--flush', [
-                        m('.1/5.grid__cell.b-rule.b-rule--heavy-right', [
-                            m('.b-box.b-box--padding-right-base', [
-                                m('ul.b-item-list.b-box--padding-right-base', vnode.state.histories.map((history) => {
+
+                    m('p.b-text.b-text--align-right', 'Latest 10 histories.'),
+
+                    m('.grid.grid--flush.grid--right', [
+
+
+                        m('.7/10.grid__cell', [
+
+                            HistoryListMenuModel.getHistoryDetails() &&
+                            m('.b-box.b-box--padding-left-base', [
+                                m(HistoryDetailsView, HistoryListMenuModel.getHistoryDetails()),
+                            ]),
+
+                            DataService.isLoadingHistory() &&
+                            m('.b-container.b-container--center.b-container--size-full', [
+                                m(SpinnerView),
+                            ]),
+
+
+                        ]),
+
+                        m('.1/10.grid__cell'),
+
+                        m('.2/10.grid__cell.b-rule.b-rule--heavy-right', [
+                            m('.b-box', [
+                                m('ul.b-item-list', vnode.state.histories.map((history) => {
                                     return m('li.b-item-list__item', [
-                                        m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--sky.b-link--hover-right
+                                        m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--sky.b-link--hover-left
                                 .b-link--no-underline.b-box.b-box--padding-brick-sm
                                 .b-icon.b-icon--fa.b-icon--position-base-left.fa-bug
                                 [href=javascript:void(0);]
                                 ${HistoryListMenuModel.isSelectedHistory(history) &&
-                                '.b-history-list-menu__link--selected'}
+                                        '.b-history-list-menu__link--selected'}
                                 ${(history.visualFailedTotal > 0) &&
                                         '.b-history-list-menu__link--show-icon'}`, {
                                             onclick() {
@@ -82,21 +103,6 @@ module.exports = class HistoryListMenuView {
                                     ]);}
                                 )),
                             ]),
-                        ]),
-
-                        m('.3/5.grid__cell', [
-
-                            HistoryListMenuModel.getHistoryDetails() &&
-                            m('.b-box.b-box--padding-left-base', [
-                                m(HistoryDetailsView, HistoryListMenuModel.getHistoryDetails()),
-                            ]),
-
-                            DataService.isLoadingHistory() &&
-                            m('.b-container.b-container--center.b-container--size-full', [
-                                m(SpinnerView),
-                            ]),
-
-
                         ]),
 
                     ]),

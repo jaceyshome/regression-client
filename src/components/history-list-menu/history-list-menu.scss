@@ -39,6 +39,7 @@
         width: $init-width;
 
         .b-history-list-menu--showing-details & {
+            text-align: right;
             width: 100%;
         }
     }
@@ -60,8 +61,6 @@
     }
 
     &__link {
-
-        margin-left: -20px;
 
         &:before {
             visibility: hidden;

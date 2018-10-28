@@ -47,4 +47,27 @@
 
         
     }
+
+    &--hover-left {
+
+        @keyframes linkHoverLeftAnimation {
+            0%{background-position: 0 50%}
+            100%{background-position: 100% 50%}
+        }
+
+        @keyframes linkHoverLeftAnimationReverted {
+            0%{background-position: 100% 50%}
+            100%{background-position: 0 50%}
+        }
+
+
+        animation: linkHoverLeftAnimationReverted $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+
+        &:hover,
+        &:focus {
+            animation: linkHoverLeftAnimation $animation-speed-fast cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+        }
+
+    }
+
 }

@@ -15,9 +15,14 @@ module.exports = class ScreenshotDetailsView {
 
                 m('.b-featured-table__row', [
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Browser'),
-                    m('.1/4.b-featured-table__cell', vnode.attrs.browser),
+                    m('.1/4.b-featured-table__cell', ScreenshotDetailsModel.getBrowserInfo(vnode)),
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Created at'),
                     m('.1/4.b-featured-table__cell', Dates.getDateTime(vnode.attrs.createdAt)),
+                ]),
+
+                m('.b-featured-table__row', [
+                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Viewport'),
+                    m('.3/4.b-featured-table__cell', vnode.attrs.viewport),
                 ]),
 
                 m('.b-featured-table__row', [
@@ -57,6 +62,7 @@ module.exports = class ScreenshotDetailsView {
                     m('.1/4.b-featured-table__cell', Dates.getDateTime(vnode.attrs.approvedAt)),
 
                 ]),
+
 
             ]),
         ]);
