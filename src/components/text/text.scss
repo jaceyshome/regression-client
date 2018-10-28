@@ -18,6 +18,12 @@
         &--llg      { font-size: $font-size-llg; }
     }
 
+    &--align {
+        &-left { text-align: left; }
+        &-center { text-align: center; }
+        &-right { text-align: right; }
+    }
+
     &--label {
         font-family: $font-apercu-mono;
     }
