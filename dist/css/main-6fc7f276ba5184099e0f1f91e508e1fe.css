@@ -7226,6 +7226,23 @@ h1, h2, h3, h4, h5, h6 {
   .b-link--hover-right:hover, .b-link--hover-right:focus {
     animation: linkHoverRightAnimation 200ms cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards; }
 
+.b-link--hover-left {
+  animation: linkHoverLeftAnimationReverted 200ms cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards; }
+
+@keyframes linkHoverLeftAnimation {
+  0% {
+    background-position: 0 50%; }
+  100% {
+    background-position: 100% 50%; } }
+
+@keyframes linkHoverLeftAnimationReverted {
+  0% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0 50%; } }
+  .b-link--hover-left:hover, .b-link--hover-left:focus {
+    animation: linkHoverLeftAnimation 200ms cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards; }
+
 .b-text--bold {
   font-weight: bold; }
 
@@ -7252,6 +7269,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .b-text--size--llg {
   font-size: 42px; }
+
+.b-text--align-left {
+  text-align: left; }
+
+.b-text--align-center {
+  text-align: center; }
+
+.b-text--align-right {
+  text-align: right; }
 
 .b-text--label {
   font-family: "Apercu Mono", Courier, monospace; }
@@ -7592,6 +7618,7 @@ Style guide: Blocks.Spinner
   .b-history-list-menu__top-bar {
     width: 200px; }
     .b-history-list-menu--showing-details .b-history-list-menu__top-bar {
+      text-align: right;
       width: 100%; }
   .b-history-list-menu__content {
     transform: scale(0); }
@@ -7601,14 +7628,12 @@ Style guide: Blocks.Spinner
     font-size: 14px; }
     .b-history-list-menu--showing-details .b-history-list-menu__title {
       font-size: 32px; }
-  .b-history-list-menu__link {
-    margin-left: -20px; }
-    .b-history-list-menu__link:before {
-      visibility: hidden; }
-    .b-history-list-menu__link--selected {
-      background-color: #00aaff; }
-    .b-history-list-menu__link--show-icon:before {
-      visibility: visible; }
+  .b-history-list-menu__link:before {
+    visibility: hidden; }
+  .b-history-list-menu__link--selected {
+    background-color: #00aaff; }
+  .b-history-list-menu__link--show-icon:before {
+    visibility: visible; }
 
 .b-visual-compare-panel {
   position: relative;
