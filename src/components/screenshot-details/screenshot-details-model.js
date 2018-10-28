@@ -1,3 +1,4 @@
+import platform from 'platform';
 
 class DetailsPanelModel {
 
@@ -13,6 +14,11 @@ class DetailsPanelModel {
         if(vnode.attrs.pass === true && !Object.is(vnode.attrs.approvedAt, undefined)) {
             return 'approved';
         }
+    }
+
+    getBrowserInfo(vnode) {
+        let info = platform.parse(vnode.attrs.browser);
+        return `${info.name} ${info.version}`;
     }
 }
 
