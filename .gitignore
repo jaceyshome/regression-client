@@ -13,4 +13,8 @@ npm-debug.log*
 # mac
 .DS_Store
 
+# IDE
+.history
 .idea
+.settings
+.vscode

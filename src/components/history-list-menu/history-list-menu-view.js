@@ -52,7 +52,6 @@ module.exports = class HistoryListMenuView {
 
                     m('.grid.grid--flush.grid--right', [
 
-
                         m('.7/10.grid__cell', [
 
                             HistoryListMenuModel.getHistoryDetails() &&
@@ -64,8 +63,6 @@ module.exports = class HistoryListMenuView {
                             m('.b-container.b-container--center.b-container--size-full', [
                                 m(SpinnerView),
                             ]),
-
-
                         ]),
 
                         m('.1/10.grid__cell'),
@@ -75,13 +72,11 @@ module.exports = class HistoryListMenuView {
                                 m('ul.b-item-list', vnode.state.histories.map((history) => {
                                     return m('li.b-item-list__item', [
                                         m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--sky.b-link--hover-left
-                                .b-link--no-underline.b-box.b-box--padding-brick-sm
-                                .b-icon.b-icon--fa.b-icon--position-base-left.fa-bug
-                                [href=javascript:void(0);]
-                                ${HistoryListMenuModel.isSelectedHistory(history) &&
-                                        '.b-history-list-menu__link--selected'}
-                                ${(history.visualFailedTotal > 0) &&
-                                        '.b-history-list-menu__link--show-icon'}`, {
+                                            .b-link--no-underline.b-box.b-box--padding-brick-sm
+                                            .b-icon.b-icon--fa.b-icon--position-base-left.fa-bug
+                                            [href=javascript:void(0);]
+                                            ${HistoryListMenuModel.isSelectedHistory(history) && '.b-history-list-menu__link--selected'}
+                                            ${(history.visualFailedTotal > 0) && '.b-history-list-menu__link--show-icon'}`, {
                                             onclick() {
                                                 HistoryListMenuModel.setCurrentHistory(history);
                                             },

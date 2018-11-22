@@ -1,4 +1,5 @@
 import {Dates} from './../../lib/helpers/helpers';
+import HistoryDetailsModel from './history-details-model';
 
 module.exports = class HistoryDetailsView {
 
@@ -16,6 +17,17 @@ module.exports = class HistoryDetailsView {
                     m('.1/4.b-featured-table__cell', vnode.attrs.instance),
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Server'),
                     m('.1/4.b-featured-table__cell', vnode.attrs.server),
+                ]),
+
+                m('.b-featured-table__row', [
+                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Report'),
+                    m('.3/4.b-featured-table__cell', [
+                        m('a.b-link.b-link--block.b-text--color-dark', {
+                            href: `${HistoryDetailsModel.getReportLink(vnode.attrs.report)}`,
+                        }, [
+                            m('span.b-icon.b-icon--fa.b-icon--position-base-left.fa-external-link-alt', 'report link'),
+                        ]),
+                    ]),
                 ]),
 
                 vnode.attrs.createdAt !== undefined &&
