@@ -1,3 +1,13 @@
+<a name="1.6.3"></a>
+## [1.6.3](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.2...1.6.3) (2018-11-22)
+
+
+### Bug Fixes
+
+* fix the hover state doesn't update the history-details-view report link ([198ae48](https://bitbucket.org/jaceyshome/regression-client/commits/198ae48))
+
+
+
 <a name="1.6.2"></a>
 ## [1.6.2](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.1...1.6.2) (2018-11-22)
 

@@ -1,6 +1,6 @@
 {
   "name": "Regression-test-client",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Regression test client site application for checking visual test result",
   "main": "index.js",
   "author": "Weican Wang",
@@ -17,7 +17,7 @@
   "scripts": {
     "change-log": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --progress --config webpack.prod.js",
+    "build": "webpack --progress --config webpack.prod.js; npm run change-log",
     "prod": "http-server dist -p 7090",
     "lint:js": "eslint src/ webpack.*.js --cache --fix",
     "predocker:build": "npm run build",
