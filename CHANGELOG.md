@@ -1,3 +1,13 @@
+<a name="1.6.2"></a>
+## [1.6.2](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.1...1.6.2) (2018-11-22)
+
+
+### Bug Fixes
+
+* disable report link if the report is null ([5a780cb](https://bitbucket.org/jaceyshome/regression-client/commits/5a780cb))
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://bitbucket.org/jaceyshome/regression-client/compare/1.5.1...1.6.0) (2018-11-22)
 
