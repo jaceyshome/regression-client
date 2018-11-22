@@ -1,3 +1,13 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://bitbucket.org/jaceyshome/regression-client/compare/1.5.1...1.6.0) (2018-11-22)
+
+
+### Features
+
+* add report link to the history result ([750720f](https://bitbucket.org/jaceyshome/regression-client/commits/750720f))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://bitbucket.org/jaceyshome/regression-client/compare/1.5.0...1.5.1) (2018-10-28)
 
