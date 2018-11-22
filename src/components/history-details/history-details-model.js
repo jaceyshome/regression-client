@@ -1,4 +1,5 @@
 import DataService from '../service/data-service';
+import _ from 'lodash';
 
 class HistoryDetailsModel {
 
@@ -6,7 +7,7 @@ class HistoryDetailsModel {
     }
 
     getReportLink(report) {
-        return `${DataService.getTestResultRootPath()}/${report.report}`;
+        return (_.isEmpty(report)) ? undefined : `${DataService.getTestResultRootPath()}/${report.report}`;
     }
 
 }
