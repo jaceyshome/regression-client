@@ -1,3 +1,23 @@
+<a name="1.6.4"></a>
+## [1.6.4](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.3...1.6.4) (2018-11-23)
+
+
+### Bug Fixes
+
+* correct the statement of showing the report ([18b493c](https://bitbucket.org/jaceyshome/regression-client/commits/18b493c))
+
+
+
+<a name="1.6.4"></a>
+## [1.6.4](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.3...1.6.4) (2018-11-23)
+
+
+### Bug Fixes
+
+* correct the statement of showing the report ([18b493c](https://bitbucket.org/jaceyshome/regression-client/commits/18b493c))
+
+
+
 <a name="1.6.3"></a>
 ## [1.6.3](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.2...1.6.3) (2018-11-22)
 
