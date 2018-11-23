@@ -21,9 +21,8 @@ module.exports = class HistoryDetailsView {
 
                 m('.b-featured-table__row', [
                     m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Report'),
-
                     m('.3/4.b-featured-table__cell', [
-                        !HistoryDetailsModel.getReportLink(vnode.attrs.report) &&
+                        HistoryDetailsModel.getReportLink(vnode.attrs.report) !== undefined &&
                         m('a.b-link.b-link--block.b-text--color-dark', {
                             href: `${HistoryDetailsModel.getReportLink(vnode.attrs.report)}`,
                         }, [
