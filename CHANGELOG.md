@@ -1,3 +1,13 @@
+<a name="1.6.5"></a>
+## [1.6.5](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.4...1.6.5) (2018-11-24)
+
+
+### Features
+
+* fetch latest 20 histories ([bf58bf3](https://bitbucket.org/jaceyshome/regression-client/commits/bf58bf3))
+
+
+
 <a name="1.6.4"></a>
 ## [1.6.4](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.3...1.6.4) (2018-11-23)
 
