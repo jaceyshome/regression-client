@@ -56,7 +56,7 @@ class DataService extends AbstractDataService {
         });
     }
 
-    fetchHistoryList(limit=10) {
+    fetchHistoryList(limit=20) {
         return new Promise((resolve, reject)=> {
             if(_.isEmpty(this._data.histories)) {
                 m.request({
