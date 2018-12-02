@@ -8,7 +8,7 @@ class DetailsPanelModel {
         }
 
         if(vnode.attrs.pass === false ) {
-            return 'failed';
+            return 'pending';
         }
 
         if(vnode.attrs.pass === true && !Object.is(vnode.attrs.approvedAt, undefined)) {

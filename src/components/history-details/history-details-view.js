@@ -39,7 +39,7 @@ module.exports = class HistoryDetailsView {
 
                 vnode.attrs.visualFailedTotal !== undefined &&
                 m('.b-featured-table__row', [
-                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Visual test fail total'),
+                    m('.1/4.b-featured-table__cell.b-featured-table__cell--head', 'Total differences'),
                     m('.3/4.b-featured-table__cell', vnode.attrs.visualFailedTotal),
                 ]),
 

@@ -73,7 +73,7 @@ module.exports = class HistoryListMenuView {
                                     return m('li.b-item-list__item', [
                                         m(`a.b-history-list-menu__link.b-link.b-link--block.b-link--sky.b-link--hover-left
                                             .b-link--no-underline.b-box.b-box--padding-brick-sm
-                                            .b-icon.b-icon--fa.b-icon--position-base-left.fa-bug
+                                            .b-icon.b-icon--fa.b-icon--position-base-left.fa-fish
                                             [href=javascript:void(0);]
                                             ${HistoryListMenuModel.isSelectedHistory(history) && '.b-history-list-menu__link--selected'}
                                             ${(history.visualFailedTotal > 0) && '.b-history-list-menu__link--show-icon'}`, {
