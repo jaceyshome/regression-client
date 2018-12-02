@@ -2,7 +2,7 @@ import StateService from './../service/state-service';
 
 class VisualSlideNextModel {
 
-    constructor(){
+    constructor() {
 
     }
 
@@ -10,6 +10,9 @@ class VisualSlideNextModel {
         StateService.setNextVisualTest();
     }
 
+    getNextResultIndex() {
+        return StateService.getNextTestIndex();
+    }
 }
 
 module.exports = new VisualSlideNextModel();

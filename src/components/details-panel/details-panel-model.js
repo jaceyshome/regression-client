@@ -18,6 +18,7 @@ class DetailsPanelModel {
         return {
             instance: DataService.getCurrentHistory().instance,
             server: DataService.getCurrentHistory().server,
+            report: DataService.getCurrentHistory().report,
         };
     }
 

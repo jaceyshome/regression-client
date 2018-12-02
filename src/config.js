@@ -1,4 +1,5 @@
 let hostName = window.location.hostname;
+// let hostName = '54.79.0.252';
 
 module.exports = {
     env: 'DEV', //DEV or PROD

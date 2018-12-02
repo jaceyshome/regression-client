@@ -17,7 +17,7 @@ module.exports = class ControlMenuView {
             }, [m('span.b-button__text', `${ControlMenuModel.getDetailsButtonText()}`)]),
 
             ControlMenuModel.getFailedTotal() !== 0 &&
-            m('p.b-box--padding-left-sm.b-icon.b-icon--fa.b-icon--position-base-left.fa-bug', `${ControlMenuModel.getFailedTotal()} failed tests`),
+            m('p.b-box--padding-left-sm.b-icon.b-icon--fa.b-icon--position-base-left.fa-fish', `${ControlMenuModel.getFailedTotal()} differences`),
 
             ControlMenuModel.isResultFailed() &&
             m(`a.b-button.b-button--hover-right.b-button--gap-1px
