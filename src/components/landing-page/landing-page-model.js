@@ -1,5 +1,6 @@
-import StateService from '../service/state-service';
-import DataService from '../service/data-service';
+import StateService from './../service/state-service';
+import DataService from './../service/data-service';
+
 
 class LandingPageModel {
 
@@ -8,10 +9,17 @@ class LandingPageModel {
     }
 
     initState() {
+
         return new Promise((resolve, reject)=> {
             DataService.fetchConfig().then(()=>{
                 DataService.fetchHistoryList().then((results)=> {
-                    StateService.setCurrentHistory(results[0]).then(()=> {
+                    let routingHistory = results.find((result) => Object.is(m.route.param('history'), result._id));
+
+                    if(!routingHistory) {
+                        routingHistory = results[0];
+                    }
+
+                    StateService.setCurrentHistory(routingHistory).then(()=> {
                         this._isReady = true;
                         resolve(results);
                     });
@@ -23,6 +31,9 @@ class LandingPageModel {
 
     isReady() {
         return this._isReady;
+    }
+
+    _getHistory(histories) {
     }
 
 }

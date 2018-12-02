@@ -16,7 +16,7 @@ module.exports = class VisualSlideNextView {
                     },
                 },
                 [
-                    m('span.b-button__text', 'show next'),
+                    m('span.b-button__text', `show next (${VisualSlideNextModel.getNextResultIndex()})`),
                 ]
             ),
         ]);
