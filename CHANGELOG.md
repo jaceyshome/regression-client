@@ -1,3 +1,25 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.5...1.7.0) (2018-12-02)
+
+
+### Features
+
+* add route control for the history and test, so it is able to use route to load a test result ([25f26cb](https://bitbucket.org/jaceyshome/regression-client/commits/25f26cb))
+* instead of meaning test fails, replace with test pending, which makes more sense for the end users, as some of the visual result differences for example seeing date and time changes in social feed which is correct behaviour  ([bfe3371](https://bitbucket.org/jaceyshome/regression-client/commits/bfe3371))
+
+
+
+<a name="1.7.0"></a>
+# [1.7.0](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.5...1.7.0) (2018-12-02)
+
+
+### Features
+
+* add route control for the history and test, so it is able to use route to load a test result ([25f26cb](https://bitbucket.org/jaceyshome/regression-client/commits/25f26cb))
+* instead of meaning test fails, replace with test pending, which makes more sense for the end users, as some of the visual result differences for example seeing date and time changes in social feed which is correct behaviour  ([bfe3371](https://bitbucket.org/jaceyshome/regression-client/commits/bfe3371))
+
+
+
 <a name="1.6.5"></a>
 ## [1.6.5](https://bitbucket.org/jaceyshome/regression-client/compare/1.6.4...1.6.5) (2018-11-24)
 

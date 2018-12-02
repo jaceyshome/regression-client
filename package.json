@@ -1,6 +1,6 @@
 {
   "name": "Regression-client",
-  "version": "1.6.5",
+  "version": "1.7.0",
   "description": "Regression test client site application for checking visual test result",
   "main": "index.js",
   "author": "Weican Wang",
