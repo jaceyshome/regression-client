@@ -19,3 +19,10 @@ npm-debug.log*
 .idea
 .settings
 .vscode
+
+#FIXME: github shows security issues with depedencies in the package-lock.json
+package-lock.json
+
+#FIXME: it fails everytime when running the docker build on the server site, the hack is to remove yarn.lock and node_modules, run yarn again, so ignore yarn.lock file here until fix the problem
+yarn.lock
+

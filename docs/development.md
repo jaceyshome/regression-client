@@ -33,6 +33,19 @@
 └── package.json                  # NPM scripts list
 ```
 
-# References and major dependencies
+## Docker image
+Build with version
+```
+npm run docker:build
+```
+Publish
+```
+npm run docker:publish
+```
+
+reference: https://gist.github.com/duluca/d13e501e870215586271b0f9ce1781ce/
+
+
+## References and major dependencies
 1. (PixiJS 4)[http://www.pixijs.com/]
 2. (MithrilJS)[https://mithril.js.org]
