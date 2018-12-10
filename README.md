@@ -4,7 +4,7 @@ Regression client is a tool to view and analyse visual regression. With it, you 
 
 
 ## Docker image
-
+jacobwang05/regression-client
 
 
 ## How to use
@@ -18,4 +18,4 @@ npm run build
 ```
 
 ## Dependencies
-This project is developed based on the (Mithril Starter Kit)[https://github.com/dhinesh03/mithril-starter-kit] using ES6, Babel, Webpack 3, PixiJS 4, Sass/SCSS.
+This project is developed based on the dhinesh03/mithril-starter-kit using ES6, Babel, Webpack 3, PixiJS 4, Sass/SCSS.
