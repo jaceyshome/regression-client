@@ -13,6 +13,10 @@ const BACKGROUND_COLOUR = '0x363636';
 //Global config
 PIXI.utils.skipHello();
 
+/**
+ * Image viewer
+ * View reference and differed images
+ */
 class ImageViewer extends Component{
 
     constructor() {
@@ -28,6 +32,7 @@ class ImageViewer extends Component{
 
         this._loadComponents();
 
+        //Subscribe data changes
         ImageViewerHelper.getContainer().appendChild(this._app.view);
         ImageViewerService.subscribe('testScreenshot', this.handleScreenshotChange, 'ImageViewer');
         ImageViewerService.subscribe('referenceScreenshot', this.handleScreenshotChange, 'ImageViewer');

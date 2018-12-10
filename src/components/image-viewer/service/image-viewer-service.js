@@ -4,9 +4,8 @@ import DataService from './../../service/data-service';
 import {Strings, Objects} from './../../../lib/helpers/helpers';
 
 /**
- * Image viewer service
+ * State constants
  */
-
 const FLAG_RESET = 0;
 const FLAG_VISUAL_TEST_UPDATE = 1;
 const FLAG_VISUAL_TEST_REFERENCE_UPDATE = 2;
@@ -14,11 +13,16 @@ const FLAG_READY_UPDATE = 3;
 const FLAG_LOADING = 4;
 const FLAG_LOADED = 7;
 
+/**
+ * Image viewer data service
+ * Centralised data service manages shared data and states between components
+ */
 class ImageViewerService extends AbstractDataService {
 
     constructor() {
         super();
 
+        //NOTE: image will assign with unique id on each time loader loading an image, no matter it is the same image or not.
         this._data = {
             testScreenshotId: '',
             referenceScreenshotId: '',
@@ -53,6 +57,9 @@ class ImageViewerService extends AbstractDataService {
         }
     }
 
+    /**
+     * Show current result of the image
+     */
     showCurrentResult() {
         this._currentState = FLAG_LOADING;
         this._getNewScreenshotIds();
@@ -76,15 +83,25 @@ class ImageViewerService extends AbstractDataService {
         return`${DataService.getTestResultRootPath()}/${DataService.getCurrentVisualTestReference().visualScreenshotPath}`;
     }
 
+    /**
+     * change screenshot
+     * @param {*} loader 
+     * @param {Object} resources - image resources
+     */
     handleImagesLoaded(loader, resources) {
+
+        //Set current state
         this._updateStateFlag(FLAG_LOADED);
 
+        //Remove old images
         Objects.empty(this._data.testScreenshot);
         Objects.empty(this._data.referenceScreenshot);
 
+        //Assign new images
         Object.assign(this._data.testScreenshot, resources[this._data.testScreenshotId]);
         Object.assign(this._data.referenceScreenshot, resources[this._data.referenceScreenshotId]);
 
+        //Broadcast new images
         this.broadcastDataChanges('testScreenshot');
         this.broadcastDataChanges('referenceScreenshot');
 
@@ -92,6 +109,10 @@ class ImageViewerService extends AbstractDataService {
 
 
     /*---------------------------- Helpers -----------------------*/
+    /**
+     * Update state, it tells the PixiJS that images loading states
+     * @param {number} flag 
+     */
     _updateStateFlag(flag) {
         if(flag === FLAG_LOADED || this._currentState === FLAG_LOADED) {
             this._currentState = flag;
@@ -111,6 +132,9 @@ class ImageViewerService extends AbstractDataService {
 
     }
 
+    /**
+     * each of a group of test and reference images will assign unique ids 
+     */
     _getNewScreenshotIds() {
         this._data.testScreenshotId = Strings.random(8);
         this._data.referenceScreenshotId = Strings.random(8);

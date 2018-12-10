@@ -8,7 +8,7 @@ import {Strings} from './strings';
 
 
 /**
- * A collection of the helpers classes: Strings, Booleans, Colors and Numbers
+ * A collection of the helpers classes
  * @example
  *  Helpers.Numbers.isNumber(0);
  *  // -> true

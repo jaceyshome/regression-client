@@ -4,7 +4,9 @@ import DataService from './data-service';
 
 /**
  * Application state services, manage features' states
- * including showing the details of a history (current history)
+ * includes:
+ *  1. showing the details of a history (current history)
+ *  2. control url query parameters
  */
 class StateService {
 
@@ -70,6 +72,10 @@ class StateService {
         }
     }
 
+    /**
+     * Update route parameters
+     * @param {Object} params 
+     */
     updateRouteParams(params={
         history : DataService.getCurrentHistory()._id,
         test : this._currentTestIndex,

@@ -9,12 +9,20 @@ import AbstractDataService from './../../lib/abstract-data-service';
 const historyEndpoint = `${config.apiRootPath}/history`;
 const visualEndpoint = `${config.apiRootPath}/visual`;
 
+/**
+ * Data Service 
+ * Data service talks to remote servers with saving, updating and fetching shared data. It is the centralised data control.
+ */
 class DataService extends AbstractDataService {
 
     constructor() {
         super();
 
+        /**
+         * Centralised data, which is shared by all other components
+         */
         this._data = {
+            //Component states object
             componentStates: {
                 detailsPanelVisibility: false,
                 historyListMenuVisibility: false,
@@ -33,6 +41,9 @@ class DataService extends AbstractDataService {
         return config.outputPath;
     }
 
+    /**
+     * Get global configuration from the remote server
+     */
     fetchConfig() {
         return new Promise((resolve, reject)=> {
             m.request({
@@ -56,6 +67,10 @@ class DataService extends AbstractDataService {
         });
     }
 
+    /**
+     * Fetch a list number of latest histories
+     * @param {number} limit maximum number of latest histories. default is 20 
+     */
     fetchHistoryList(limit=20) {
         return new Promise((resolve, reject)=> {
             if(_.isEmpty(this._data.histories)) {
@@ -84,6 +99,10 @@ class DataService extends AbstractDataService {
 
     }
 
+    /**
+     * Set current history with its id
+     * @param {*} id - history ID
+     */
     setCurrentHistory(id) {
 
         this.setLoadingCurrentHistoryState(true);

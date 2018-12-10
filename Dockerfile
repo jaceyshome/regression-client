@@ -2,14 +2,14 @@
 # Regression test client docker image
 #
 # build:
-#    docker build --force-rm -t sydneyuni/regression-client .
+#    docker build --force-rm -t jacobwang05/regression-client .
 # push:
-#    docker push sydneyuni/regression-client .
+#    docker push jacobwang0/regression-client .
 #
 
 ### BASE
 FROM node:9.3.0-alpine AS base
-LABEL maintainer "Jake Wang <jake.wang@sydney.edu.au>"
+LABEL maintainer "Jake Wang <jaceyshome@gmail.com>"
 # Set the working directory
 WORKDIR /home/node/app
 # Copy project specification and dependencies lock files

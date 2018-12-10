@@ -4,13 +4,16 @@
   "description": "Regression test client site application for checking visual test result",
   "main": "index.js",
   "author": "Weican Wang",
+  "license": "MIT",
   "keywords": [
+    "regression",
     "visual test",
-    "mithril",
-    "pixijs"
+    "Cucumber",
+    "MithrilJS",
+    "PixiJS"
   ],
   "config": {
-    "imageRepo": "sydneyuni/regression-client",
+    "imageRepo": "jacobwang05/regression-client",
     "imageName": "regression-client",
     "imagePort": "7090"
   },
