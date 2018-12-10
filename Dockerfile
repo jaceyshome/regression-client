@@ -12,32 +12,16 @@ FROM node:9.3.0-alpine AS base
 LABEL maintainer "Jake Wang <jaceyshome@gmail.com>"
 # Set the working directory
 WORKDIR /home/node/app
-# Copy project specification and dependencies lock files
-COPY package.json yarn.lock ./
+COPY package.json ./
 
-
-
-### DEPENDENCIES
-FROM base AS dependencies
-# Install Node.js dependencies (only production)
-RUN yarn --production
-# Copy production dependencies aside
-RUN cp -R node_modules /tmp/node_modules
-# Install ALL Node.js dependencies
-RUN yarn
-
-
+### DEPENDENCIES 
+FROM base AS dependencies 
+# Install ALL Node.js dependencies 
+RUN npm install http-server
 
 ### RELEASE
-FROM base AS release
-# Copy production dependencies
-COPY --from=dependencies /tmp/node_modules ./node_modules
-# Copy app sources
+FROM dependencies AS release
 COPY . .
-# Install node-sass dependency
-RUN yarn add node-sass
-# Create release build
-RUN yarn build
 # Set the working directory user and group
 # FIXME: set node user and group not working
 #RUN chown node:node -R /home/node/app
@@ -51,4 +35,3 @@ EXPOSE 7090
 ENV NODE_ENV production
 # Run the server
 CMD ["npm", "run-script", "prod"]
-
