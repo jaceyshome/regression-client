@@ -3,25 +3,15 @@
 
 /*
  * Defines all the custom web font-faces for the corporate website
- * e.g. Use the font "Apercu Medium" with the file "apercu_medium_italic_pro" in css
  *
  * .b-heading {
- *      font-family: $font-apercu;           //font family
+ *      font-family: $font-default;           //font family
  *      font-weight: $font-weight-medium;    //font weight
  *      font-style: italic;                  //font style
  *  }
  *
  */
 
-// Apercu
-@include font('Apercu', 'Apercu-Regular-Web', '#{$font-path}/apercu', $font-weight-regular);
-@include font('Apercu', 'Apercu-Italic-Web', '#{$font-path}/apercu', $font-weight-regular, italic);
-@include font('Apercu', 'Apercu-Bold-Web', '#{$font-path}/apercu', $font-weight-bold);
-@include font('Apercu', 'Apercu-BoldItalic-Web', '#{$font-path}/apercu', $font-weight-bold, italic);
-@include font('Apercu', 'Apercu-Light-Web', '#{$font-path}/apercu', $font-weight-light);
-@include font('Apercu', 'Apercu-LightItalic-Web', '#{$font-path}/apercu', $font-weight-light, italic);
-@include font('Apercu', 'Apercu-Medium-Web', '#{$font-path}/apercu', $font-weight-medium);
-
-
-// Apercu Mono
-@include font('Apercu Mono', 'Apercu-Mono-Web', '#{$font-path}/apercu');
+// Roboto
+@include font('Roboto Bold', 'Roboto-Bold', '#{$font-path}/roboto');
+@include font('Roboto', 'Roboto-Regular', '#{$font-path}/roboto');
