@@ -1,5 +1,4 @@
-// let hostName = window.location.hostname;
-let hostName = 'aemrpa00001.srv.sydney.edu.au';
+let hostName = window.location.hostname;
 
 module.exports = {
     env: 'DEV', //DEV or PROD
