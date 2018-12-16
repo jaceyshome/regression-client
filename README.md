@@ -61,9 +61,13 @@ More details about using npm scripts for docker are in [duluca/npm-scripts-for-d
 
 ## Built with
 [Mithril.js](https://mithril.js.org/)
+
 [Mithril-start-kit](https://github.com/dhinesh03/mithril-starter-kit)
+
 [PixiJs](http://pixijs.com)
+
 [npm-scripts-for-docker.md](https://gist.github.com/duluca/d13e501e870215586271b0f9ce1781ce/)
+
 [Webpack](https://webpack.js.org/)
 
 
